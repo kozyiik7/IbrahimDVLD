@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="../IbrahimDVLDBusinessLayer/IbrahimDVLDBusinessLayer.csproj" Id="914c6548-ae2f-412a-bc8f-424e97ceee55" />
+  <Project Path="../IbrahimDVLDDataAccessLayer/IbrahimDVLDDataAccessLayer.csproj" Id="1dff022b-00e4-46cf-9c04-6c147794f8dd" />
+  <Project Path="IbrahimDVLDUserInterface.csproj" Id="a5f3a57d-a82f-40e3-8873-27f6e23d4e8d" />
+</Solution>
