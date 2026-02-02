@@ -348,6 +348,7 @@
             this.llRemove.TabIndex = 26;
             this.llRemove.TabStop = true;
             this.llRemove.Text = "Remove";
+            this.llRemove.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llRemove_LinkClicked);
             // 
             // ucPersonInfo
             // 
@@ -382,7 +383,7 @@
             this.Controls.Add(this.label1);
             this.Name = "ucPersonInfo";
             this.Size = new System.Drawing.Size(874, 345);
-            this.Load += new System.EventHandler(this.ucPersonInfo_Load);
+          
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);

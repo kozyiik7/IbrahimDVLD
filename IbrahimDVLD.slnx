@@ -1,4 +1,10 @@
 <Solution>
+  <Folder Name="/People_Images/">
+    <File Path="Project_People_Images/0debdd2b-14b2-4bc8-97f3-7ab5750f1923.jpg" />
+    <File Path="Project_People_Images/3e600f80-67b1-4595-bae7-d16cb773dbb1.jpg" />
+    <File Path="Project_People_Images/b8f8c541-b11b-4e6c-94c2-a36524c57f31.jpg" />
+    <File Path="Project_People_Images/f8745dec-0008-4aa7-8c76-26290b738edd.jpg" />
+  </Folder>
   <Project Path="../IbrahimDVLDBusinessLayer/IbrahimDVLDBusinessLayer.csproj" Id="914c6548-ae2f-412a-bc8f-424e97ceee55" />
   <Project Path="../IbrahimDVLDDataAccessLayer/IbrahimDVLDDataAccessLayer.csproj" Id="1dff022b-00e4-46cf-9c04-6c147794f8dd" />
   <Project Path="IbrahimDVLDUserInterface.csproj" Id="a5f3a57d-a82f-40e3-8873-27f6e23d4e8d" />

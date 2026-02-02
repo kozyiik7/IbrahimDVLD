@@ -15,7 +15,7 @@ namespace IbrahimDVLD
     public partial class ucPersonInfo : UserControl
     {
         string SourceFolder = "";
-        string DestinationFolder=@"C:\Project_People_Images";
+        string DestinationFolder= @"C:\Users\kozy\source\repos\IbrahimDVLD\Project_People_Images";
         string DestinationWithNewName = "";
         public string FirstName { get { return txtFirstName.Text; } set { txtFirstName.Text = value; } }
         public string SecondName { get { return txtSecondName.Text; } set { txtSecondName.Text = value; } }
@@ -65,17 +65,13 @@ namespace IbrahimDVLD
         {
             cmbCountry.DataSource=IbrahimDVLDBusinessLayer.clsCountry.GetAllCountries();
             cmbCountry.DisplayMember = "CountryName";
-            cmbCountry.SelectedIndex=0;
+            cmbCountry.SelectedIndex=cmbCountry.FindStringExact("Syria");
 
         }
         private void SetDateTimePickerRange()
         {
             dtpDateOfBirth.MinDate = DateTime.Parse("1900-01-01");
             dtpDateOfBirth.MaxDate = DateTime.Today.AddYears(-18);
-        }
-        private void ucPersonInfo_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void txtNationalNumber_Validating(object sender, CancelEventArgs e)
@@ -88,14 +84,14 @@ namespace IbrahimDVLD
             else
             { 
                if (IbrahimDVLDBusinessLayer.clsPeople.IsNationalnumberExist(txtNationalNumber.Text))
-            {
+                {
                 errorProvider1.SetError(txtNationalNumber, "الرقم موجود");
                     txtNationalNumber.Focus();
                 }
-            else
-            {
+               else
+               {
                 errorProvider1.SetError(txtNationalNumber, string.Empty);
-            }
+               }
 
 
             }
@@ -180,6 +176,21 @@ namespace IbrahimDVLD
                 if (!txtEmail.Text.Contains("@"))
                     errorProvider1.SetError(txtEmail, "يجب ادخال ايميل صحيح");
             }
+        }
+
+        private void llRemove_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            File.Delete(pbImage.ImageLocation);
+
+            if (rbMale.Checked)
+            {
+                pbImage.Image = imageList1.Images[0];
+            }
+            else if (rbFemale.Checked)
+            {
+                pbImage.Image = imageList1.Images[1];
+            }
+            llRemove.Visible = false;
         }
     }
 }
