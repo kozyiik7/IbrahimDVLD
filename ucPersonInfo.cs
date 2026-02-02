@@ -15,7 +15,7 @@ namespace IbrahimDVLD
     public partial class ucPersonInfo : UserControl
     {
         string SourceFolder = "";
-        string DestinationFolder= @"C:\Users\kozy\source\repos\IbrahimDVLD\Project_People_Images";
+        string DestinationFolder= @"C:\Project_People_Images";
         string DestinationWithNewName = "";
         public string FirstName { get { return txtFirstName.Text; } set { txtFirstName.Text = value; } }
         public string SecondName { get { return txtSecondName.Text; } set { txtSecondName.Text = value; } }
@@ -101,7 +101,7 @@ namespace IbrahimDVLD
         private void llSetImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Guid newGuid = Guid.NewGuid();
-            if (openFileDialog1.ShowDialog(this) == DialogResult.OK&&openFileDialog1.FileName!=null)
+            if (openFileDialog1.ShowDialog() == DialogResult.OK && openFileDialog1.FileName!=null)
             {
                 SourceFolder = openFileDialog1.FileName;
                 DestinationWithNewName = Path.Combine(DestinationFolder, newGuid.ToString() + ".jpg");
@@ -191,6 +191,11 @@ namespace IbrahimDVLD
                 pbImage.Image = imageList1.Images[1];
             }
             llRemove.Visible = false;
+        }
+
+        private void ucPersonInfo_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

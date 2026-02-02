@@ -383,7 +383,7 @@
             this.Controls.Add(this.label1);
             this.Name = "ucPersonInfo";
             this.Size = new System.Drawing.Size(874, 345);
-          
+            this.Load += new System.EventHandler(this.ucPersonInfo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
