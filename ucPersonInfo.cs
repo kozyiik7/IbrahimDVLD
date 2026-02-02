@@ -105,12 +105,14 @@ namespace IbrahimDVLD
         private void llSetImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Guid newGuid = Guid.NewGuid();
-            openFileDialog1.ShowDialog(this);
-            SourceFolder=openFileDialog1.FileName;
-            DestinationWithNewName = Path.Combine(DestinationFolder, newGuid.ToString()+".jpg");
-            File.Copy(SourceFolder, DestinationWithNewName, true);
-            llRemove.Visible = true;
-
+            if (openFileDialog1.ShowDialog(this) == DialogResult.OK&&openFileDialog1.FileName!=null)
+            {
+                SourceFolder = openFileDialog1.FileName;
+                DestinationWithNewName = Path.Combine(DestinationFolder, newGuid.ToString() + ".jpg");
+                File.Copy(SourceFolder, DestinationWithNewName, true);
+                pbImage.ImageLocation = DestinationWithNewName;
+                llRemove.Visible = true;
+            }
         }
 
         private void rbMale_CheckedChanged(object sender, EventArgs e)
