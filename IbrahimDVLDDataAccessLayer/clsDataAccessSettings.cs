@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace IbrahimDVLDDataAccessLayer
+{
+    internal class clsDataAccessSettings
+    {
+        public static string ConnectionString = "server=DESKTOP-4VDAOFB\\MSSQLSERVER1;DataBase=DVLD;User id=sa;Password=123456;";
+    }
+}
