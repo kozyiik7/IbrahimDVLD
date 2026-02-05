@@ -52,6 +52,12 @@
     <Compile Include="FrmAddEditPersonInfo.Designer.cs">
       <DependentUpon>FrmAddEditPersonInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPersonInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPersonInfo.Designer.cs">
+      <DependentUpon>frmPersonInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +80,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmAddEditPersonInfo.resx">
       <DependentUpon>FrmAddEditPersonInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPersonInfo.resx">
+      <DependentUpon>frmPersonInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -107,7 +116,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IbrahimDVLDBusinessLayer\IbrahimDVLDBusinessLayer.csproj">
+    <ProjectReference Include="IbrahimDVLDBusinessLayer\IbrahimDVLDBusinessLayer.csproj">
       <Project>{914c6548-ae2f-412a-bc8f-424e97ceee55}</Project>
       <Name>IbrahimDVLDBusinessLayer</Name>
     </ProjectReference>

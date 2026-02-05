@@ -23,15 +23,18 @@ namespace IbrahimDVLD
         {
 
         }
-
+        private void RefreshDataGridView()
+        {
+            dataGridView1.DataSource = clsPeople.GetAllPeople();
+            lblNumberOfRecords.Text = dataGridView1.RowCount.ToString();
+        }
         private void frmManagePeople_Load(object sender, EventArgs e)
         {
             //BindingSource bs = new BindingSource();
             //bs.DataSource=clsPeople.GetAllPeople();
             //lblNumberOfRecords.Text=bs.Count.ToString();
 
-            dataGridView1.DataSource = clsPeople.GetAllPeople();
-            lblNumberOfRecords.Text = dataGridView1.RowCount.ToString();
+           RefreshDataGridView();
             txtSearch.Visible = false;
             FillcmbFilterWithItems();
         }
@@ -40,6 +43,7 @@ namespace IbrahimDVLD
         {
             Form frmAddEdit = new FrmAddEditPersonInfo(-1);
             frmAddEdit.ShowDialog();
+            RefreshDataGridView();
         }
 
         private void cmbFilter_SelectedIndexChanged(object sender, EventArgs e)
@@ -48,6 +52,7 @@ namespace IbrahimDVLD
             { 
                 txtSearch.Visible = true;
             }
+           
         }
         private void FillcmbFilterWithItems()
         {
@@ -76,34 +81,51 @@ namespace IbrahimDVLD
 
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("You clicked Show Details");
+           // MessageBox.Show("You clicked Show Details");
+            frmPersonInfo PersonInfo=new frmPersonInfo(Convert.ToInt32( dataGridView1.CurrentRow.Cells[0].Value.ToString()),false);
+            PersonInfo.ShowDialog();
+            RefreshDataGridView();
         }
 
         private void addNewPersonToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form frmAddEdit = new FrmAddEditPersonInfo(-1);
             frmAddEdit.ShowDialog();
+            RefreshDataGridView();
 
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("You clicked Edit");
+            frmPersonInfo PersonInfo = new frmPersonInfo(Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value.ToString()), true);
+            PersonInfo.ShowDialog();
+            RefreshDataGridView();
         }
 
         private void editToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("You clicked Edit");
+            if (MessageBox.Show("Are you Want to Delete ? ","CONFIRM",MessageBoxButtons.OKCancel)==DialogResult.OK && clsPeople.Delete(Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value.ToString()))) 
+            {
+                MessageBox.Show("تم الحذف بنجاح");
+            }
+            else
+            { 
+                MessageBox.Show("هناك مشكلة يبدو ان الاسم مرتبط بسجل اخر ");
+            }
+            RefreshDataGridView();
         }
 
         private void sendEmailToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("You clicked Send Email");
+            RefreshDataGridView();
         }
 
         private void sendSMSToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("You clicked Send SMS");
+            RefreshDataGridView();
         }
+        
     }
 }

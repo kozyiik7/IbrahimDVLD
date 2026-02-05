@@ -15,7 +15,7 @@ namespace IbrahimDVLDBusinessLayer
         public string SecondName { get; set; }
         public string ThirdName {  get; set; }
         public string LastName {  get; set; }
-        public string NationalNUmber {  get; set; }
+        public string NationalNumber {  get; set; }
         public DateTime DateOfBirth {  get; set; }
         public bool Gendor {  get; set; }
         public string Phone {  get; set; }
@@ -23,6 +23,27 @@ namespace IbrahimDVLDBusinessLayer
         public string Country { get; set; }
         public string Address {  get; set; }
         public string ImagePath {  get; set; }
+         
+        public clsPeople()
+        { 
+        
+        }
+        public clsPeople(int ID, string firstName, string secondName, string thirdName, string lastName, string nationalNumber, DateTime dateOfBirth, bool gendor, string phone, string email, string country, string address, string imagePath)
+        {
+            this.ID = ID;
+            FirstName = firstName;
+            SecondName = secondName;
+            ThirdName = thirdName;
+            LastName = lastName;
+            NationalNumber = nationalNumber;
+            DateOfBirth = dateOfBirth;
+            Gendor = gendor;
+            Phone = phone;
+            Email = email;
+            Country = country;
+            Address = address;
+            ImagePath = imagePath;
+        }
 
         public static DataTable GetAllPeople()
         {
@@ -31,6 +52,41 @@ namespace IbrahimDVLDBusinessLayer
         public static bool IsNationalnumberExist(string number)
         {
             return IbrahimDVLDDataAccessLayer.clsDataAccess.isNationalNumberExist(number);
+        }
+
+        public  clsPeople GetPersonInfo(int ID , ref string FirstName, ref string SecondName, ref string ThirdName,
+                                         ref string LastName, ref string NationalNUmber,ref DateTime DateOfBirth ,
+                                         ref bool Gendor, ref string Phone, ref string Email, ref string Country,
+                                         ref string Address , ref string ImagePath)
+        {
+            
+           if( clsDataAccess.GetPersonInfo(ID, ref FirstName, ref SecondName, ref ThirdName,
+                                         ref LastName, ref NationalNUmber, ref DateOfBirth,
+                                         ref Gendor, ref Phone, ref Email, ref Country,
+                                         ref Address, ref ImagePath))
+            {
+                return new clsPeople(ID, FirstName, SecondName, ThirdName, LastName, NationalNUmber, DateOfBirth,
+                                   Gendor, Phone, Email, Country, Address, ImagePath);
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+        public static bool Delete(int PersonID)
+        {
+            return clsDataAccess.Delete(PersonID);
+        }
+
+        public  bool Update(int PersonID, string FirstName, string SecondName, string ThirdName,
+                                         string LastName, string NationalNumber, DateTime DateOfBirth,
+                                         string Gendor, string Phone, string Email, string Country,
+                                         string Address, string ImagePath)
+        {
+
+            return clsDataAccess.Update(PersonID, FirstName, SecondName, ThirdName, LastName, NationalNumber,
+                DateOfBirth,Gendor, Phone, Email, Country, Address, ImagePath);
         }
     }
 }
