@@ -107,7 +107,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IbrahimDVLDBusinessLayer\IbrahimDVLDBusinessLayer.csproj">
+    <ProjectReference Include="IbrahimDVLDBusinessLayer\IbrahimDVLDBusinessLayer.csproj">
       <Project>{914c6548-ae2f-412a-bc8f-424e97ceee55}</Project>
       <Name>IbrahimDVLDBusinessLayer</Name>
     </ProjectReference>
