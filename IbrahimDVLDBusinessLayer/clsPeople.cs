@@ -17,10 +17,10 @@ namespace IbrahimDVLDBusinessLayer
         public string LastName {  get; set; }
         public string NationalNumber {  get; set; }
         public DateTime DateOfBirth {  get; set; }
-        public bool Gendor {  get; set; }
+        public short Gendor {  get; set; }
         public string Phone {  get; set; }
         public string Email {  get; set; }
-        public string Country { get; set; }
+        public int CountryID { get; set; }
         public string Address {  get; set; }
         public string ImagePath {  get; set; }
          
@@ -28,7 +28,7 @@ namespace IbrahimDVLDBusinessLayer
         { 
         
         }
-        public clsPeople(int ID, string firstName, string secondName, string thirdName, string lastName, string nationalNumber, DateTime dateOfBirth, bool gendor, string phone, string email, string country, string address, string imagePath)
+        public clsPeople(int ID, string firstName, string secondName, string thirdName, string lastName, string nationalNumber, DateTime dateOfBirth, short gendor, string phone, string email, int countryID, string address, string imagePath)
         {
             this.ID = ID;
             FirstName = firstName;
@@ -40,7 +40,7 @@ namespace IbrahimDVLDBusinessLayer
             Gendor = gendor;
             Phone = phone;
             Email = email;
-            Country = country;
+            CountryID = countryID;
             Address = address;
             ImagePath = imagePath;
         }
@@ -54,19 +54,19 @@ namespace IbrahimDVLDBusinessLayer
             return IbrahimDVLDDataAccessLayer.clsDataAccess.isNationalNumberExist(number);
         }
 
-        public  clsPeople GetPersonInfo(int ID , ref string FirstName, ref string SecondName, ref string ThirdName,
+        public  static clsPeople GetPersonInfo(int ID , ref string FirstName, ref string SecondName, ref string ThirdName,
                                          ref string LastName, ref string NationalNUmber,ref DateTime DateOfBirth ,
-                                         ref bool Gendor, ref string Phone, ref string Email, ref string Country,
+                                         ref short Gendor, ref string Phone, ref string Email, ref int CountryID,
                                          ref string Address , ref string ImagePath)
         {
             
            if( clsDataAccess.GetPersonInfo(ID, ref FirstName, ref SecondName, ref ThirdName,
                                          ref LastName, ref NationalNUmber, ref DateOfBirth,
-                                         ref Gendor, ref Phone, ref Email, ref Country,
+                                         ref Gendor, ref Phone, ref Email, ref CountryID,
                                          ref Address, ref ImagePath))
             {
                 return new clsPeople(ID, FirstName, SecondName, ThirdName, LastName, NationalNUmber, DateOfBirth,
-                                   Gendor, Phone, Email, Country, Address, ImagePath);
+                                   Gendor, Phone, Email, CountryID, Address, ImagePath);
             }
             else
             {
@@ -81,12 +81,21 @@ namespace IbrahimDVLDBusinessLayer
 
         public  bool Update(int PersonID, string FirstName, string SecondName, string ThirdName,
                                          string LastName, string NationalNumber, DateTime DateOfBirth,
-                                         string Gendor, string Phone, string Email, string Country,
+                                         short Gendor, string Phone, string Email, int CountryID,
                                          string Address, string ImagePath)
         {
 
             return clsDataAccess.Update(PersonID, FirstName, SecondName, ThirdName, LastName, NationalNumber,
-                DateOfBirth,Gendor, Phone, Email, Country, Address, ImagePath);
+                DateOfBirth,Gendor, Phone, Email, CountryID, Address, ImagePath);
+        }
+            public  int Insert(string FirstName, string SecondName, string ThirdName,
+                                            string LastName, string NationalNumber, DateTime DateOfBirth,
+                                            short Gendor, string Phone, string Email, int CountryID,
+                                            string Address, string ImagePath)
+            {
+    
+                return clsDataAccess.AddNew(FirstName, SecondName, ThirdName, LastName, NationalNumber,
+                    DateOfBirth, Gendor, Phone, Email, CountryID, Address, ImagePath);
         }
     }
 }

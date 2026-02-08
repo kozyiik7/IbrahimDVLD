@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
+using IbrahimDVLDBusinessLayer;
 
 
 namespace IbrahimDVLD
@@ -15,42 +16,55 @@ namespace IbrahimDVLD
     public partial class ucPersonInfo : UserControl
     {
         string SourceFolder = "";
-        string DestinationFolder= @"C:\Project_People_Images";
+        string DestinationFolder = @"C:\Project_People_Images";
         string DestinationWithNewName = "";
         public string FirstName { get { return txtFirstName.Text; } set { txtFirstName.Text = value; } }
         public string SecondName { get { return txtSecondName.Text; } set { txtSecondName.Text = value; } }
         public string ThirdName { get { return txtThirdName.Text; } set { txtThirdName.Text = value; } }
         public string LastName { get { return txtLastName.Text; } set { txtLastName.Text = value; } }
         public string NationalNUmber { get { return txtNationalNumber.Text; } set { txtNationalNumber.Text = value; } }
-        public DateTime DateOfBirth { get { return dtpDateOfBirth.Value; } set {dtpDateOfBirth.Value=value; } }
-        public string Gendor 
+        public DateTime DateOfBirth { get { return dtpDateOfBirth.Value; } set { dtpDateOfBirth.Value = value; } }
+        public short Gendor
         {
             get
-            { 
-                if (rbMale.Checked) return "Male";
-                if (rbFemale.Checked) return "Female";
-                else return null;
+            {
+                if (rbMale.Checked) return 0;
+                if (rbFemale.Checked) return 1;
+                else return -1;
             }
             set
             {
-                if (value == "Male")
+                if (value == 0)
                     rbMale.Checked = true;
-                else if (value =="Female")
+                else if (value == 1)
                     rbFemale.Checked = true;
             }
         }
         public string Phone { get { return txtPhone.Text; } set { txtPhone.Text = value; } }
         public string Email { get { return txtEmail.Text; } set { txtEmail.Text = value; } }
-        public string Country
+        public int CountryID
         {
-            get { return cmbCountry.SelectedItem?.ToString(); }
+            get { return (int) clsCountry.GetCountyIDByCountryName( cmbCountry.Text); } //return clsCountry.GetCountyIDByCountryName(cmbCountry.SelectedItem?.ToString()); }
 
-            set { cmbCountry.SelectedItem = value; }
+            set {
+                if (value == -1)
+                    cmbCountry.SelectedIndex = cmbCountry.FindStringExact("Syria");
+                else
+                    cmbCountry.SelectedIndex = cmbCountry.FindStringExact(clsCountry.GetCountyNameByCountryID(value));            }
         }
         public string Address { get { return txtAddress.Text; } set { txtAddress.Text = value; } }
         public string ImagePath { get { return pbImage.ImageLocation; } set { pbImage.ImageLocation = value; } }
 
-
+        public bool LinkedLabeleRemoveVisible
+        {
+            get { return llRemove.Visible; }
+            set { llRemove.Visible = value; }
+        }
+        public bool LinkedlabelSetImageVisible
+        {
+            get { return llSetImage.Visible; }
+            set { llSetImage.Visible = value; }
+        }
         public ucPersonInfo()
         {
             InitializeComponent();
@@ -59,13 +73,16 @@ namespace IbrahimDVLD
             rbMale.Checked = true;
             pbImage.Image = imageList1.Images[0];
             llRemove.Visible = false;
+            cmbCountry.SelectedIndex = cmbCountry.FindStringExact("Syria");
             
+
         }
         private void FillCountriesComboBox()
         {
-            cmbCountry.DataSource=IbrahimDVLDBusinessLayer.clsCountry.GetAllCountries();
+            cmbCountry.DataSource = IbrahimDVLDBusinessLayer.clsCountry.GetAllCountries();
             cmbCountry.DisplayMember = "CountryName";
-            cmbCountry.SelectedIndex=cmbCountry.FindStringExact("Syria");
+            cmbCountry.SelectedIndex = cmbCountry.FindStringExact("Syria");
+       
 
         }
         private void SetDateTimePickerRange()
@@ -82,16 +99,16 @@ namespace IbrahimDVLD
                 txtNationalNumber.Focus();
             }
             else
-            { 
-               if (IbrahimDVLDBusinessLayer.clsPeople.IsNationalnumberExist(txtNationalNumber.Text))
+            {
+                if (IbrahimDVLDBusinessLayer.clsPeople.IsNationalnumberExist(txtNationalNumber.Text))
                 {
-                errorProvider1.SetError(txtNationalNumber, "الرقم موجود");
+                    errorProvider1.SetError(txtNationalNumber, "الرقم موجود");
                     txtNationalNumber.Focus();
                 }
-               else
-               {
-                errorProvider1.SetError(txtNationalNumber, string.Empty);
-               }
+                else
+                {
+                    errorProvider1.SetError(txtNationalNumber, string.Empty);
+                }
 
 
             }
@@ -101,7 +118,7 @@ namespace IbrahimDVLD
         private void llSetImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Guid newGuid = Guid.NewGuid();
-            if (openFileDialog1.ShowDialog() == DialogResult.OK && openFileDialog1.FileName!=null)
+            if (openFileDialog1.ShowDialog() == DialogResult.OK && openFileDialog1.FileName != null)
             {
                 SourceFolder = openFileDialog1.FileName;
                 DestinationWithNewName = Path.Combine(DestinationFolder, newGuid.ToString() + ".jpg");
@@ -122,7 +139,7 @@ namespace IbrahimDVLD
 
         }
 
-        
+
 
         private void txtSecondName_Validating(object sender, CancelEventArgs e)
         {
@@ -195,7 +212,11 @@ namespace IbrahimDVLD
 
         private void ucPersonInfo_Load(object sender, EventArgs e)
         {
-
+            if (CountryID != -1)
+            {
+                cmbCountry.SelectedIndex = cmbCountry.FindString(clsCountry.GetCountyNameByCountryID(CountryID));
+              
+            }
         }
     }
 }

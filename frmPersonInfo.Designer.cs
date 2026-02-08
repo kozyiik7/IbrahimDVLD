@@ -1,4 +1,6 @@
-﻿namespace IbrahimDVLD
+﻿using System;
+
+namespace IbrahimDVLD
 {
     partial class frmPersonInfo
     {
@@ -40,12 +42,12 @@
             // ucPersonInfo1
             // 
             this.ucPersonInfo1.Address = "";
-            this.ucPersonInfo1.Country = "System.Data.DataRowView";
+           // this.ucPersonInfo1.CountryID =Convert.ToInt32( "System.Data.DataRowView");
             this.ucPersonInfo1.DateOfBirth = new System.DateTime(2008, 2, 5, 0, 0, 0, 0);
             this.ucPersonInfo1.Email = "";
             this.ucPersonInfo1.Enabled = false;
             this.ucPersonInfo1.FirstName = "";
-            this.ucPersonInfo1.Gendor = "Male";
+            this.ucPersonInfo1.Gendor =1;
             this.ucPersonInfo1.ImagePath = null;
             this.ucPersonInfo1.LastName = "";
             this.ucPersonInfo1.Location = new System.Drawing.Point(12, 93);
@@ -60,11 +62,11 @@
             // ucPersonInfo2
             // 
             this.ucPersonInfo2.Address = "";
-            this.ucPersonInfo2.Country = "System.Data.DataRowView";
+          //  this.ucPersonInfo2.CountryID = Convert.ToInt32("System.Data.DataRowView");
             this.ucPersonInfo2.DateOfBirth = new System.DateTime(2008, 2, 5, 0, 0, 0, 0);
             this.ucPersonInfo2.Email = "";
             this.ucPersonInfo2.FirstName = "";
-            this.ucPersonInfo2.Gendor = "Male";
+            this.ucPersonInfo2.Gendor = 1;
             this.ucPersonInfo2.ImagePath = null;
             this.ucPersonInfo2.LastName = "";
             this.ucPersonInfo2.Location = new System.Drawing.Point(498, 130);

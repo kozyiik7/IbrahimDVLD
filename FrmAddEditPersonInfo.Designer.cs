@@ -80,6 +80,7 @@
             this.btnSave.TabIndex = 29;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnClose
             // 
@@ -96,10 +97,22 @@
             // 
             // ucPersonInfo1
             // 
+            this.ucPersonInfo1.Address = "";
+            this.ucPersonInfo1.CountryID = -1;
+            this.ucPersonInfo1.DateOfBirth = new System.DateTime(2008, 2, 7, 0, 0, 0, 0);
+            this.ucPersonInfo1.Email = "";
+            this.ucPersonInfo1.FirstName = "";
+            this.ucPersonInfo1.Gendor = ((short)(0));
+            this.ucPersonInfo1.ImagePath = null;
+            this.ucPersonInfo1.LastName = "";
             this.ucPersonInfo1.Location = new System.Drawing.Point(-2, 93);
             this.ucPersonInfo1.Name = "ucPersonInfo1";
+            this.ucPersonInfo1.NationalNUmber = "";
+            this.ucPersonInfo1.Phone = "";
+            this.ucPersonInfo1.SecondName = "";
             this.ucPersonInfo1.Size = new System.Drawing.Size(874, 334);
             this.ucPersonInfo1.TabIndex = 3;
+            this.ucPersonInfo1.ThirdName = "";
             // 
             // FrmAddEditPersonInfo
             // 

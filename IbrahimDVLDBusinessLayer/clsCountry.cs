@@ -14,5 +14,14 @@ namespace IbrahimDVLDBusinessLayer
             return IbrahimDVLDDataAccessLayer.clsCountry.GetAllCountries();
 
         }
+
+        public static int GetCountyIDByCountryName(string CountryNam)
+        {
+            return IbrahimDVLDDataAccessLayer.clsCountry.GetCountyIDByCountryName(CountryNam);
+        }
+        public static string GetCountyNameByCountryID(int CountryID)
+        {
+            return IbrahimDVLDDataAccessLayer.clsCountry.GetCountyNameBYCountryID(CountryID);
+        }
     }
 }

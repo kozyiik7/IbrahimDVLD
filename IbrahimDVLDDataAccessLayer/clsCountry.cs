@@ -37,5 +37,62 @@ namespace IbrahimDVLDDataAccessLayer
             }
             return dtCountry;
         }
+        public static int GetCountyIDByCountryName(string CountryNam)
+        {
+            int CountryID = -1;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "Select CountryID from Countries Where CountryName =@CountryName";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@CountryName", CountryNam);
+            try
+            {
+                connection.Open();
+                object Value1 = command.ExecuteScalar();
+                if (Value1!=null)
+                {
+                   CountryID= Convert.ToInt32( Value1);
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+
+                connection.Close();
+            }
+            return CountryID;
+        }
+
+        public static string GetCountyNameBYCountryID(int CountryID)
+        {
+            
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "Select CountryName from Countries Where CountryID =@CountryID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@CountryID", CountryID);
+            try
+            {
+                connection.Open();
+                object Value1 = command.ExecuteScalar();
+                if (Value1 != null)
+                {
+                    return Convert.ToString(Value1);
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+
+                connection.Close();
+            }
+            return "";
+        }
     }
 }
