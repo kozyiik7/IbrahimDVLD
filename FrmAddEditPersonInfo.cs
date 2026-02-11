@@ -15,11 +15,31 @@ namespace IbrahimDVLD
     {
         DataTable dtCountries = IbrahimDVLDBusinessLayer.clsCountry.GetAllCountries();
         clsPeople _Person=new clsPeople();
+        private int _PersonID;
         public FrmAddEditPersonInfo(int ID)
         {
 
             InitializeComponent();
+                _PersonID = ID;
 
+        }
+        private bool GetPersonInfo()
+        {
+            string FirstName = "", SecondName = "", ThirdName = "", LastName = "", NationalNumber = "", Phone = "", Email = "", Address = "", imagePath = "";
+            DateTime DateOfBirth = DateTime.Now;
+            short Gendor = 0;
+            int CountryID = -1;
+
+            clsPeople personInfo = clsPeople.GetPersonInfo(_PersonID, ref FirstName, ref SecondName, ref ThirdName, ref LastName,
+                                                          ref NationalNumber, ref DateOfBirth, ref Gendor, ref Phone,
+                                                          ref Email, ref CountryID, ref Address, ref imagePath);
+            if (personInfo != null)
+            {
+               _Person = personInfo;
+                lblAddress.Text = "Edit Person Info";
+                return true;
+            }
+            return false;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -34,6 +54,23 @@ namespace IbrahimDVLD
         private void FrmAddEditPersonInfo_Load(object sender, EventArgs e)
         {
             FillCountryComboBox();
+            GetPersonInfo();
+            if (_PersonID!=-1)
+            {
+                lblPersonID.Text = _PersonID.ToString();
+                ucPersonInfo1.FirstName = _Person.FirstName;
+                ucPersonInfo1.SecondName = _Person.SecondName;
+                ucPersonInfo1.ThirdName = _Person.ThirdName;
+                ucPersonInfo1.LastName = _Person.LastName;
+                ucPersonInfo1.NationalNUmber = _Person.NationalNumber;
+                ucPersonInfo1.DateOfBirth = _Person.DateOfBirth;
+                ucPersonInfo1.Gendor = _Person.Gendor;
+                ucPersonInfo1.Phone = _Person.Phone;
+                ucPersonInfo1.Email = _Person.Email;
+                ucPersonInfo1.CountryID = _Person.CountryID;
+                ucPersonInfo1.Address = _Person.Address;
+                ucPersonInfo1.ImagePath = _Person.ImagePath;
+            }
 
         }
         private void GetUCInfo()

@@ -97,8 +97,8 @@ namespace IbrahimDVLD
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmPersonInfo PersonInfo = new frmPersonInfo(Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value.ToString()), true);
-            PersonInfo.ShowDialog();
+            FrmAddEditPersonInfo PersonInfo1 = new FrmAddEditPersonInfo(Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value.ToString()));
+            PersonInfo1.ShowDialog();
             RefreshDataGridView();
         }
 

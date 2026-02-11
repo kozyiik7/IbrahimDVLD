@@ -70,6 +70,12 @@
     <Compile Include="frmManagePeople.Designer.cs">
       <DependentUpon>frmManagePeople.cs</DependentUpon>
     </Compile>
+    <Compile Include="PersonInfoShow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PersonInfoShow.Designer.cs">
+      <DependentUpon>PersonInfoShow.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucPersonInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -89,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmManagePeople.resx">
       <DependentUpon>frmManagePeople.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonInfoShow.resx">
+      <DependentUpon>PersonInfoShow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucPersonInfo.resx">
       <DependentUpon>ucPersonInfo.cs</DependentUpon>
