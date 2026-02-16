@@ -72,39 +72,41 @@
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSave.Location = new System.Drawing.Point(491, 380);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(170, 35);
+            this.btnSave.Size = new System.Drawing.Size(108, 47);
             this.btnSave.TabIndex = 29;
             this.btnSave.Text = "Save";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(299, 380);
+            this.btnClose.Location = new System.Drawing.Point(285, 380);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(168, 35);
+            this.btnClose.Size = new System.Drawing.Size(103, 47);
             this.btnClose.TabIndex = 28;
             this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // ucPersonInfo1
             // 
             this.ucPersonInfo1.Address = "";
-            this.ucPersonInfo1.CountryID = -1;
+            this.ucPersonInfo1.CountryID = 169;
             this.ucPersonInfo1.DateOfBirth = new System.DateTime(2008, 2, 7, 0, 0, 0, 0);
             this.ucPersonInfo1.Email = "";
             this.ucPersonInfo1.FirstName = "";
             this.ucPersonInfo1.Gendor = ((short)(0));
             this.ucPersonInfo1.ImagePath = null;
             this.ucPersonInfo1.LastName = "";
+            this.ucPersonInfo1.LinkedLabeleRemoveVisible = false;
+            this.ucPersonInfo1.LinkedlabelSetImageVisible = true;
             this.ucPersonInfo1.Location = new System.Drawing.Point(-2, 93);
             this.ucPersonInfo1.Name = "ucPersonInfo1";
             this.ucPersonInfo1.NationalNUmber = "";
@@ -125,6 +127,7 @@
             this.Controls.Add(this.lblPersonID);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblAddress);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmAddEditPersonInfo";
             this.Text = "Add / Edit Person Info";
             this.Load += new System.EventHandler(this.FrmAddEditPersonInfo_Load);

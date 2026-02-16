@@ -20,8 +20,11 @@ namespace IbrahimDVLD
 
         private void peopleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form Managepeople=new frmManagePeople();
-            Managepeople.ShowDialog();
+            frmManagePeople Managepeople=new frmManagePeople();
+            Managepeople.MdiParent = this;
+            Managepeople.Show();
         }
+
+       
     }
 }

@@ -19,10 +19,7 @@ namespace IbrahimDVLD
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
+       
         private void RefreshDataGridView()
         {
             dataGridView1.DataSource = clsPeople.GetAllPeople();
@@ -82,7 +79,7 @@ namespace IbrahimDVLD
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
            // MessageBox.Show("You clicked Show Details");
-            frmPersonInfo PersonInfo=new frmPersonInfo(Convert.ToInt32( dataGridView1.CurrentRow.Cells[0].Value.ToString()),false);
+            frmPersonDetails PersonInfo=new frmPersonDetails(Convert.ToInt32( dataGridView1.CurrentRow.Cells[0].Value.ToString()));
             PersonInfo.ShowDialog();
             RefreshDataGridView();
         }
@@ -104,11 +101,19 @@ namespace IbrahimDVLD
 
         private void editToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you Want to Delete ? ","CONFIRM",MessageBoxButtons.OKCancel)==DialogResult.OK && clsPeople.Delete(Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value.ToString()))) 
+            DialogResult dr = MessageBox.Show("هل تريد الحذف  ? ", "تأكيد", MessageBoxButtons.OKCancel);
+
+            if( dr==DialogResult.OK && clsPeople.Delete(Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value.ToString()))) 
             {
                 MessageBox.Show("تم الحذف بنجاح");
+               
             }
-            else
+            else if (dr == DialogResult.Cancel ) 
+             {
+                MessageBox.Show("تم الغاء الحذف");
+            }
+
+            else 
             { 
                 MessageBox.Show("هناك مشكلة يبدو ان الاسم مرتبط بسجل اخر ");
             }

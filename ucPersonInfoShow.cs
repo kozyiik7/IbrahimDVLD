@@ -11,9 +11,14 @@ using System.Windows.Forms;
 
 namespace IbrahimDVLD
 {
-    public partial class PersonInfoShow : UserControl
+    public partial class ucPersonInfoShow : UserControl
     {
-        private int _PersonID;
+        public int _PersonID;
+        clsPeople personInfo=new clsPeople();
+        public int PersonID
+        {
+            set { lblPersonIDValue.Text=value.ToString(); }
+        }
         public string PersonName
         {
             
@@ -31,7 +36,8 @@ namespace IbrahimDVLD
         }
         public string Gendor
         {
-           
+            get { return lblGendor.Text; }
+
             set { lblGendor.Text = value; }
         }
         public string Phone
@@ -58,21 +64,35 @@ namespace IbrahimDVLD
         {
             
             set { pbPersonImage.ImageLocation = value; }
+            get { return pbPersonImage.ImageLocation; }
         }
-      
+        public bool llPersonInfoSet
+        { 
+        set { llEditPersonInfo.Enabled = value; }
+        }
+       
+        public Image setImage
+        {
+                       set { pbPersonImage.Image = value; }
 
-        public PersonInfoShow(int PersonID)
+        }
+        public ucPersonInfoShow()
+        {
+            InitializeComponent();
+         
+
+        }
+
+        public ucPersonInfoShow(int PersonID)
         { 
         InitializeComponent();
             _PersonID = PersonID;
             
-
-
         }
 
-        private void gbPersonInfo_Enter(object sender, EventArgs e)
+        public void refreshPersonInfo()
         {
-
+            PersonInfoShow_Load(null, null);
         }
 
         private void PersonInfoShow_Load(object sender, EventArgs e)
@@ -82,11 +102,12 @@ namespace IbrahimDVLD
             short Gendor = 0;
             int CountryID = -1;
 
-            clsPeople personInfo = clsPeople.GetPersonInfo(_PersonID, ref FirstName, ref SecondName, ref ThirdName, ref LastName,
+            personInfo = clsPeople.GetPersonInfo(_PersonID, ref FirstName, ref SecondName, ref ThirdName, ref LastName,
                                                           ref NationalNumber, ref DateOfBirth, ref Gendor, ref Phone,
                                                           ref Email, ref CountryID, ref Address, ref imagePath);
             if (personInfo != null)
             {
+                PersonID = personInfo.ID;
                 PersonName = FirstName + " " + SecondName + " " + ThirdName + " " + LastName;
                 this.NationalNumber = NationalNumber;
                 this.DateOfBirth = DateOfBirth.ToShortDateString();
@@ -97,7 +118,17 @@ namespace IbrahimDVLD
                 this.imagePath = imagePath;
                 this.Country = clsCountry.GetCountyNameByCountryID(CountryID).ToString();
                 pbPersonImage.ImageLocation = imagePath;
+               
+                
             }
         }
+
+        private void llEditPersonInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FrmAddEditPersonInfo frmAddEdit = new FrmAddEditPersonInfo(_PersonID);
+            frmAddEdit.ShowDialog();
+        }
+
+      
     }
 }

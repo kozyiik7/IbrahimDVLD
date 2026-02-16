@@ -227,12 +227,12 @@ namespace IbrahimDVLDDataAccessLayer
                                          short Gendor, string Phone, string Email, int CountryID,
                                          string Address, string ImagePath)
         {
-            int PersonID = -1; ;
+            int PersonID = -1; 
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"
-INSERT INTO [dbo].[People]
-           ([NationalNo]
+            INSERT INTO [dbo].[People]
+            ([NationalNo]
            ,[FirstName]
            ,[SecondName]
            ,[ThirdName]
@@ -291,10 +291,7 @@ SELECT SCOPE_IDENTITY();
                     PersonID=Convert.ToInt32(value1);
 
                 }
-                else
-                {
-                    PersonID=-1;
-                }
+               
 
 
             }

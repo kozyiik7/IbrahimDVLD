@@ -52,6 +52,12 @@
     <Compile Include="FrmAddEditPersonInfo.Designer.cs">
       <DependentUpon>FrmAddEditPersonInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPersonDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPersonDetails.Designer.cs">
+      <DependentUpon>frmPersonDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPersonInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,11 +76,11 @@
     <Compile Include="frmManagePeople.Designer.cs">
       <DependentUpon>frmManagePeople.cs</DependentUpon>
     </Compile>
-    <Compile Include="PersonInfoShow.cs">
+    <Compile Include="ucPersonInfoShow.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PersonInfoShow.Designer.cs">
-      <DependentUpon>PersonInfoShow.cs</DependentUpon>
+    <Compile Include="ucPersonInfoShow.Designer.cs">
+      <DependentUpon>ucPersonInfoShow.cs</DependentUpon>
     </Compile>
     <Compile Include="ucPersonInfo.cs">
       <SubType>UserControl</SubType>
@@ -87,6 +93,9 @@
     <EmbeddedResource Include="FrmAddEditPersonInfo.resx">
       <DependentUpon>FrmAddEditPersonInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPersonDetails.resx">
+      <DependentUpon>frmPersonDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPersonInfo.resx">
       <DependentUpon>frmPersonInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -96,8 +105,8 @@
     <EmbeddedResource Include="frmManagePeople.resx">
       <DependentUpon>frmManagePeople.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PersonInfoShow.resx">
-      <DependentUpon>PersonInfoShow.cs</DependentUpon>
+    <EmbeddedResource Include="ucPersonInfoShow.resx">
+      <DependentUpon>ucPersonInfoShow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucPersonInfo.resx">
       <DependentUpon>ucPersonInfo.cs</DependentUpon>
@@ -110,6 +119,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

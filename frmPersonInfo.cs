@@ -59,7 +59,12 @@ namespace IbrahimDVLD
 
 
             }
-           
+            btnClose.Image = Properties.Resources.icons8_close_48;
+            btnClose.ImageAlign = ContentAlignment.MiddleLeft;
+            btnClose.TextAlign = ContentAlignment.MiddleRight;
+            btnSave.Image = Properties.Resources.icons8_save_48;   
+            btnSave.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSave.TextAlign = ContentAlignment.MiddleRight;
         }
 
         private void btnClose_Click(object sender, EventArgs e)

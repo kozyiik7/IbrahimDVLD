@@ -51,7 +51,7 @@ namespace IbrahimDVLDBusinessLayer
         }
         public static bool IsNationalnumberExist(string number)
         {
-            return IbrahimDVLDDataAccessLayer.clsDataAccess.isNationalNumberExist(number);
+            return clsDataAccess.isNationalNumberExist(number);
         }
 
         public  static clsPeople GetPersonInfo(int ID , ref string FirstName, ref string SecondName, ref string ThirdName,
@@ -88,7 +88,7 @@ namespace IbrahimDVLDBusinessLayer
             return clsDataAccess.Update(PersonID, FirstName, SecondName, ThirdName, LastName, NationalNumber,
                 DateOfBirth,Gendor, Phone, Email, CountryID, Address, ImagePath);
         }
-            public  int Insert(string FirstName, string SecondName, string ThirdName,
+        public  int Insert(string FirstName, string SecondName, string ThirdName,
                                             string LastName, string NationalNumber, DateTime DateOfBirth,
                                             short Gendor, string Phone, string Email, int CountryID,
                                             string Address, string ImagePath)

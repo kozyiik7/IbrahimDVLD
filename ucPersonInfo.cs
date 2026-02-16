@@ -140,8 +140,6 @@ namespace IbrahimDVLD
 
         }
 
-
-
         private void txtSecondName_Validating(object sender, CancelEventArgs e)
         {
             if (string.IsNullOrEmpty(txtSecondName.Text))
@@ -219,5 +217,7 @@ namespace IbrahimDVLD
 
             }
 }
+
+        
     }
 }
