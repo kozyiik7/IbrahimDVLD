@@ -274,8 +274,13 @@
             this.txtEmail.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.Location = new System.Drawing.Point(204, 150);
             this.txtEmail.Name = "txtEmail";
+
+            this.txtEmail.Size = new System.Drawing.Size(231, 27);
+            this.txtEmail.TabIndex = 19;
+
             this.txtEmail.Size = new System.Drawing.Size(156, 27);
             this.txtEmail.TabIndex = 9;
+
             this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
             // 
             // label11

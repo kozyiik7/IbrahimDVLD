@@ -25,6 +25,11 @@ namespace IbrahimDVLD
             Managepeople.Show();
         }
 
-       
+        private void loginToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLogin login = new frmLogin();
+            login.MdiParent = this;
+            login.Show();
+        }
     }
 }

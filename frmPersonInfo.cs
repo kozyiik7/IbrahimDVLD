@@ -55,7 +55,7 @@ namespace IbrahimDVLD
                 ucPersonInfo1.CountryID = _Person.CountryID;
                 ucPersonInfo1.Address = _Person.Address;
                 ucPersonInfo1.ImagePath = _Person.ImagePath;
-               ucPersonInfo1.LinkedLabeleRemoveVisible=(_Person.ImagePath!=null&&_UpdateMode);
+               ucPersonInfo1.LinkedLabeleRemoveVisible=(_Person.ImagePath.Contains("c")&&_UpdateMode);
 
 
             }

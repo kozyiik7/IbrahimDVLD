@@ -1,15 +1,8 @@
 ﻿using IbrahimDVLDBusinessLayer;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace IbrahimDVLD
@@ -45,13 +38,15 @@ namespace IbrahimDVLD
         public string Email { get { return txtEmail.Text; } set { txtEmail.Text = value; } }
         public int CountryID
         {
-            get { return (int) clsCountry.GetCountyIDByCountryName( cmbCountry.Text); } //return clsCountry.GetCountyIDByCountryName(cmbCountry.SelectedItem?.ToString()); }
+            get { return (int)clsCountry.GetCountyIDByCountryName(cmbCountry.Text); } //return clsCountry.GetCountyIDByCountryName(cmbCountry.SelectedItem?.ToString()); }
 
-            set {
+            set
+            {
                 if (value == -1)
                     cmbCountry.SelectedIndex = cmbCountry.FindStringExact("Syria");
                 else
-                    cmbCountry.SelectedIndex = cmbCountry.FindStringExact(clsCountry.GetCountyNameByCountryID(value));            }
+                    cmbCountry.SelectedIndex = cmbCountry.FindStringExact(clsCountry.GetCountyNameByCountryID(value));
+            }
         }
         public string Address { get { return txtAddress.Text; } set { txtAddress.Text = value; } }
         public string ImagePath { get { return pbImage.ImageLocation; } set { pbImage.ImageLocation = value; } }
@@ -75,7 +70,7 @@ namespace IbrahimDVLD
             pbImage.Image = imageList1.Images[0];
             llRemove.Visible = false;
             cmbCountry.SelectedIndex = cmbCountry.FindStringExact("Syria");
-            
+
 
         }
         private void FillCountriesComboBox()
@@ -83,7 +78,7 @@ namespace IbrahimDVLD
             cmbCountry.DataSource = IbrahimDVLDBusinessLayer.clsCountry.GetAllCountries();
             cmbCountry.DisplayMember = "CountryName";
             cmbCountry.SelectedIndex = cmbCountry.FindStringExact("Syria");
-       
+
 
         }
         private void SetDateTimePickerRange()
@@ -196,19 +191,21 @@ namespace IbrahimDVLD
 
         private void llRemove_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            File.Delete(pbImage.ImageLocation);
+            if (pbImage.ImageLocation != null)
+            {
+                File.Delete(pbImage.ImageLocation);
 
-            if (rbMale.Checked)
-            {
-                pbImage.Image = imageList1.Images[0];
+                if (rbMale.Checked)
+                {
+                    pbImage.Image = imageList1.Images[0];
+                }
+                else if (rbFemale.Checked)
+                {
+                    pbImage.Image = imageList1.Images[1];
+                }
+                llRemove.Visible = false;
             }
-            else if (rbFemale.Checked)
-            {
-                pbImage.Image = imageList1.Images[1];
-            }
-            llRemove.Visible = false;
         }
-
         private void ucPersonInfo_Load(object sender, EventArgs e)
         {
             if (CountryID != -1)
@@ -216,8 +213,8 @@ namespace IbrahimDVLD
                 cmbCountry.SelectedIndex = cmbCountry.FindString(clsCountry.GetCountyNameByCountryID(CountryID));
 
             }
-}
+        }
 
-        
+
     }
 }
