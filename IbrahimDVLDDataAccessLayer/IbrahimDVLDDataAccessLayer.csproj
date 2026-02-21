@@ -46,5 +46,11 @@
     <Compile Include="clsDataAccessSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IbrahimDVLDCommonLayer\IbrahimDVLDCommonLayer.csproj">
+      <Project>{b882e7f2-59cd-4d0a-8760-8cbb373959cb}</Project>
+      <Name>IbrahimDVLDCommonLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

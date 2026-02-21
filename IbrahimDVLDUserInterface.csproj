@@ -148,6 +148,10 @@
       <Project>{914c6548-ae2f-412a-bc8f-424e97ceee55}</Project>
       <Name>IbrahimDVLDBusinessLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="IbrahimDVLDCommonLayer\IbrahimDVLDCommonLayer.csproj">
+      <Project>{b882e7f2-59cd-4d0a-8760-8cbb373959cb}</Project>
+      <Name>IbrahimDVLDCommonLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Bus.png" />
