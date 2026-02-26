@@ -97,5 +97,9 @@ namespace IbrahimDVLDBusinessLayer
                 return clsDataAccess.AddNew(FirstName, SecondName, ThirdName, LastName, NationalNumber,
                     DateOfBirth, Gendor, Phone, Email, CountryID, Address, ImagePath);
         }
+        public static int GetPersonIDByNationalNumber(string NationalNumber)
+        {
+            return clsDataAccess.GetPersonIDByNationalNumber(NationalNumber);
+        }
     }
 }

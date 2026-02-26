@@ -41,7 +41,7 @@ namespace IbrahimDVLD
             this.groupBox1.SuspendLayout();
 
          
-            this.ucPersonInfo1 = new IbrahimDVLD.ucPersonInfo();
+          //  this.ucPersonInfo1 = new IbrahimDVLD.ucPersonInfo();
 // 09d715aae32255d2841e0cdccf4ec6e3b86e8fe3
             this.SuspendLayout();
             // 

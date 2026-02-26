@@ -67,7 +67,7 @@ namespace IbrahimDVLD
 
                 BindingSource bs = new BindingSource();
                 bs.DataSource = clsPeople.GetAllPeople();
-                bs.Filter = string.Format("{0} like '%{1}%'", cmbFilter.Text, txtSearch.Text);
+                bs.Filter = string.Format("CONVERT([{0}], 'System.String') like '%{1}%'", cmbFilter.Text, txtSearch.Text);
                 dataGridView1.DataSource = bs;
                 lblNumberOfRecords.Text = (dataGridView1.RowCount - 1).ToString();
                 //DataTable dt=(DataTable)dataGridView1.DataSource ;

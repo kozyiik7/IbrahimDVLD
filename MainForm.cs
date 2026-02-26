@@ -31,5 +31,17 @@ namespace IbrahimDVLD
             login.MdiParent = this;
             login.Show();
         }
+
+        private void drivresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmManageUsers users = new frmManageUsers();
+            users.MdiParent = this;
+            users.Show();
+        }
     }
 }

@@ -67,7 +67,7 @@ namespace IbrahimDVLD
             //}
 
 
-            string folder = "C:\\Users\\kozy\\source\\repos\\IbrahimDVLD\\UsersNameAndPassword";
+            string folder = "C:\\Users\\user\\source\\repos\\IbrahimDVLD\\UsersNameAndPassword";
             String fileName = txtUserName.Text + ".txt";
             string path = Path.Combine(folder, fileName);
             if (File.Exists(path))

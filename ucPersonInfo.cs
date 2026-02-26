@@ -9,6 +9,11 @@ namespace IbrahimDVLD
 {
     public partial class ucPersonInfo : UserControl
     {
+        public ucPersonInfo()
+        {
+            InitializeComponent();
+
+        }
         string SourceFolder = "";
         string DestinationFolder = @"C:\Project_People_Images";
         string DestinationWithNewName = "";
@@ -61,18 +66,8 @@ namespace IbrahimDVLD
             get { return llSetImage.Visible; }
             set { llSetImage.Visible = value; }
         }
-        public ucPersonInfo()
-        {
-            InitializeComponent();
-            FillCountriesComboBox();
-            SetDateTimePickerRange();
-            rbMale.Checked = true;
-            pbImage.Image = imageList1.Images[0];
-            llRemove.Visible = false;
-            cmbCountry.SelectedIndex = cmbCountry.FindStringExact("Syria");
 
-
-        }
+       
         private void FillCountriesComboBox()
         {
             cmbCountry.DataSource = IbrahimDVLDBusinessLayer.clsCountry.GetAllCountries();
@@ -213,6 +208,12 @@ namespace IbrahimDVLD
                 cmbCountry.SelectedIndex = cmbCountry.FindString(clsCountry.GetCountyNameByCountryID(CountryID));
 
             }
+            FillCountriesComboBox();
+            SetDateTimePickerRange();
+            rbMale.Checked = true;
+            pbImage.Image = imageList1.Images[0];
+            llRemove.Visible = false;
+            cmbCountry.SelectedIndex = cmbCountry.FindStringExact("Syria");
         }
 
 

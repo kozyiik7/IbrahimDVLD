@@ -12,6 +12,35 @@ namespace IbrahimDVLDDataAccessLayer
 {
     public class clsDataAccess
     {
+        public static int GetPersonIDByNationalNumber(string NationalNumber)
+        {
+            int result = -1;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "SELECT * FROM People WHERE NationalNo = @NationalNumber";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@NationalNumber", NationalNumber);
+            try
+            {
+                connection.Open();
+                object Number = command.ExecuteScalar();
+                if (Number!=null)
+                {
+                    result= Convert.ToInt32(Number);
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+
+                connection.Close();
+            }
+
+            return result;
+        }
         public static DataTable GetAllPeople()
         {
             DataTable dtPeople=new DataTable();
