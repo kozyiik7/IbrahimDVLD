@@ -54,6 +54,7 @@ namespace IbrahimDVLD
         }
         private void FrmAddEditPersonInfo_Load(object sender, EventArgs e)
         {
+            
             btnSave.Image = Properties.Resources.icons8_save_48;
            
             btnSave.ImageAlign = ContentAlignment.MiddleLeft;

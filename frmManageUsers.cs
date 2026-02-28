@@ -35,6 +35,7 @@ namespace IbrahimDVLD
             BindingSource bs = new BindingSource();
             bs.DataSource = clsUsers.GetAllUsers();
             dgvUsers.DataSource = bs;
+            dgvUsers.Columns["Password"].Visible = false;
             lblRecoedValue.Text = bs.Count.ToString() + " Records Found";
             FillComboboxWithItems();
 

@@ -15,6 +15,25 @@ namespace IbrahimDVLD
         public frmAddNewUser()
         {
             InitializeComponent();
+            ucFilter1.OnPersonID += ucFilterValueToReceive;
+        }
+        private int _PersonID = -1;
+         private void ucFilterValueToReceive(object sender, int PersonID)
+        {
+            _PersonID = PersonID;
+            if (_PersonID != -1)
+            {
+               ucPersonInfoShow1.PersonIDValue = _PersonID;
+               ucPersonInfoShow1.refreshPersonInfo();
+            }
+
+        }
+
+
+
+        private void frmAddNewUser_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

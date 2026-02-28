@@ -43,5 +43,12 @@ namespace IbrahimDVLD
             users.MdiParent = this;
             users.Show();
         }
+
+        private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+                frmLogin login = new frmLogin();
+                login.ShowDialog();
+        }
     }
 }

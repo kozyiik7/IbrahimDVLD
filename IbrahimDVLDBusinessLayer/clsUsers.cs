@@ -23,6 +23,14 @@ namespace IbrahimDVLDBusinessLayer
             
         }
 
+        public static bool IsUserExist(string userName, string password)
+        {
+            return IbrahimDVLDDataAccessLayer.clsUsers.IsUserExist(userName, password);
+        }
 
+        public static bool isUserActive(string UserName)
+        {
+            return IbrahimDVLDDataAccessLayer.clsUsers.isUserActive(UserName);
+        }
     }
 }

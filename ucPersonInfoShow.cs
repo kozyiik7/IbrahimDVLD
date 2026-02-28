@@ -15,6 +15,10 @@ namespace IbrahimDVLD
     {
         public int _PersonID;
         clsPeople personInfo=new clsPeople();
+        public int PersonIDValue
+        {
+            get { return _PersonID; }set {_PersonID = value;}   
+        }
         public int PersonID
         {
             set { lblPersonIDValue.Text=value.ToString(); }
@@ -94,19 +98,23 @@ namespace IbrahimDVLD
         {
             PersonInfoShow_Load(null, null);
         }
-
+        public void PersonInfoShowRefresh(int PersonID)
+        {
+            PersonInfoShow_Load(null, null);
+        }
         private void PersonInfoShow_Load(object sender, EventArgs e)
         {
             string FirstName = "", SecondName = "", ThirdName = "", LastName = "", NationalNumber = "", Phone = "", Email = "", Address = "", imagePath = "";
             DateTime DateOfBirth = DateTime.Now;
             short Gendor = 0;
             int CountryID = -1;
-
+            llEditPersonInfo.Enabled = false;
             personInfo = clsPeople.GetPersonInfo(_PersonID, ref FirstName, ref SecondName, ref ThirdName, ref LastName,
                                                           ref NationalNumber, ref DateOfBirth, ref Gendor, ref Phone,
                                                           ref Email, ref CountryID, ref Address, ref imagePath);
             if (personInfo != null)
             {
+                llEditPersonInfo.Enabled = true;
                 PersonID = personInfo.ID;
                 PersonName = FirstName + " " + SecondName + " " + ThirdName + " " + LastName;
                 this.NationalNumber = NationalNumber;

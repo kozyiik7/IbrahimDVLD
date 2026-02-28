@@ -19,6 +19,8 @@ namespace IbrahimDVLD
         {
             InitializeComponent();
         }
+        public delegate void PersonIDToSend(object sender, int PersonID);
+        public event PersonIDToSend OnPersonID;
         private void FillComboboxWithItems()
         {
             DataTable dt = clsPeople.GetAllPeople();
@@ -27,7 +29,7 @@ namespace IbrahimDVLD
                 cmbFindBy.Items.Add(column.ColumnName);
             }
         }
-        public int NationalNumber { get { return Convert.ToInt32( txtFindBy.Text); } set { txtFindBy.Text =  value.ToString(); } }
+     
 
         private void ucFilter_Load(object sender, EventArgs e)
         {
@@ -41,8 +43,11 @@ namespace IbrahimDVLD
             {
                 if(clsPeople.GetPersonIDByNationalNumber(txtFindBy.Text)!=-1)
                 PersonID = clsPeople.GetPersonIDByNationalNumber( txtFindBy.Text);
-                
+                //Invoke the event to send the PersonID to the parent form
+                OnPersonID?.Invoke(this, PersonID);
             }
+            
+          
         }
 
 

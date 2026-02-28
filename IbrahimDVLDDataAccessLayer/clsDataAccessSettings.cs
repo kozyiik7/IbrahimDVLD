@@ -9,7 +9,8 @@ namespace IbrahimDVLDDataAccessLayer
 {
     internal class clsDataAccessSettings
     {
-        public static string ConnectionString = "server=192.168.22.82,1433;DataBase=DVLD;User id=sa;Password=123456;";
+        //home Path : public static string ConnectionString = "server=DESKTOP-4VDAOFB\\MSSQLSERVER1;DataBase=DVLD;User id=sa;Password=123456;"
+        public static string ConnectionString = "server=DESKTOP-4VDAOFB\\MSSQLSERVER1;DataBase=DVLD;User id=sa;Password=123456;";
         
     }
 }

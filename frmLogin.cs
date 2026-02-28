@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using IbrahimDVLDCommonLayer;
+using System.Drawing.Text;
 
 
 namespace IbrahimDVLD
@@ -34,7 +35,7 @@ namespace IbrahimDVLD
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-
+           _LoadUserNameIfExist();
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -42,59 +43,82 @@ namespace IbrahimDVLD
 
         }
 
+        private void _SaveUserNameIfChecked(string UserName,string Password)
+        {
+          
+            Properties.Settings.Default.SaveUserAndPass=true;
+            
+            string folder = "C:\\Users\\kozy\\source\\repos\\IbrahimDVLD\\UsersNameAndPassword";
+
+            // إنشاء المجلد إذا لم يكن موجودًا
+            Directory.CreateDirectory(folder);
+
+            // اسم الملف (الأفضل عدم وضع كلمة المرور في اسم الملف)
+            string fileName = UserName + ".txt";
+
+            // دمج المسار مع اسم الملف بطريقة آمنة
+            string path = Path.Combine(folder, fileName);
+            Properties.Settings.Default.Path = path;
+            Properties.Settings.Default.Save();
+            // محتوى الملف
+            string content = UserName + "###" + Password;
+
+            
+                File.WriteAllText(path, content);
+
+           
+
+        }
+
+        private void _LoadUserNameIfExist()
+        {
+            if (Properties.Settings.Default.SaveUserAndPass)
+            {
+                string[] UserNameAndPassword = File.ReadAllText(Properties.Settings.Default.Path).Split(new string[] { "###" }, StringSplitOptions.None);
+                txtUserName.Text = UserNameAndPassword[0];
+                    txtPassword.Text = UserNameAndPassword[1];
+                    chkRememberMe.Checked = true;
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            //string folder = "C:\\Users\\kozy\\source\\repos\\IbrahimDVLD\\UsersNameAndPassword";
+            
+           
 
-            //// إنشاء المجلد إذا لم يكن موجودًا
-            //Directory.CreateDirectory(folder);
-
-            //// اسم الملف (الأفضل عدم وضع كلمة المرور في اسم الملف)
-            //string fileName = txtUserName.Text + ".txt";
-
-            //// دمج المسار مع اسم الملف بطريقة آمنة
-            //string path = Path.Combine(folder, fileName);
-
-            //// محتوى الملف
-            //string content = txtUserName.Text + "###" + clsCommonLayer.HashPassword(txtPassword.Text);
-
-            //if (!string.IsNullOrEmpty(txtUserName.Text) &&
-            //    !string.IsNullOrEmpty(txtPassword.Text) &&
-            //    chkRememberMe.Checked)
-            //{
-            //    File.WriteAllText(path, content);
-            //    MessageBox.Show("True");
-            //}
-
-
-            string folder = "C:\\Users\\user\\source\\repos\\IbrahimDVLD\\UsersNameAndPassword";
-            String fileName = txtUserName.Text + ".txt";
-            string path = Path.Combine(folder, fileName);
-            if (File.Exists(path))
+            if (IbrahimDVLDBusinessLayer.clsUsers.IsUserExist(txtUserName.Text, txtPassword.Text))
             {
-                string[] UserNameAndPassword = File.ReadAllText(path).Split(new string[] { "###" }, StringSplitOptions.None);
-
-
-                if (UserNameAndPassword[0] == txtUserName.Text && UserNameAndPassword[1] == clsCommonLayer.HashPassword(txtPassword.Text))
+                MessageBox.Show("البيانات صحيحة");
+                if(!IbrahimDVLDBusinessLayer.clsUsers.isUserActive(txtUserName.Text))
                 {
-                    MessageBox.Show("البيانات صحيحة");
-                    this.Hide();
-                    MainForm frmMain = new MainForm();
-                    frmMain.Show();
+                    MessageBox.Show("المستخدم غير نشط , يرجى التواصل مع مدير النظام");
+                    return;
+                }
+                this.Hide();
+                if (chkRememberMe.Checked)
+                {
+                    _SaveUserNameIfChecked(txtUserName.Text,txtPassword.Text);
                 }
                 else
                 {
-                    MessageBox.Show("البيانات خاطئة ,  يرجى اعادة الادخال");
-                    txtUserName.Clear();
-                    txtPassword.Clear();
-                    txtUserName.Focus();
+                    _SaveUserNameIfChecked(string.Empty, string.Empty);
                 }
-
+                MainForm frmMain = new MainForm();
+                frmMain.Show();
             }
             else
             {
-                MessageBox.Show("المستخدم غير موجود");
+                MessageBox.Show("البيانات خاطئة ,  يرجى اعادة الادخال");
+                txtUserName.Clear();
+                txtPassword.Clear();
+                txtUserName.Focus();
+
             }
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
