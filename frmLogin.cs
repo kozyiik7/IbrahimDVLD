@@ -76,8 +76,8 @@ namespace IbrahimDVLD
             {
                 string[] UserNameAndPassword = File.ReadAllText(Properties.Settings.Default.Path).Split(new string[] { "###" }, StringSplitOptions.None);
                 txtUserName.Text = UserNameAndPassword[0];
-                    txtPassword.Text = UserNameAndPassword[1];
-                    chkRememberMe.Checked = true;
+                txtPassword.Text = UserNameAndPassword[1];
+                chkRememberMe.Checked = true;
             }
         }
 

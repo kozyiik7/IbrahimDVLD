@@ -94,5 +94,185 @@ namespace IbrahimDVLDDataAccessLayer
             return isActive;
 
         }
+
+        public static bool IsUserNameExist(string userName)
+        {
+            bool isExist = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "Select * from Users where UserName=@UserName ";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@UserName", userName);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+
+
+                    isExist = true;
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isExist;
+
+        }
+
+        public static bool IsPersonIDAlreadyUser(int PersonID)
+        {
+            bool isExist = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "Select * from Users where PersonID=@PersonID ";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+
+
+                    isExist = true;
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isExist;
+
+        }
+        public static int AddUser(int PersoID, string UserName, string Password, bool isActive)
+        {
+            int UserID = -1;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"Insert into Users([PersonID],[UserName],[Password],[IsActive]) values(@PersonID,@UserName,@Password,@IsActive);
+                             select SCOPE_IDENTITY();";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PersonID", PersoID);
+            command.Parameters.AddWithValue("@UserName", UserName);
+            command.Parameters.AddWithValue("@Password", Password);
+            command.Parameters.AddWithValue("@IsActive", isActive);
+            try
+            {
+                connection.Open();
+                object value1 = command.ExecuteScalar();
+                if (value1 != null)
+                {
+                    UserID = Convert.ToInt32(value1);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return UserID;
+        }
+
+        public static bool getuserInfoByPersonID(int PersonID, ref int UserID, ref string UserName, ref string Password, ref bool IsActive)
+        {
+            bool isFound = false;
+            UserID = -1;
+            UserName = "";
+            Password = "";
+            IsActive = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "Select * from Users where PersonID=@PersonID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    UserID = Convert.ToInt32(reader["UserID"]);
+                    PersonID = Convert.ToInt32(reader["PersonID"]);
+                    UserName = reader["UserName"].ToString();
+                    Password = reader["Password"].ToString();
+                    IsActive = Convert.ToBoolean(reader["IsActive"]);
+                    isFound = true;
+                   // reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isFound;
+        }
+
+        public static bool UpdateUser(int PersoID, string UserName, string Password, bool isActive)
+        {
+            int RowAffected = 0;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"update Users
+                             set UserName=@UserName, Password=@Password, IsActive=@IsActive
+                             where PersonID=@PersonID";
+                                   
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PersonID", PersoID);
+            command.Parameters.AddWithValue("@UserName", UserName);
+            command.Parameters.AddWithValue("@Password", Password);
+            command.Parameters.AddWithValue("@IsActive", isActive);
+            try
+            {
+                connection.Open();
+                 RowAffected = command.ExecuteNonQuery();
+               
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return RowAffected>0;
+        }
+        public static bool DeleteUser(int PersoID)
+        {
+            int RowAffected = 0;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"delete from Users
+                             where PersonID=@PersonID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PersonID", PersoID);
+            
+            try
+            {
+                connection.Open();
+                RowAffected = command.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return RowAffected > 0;
+        }
     }
 }

@@ -12,25 +12,61 @@ namespace IbrahimDVLDBusinessLayer
         public clsUsers() { }
         public int UserID { get; set; }
         public int PersonID { get; set; }
-        public string FullName { get; set; }
+        // public string FullName { get; set; }
         public string UserName { get; set; }
         public bool isActive { get; set; }
-        
+        public string Password { get; set; }
+
         public static DataTable GetAllUsers()
         {
-            
-                return IbrahimDVLDDataAccessLayer.clsUsers.GetAllUsers();
-            
+
+            return IbrahimDVLDDataAccessLayer.clsUsers.GetAllUsers();
+
         }
 
         public static bool IsUserExist(string userName, string password)
         {
             return IbrahimDVLDDataAccessLayer.clsUsers.IsUserExist(userName, password);
         }
-
+        public static bool IsUserNameExist(string userName)
+        {
+            return IbrahimDVLDDataAccessLayer.clsUsers.IsUserNameExist(userName);
+        }
         public static bool isUserActive(string UserName)
         {
             return IbrahimDVLDDataAccessLayer.clsUsers.isUserActive(UserName);
         }
+        public static bool isPersonIDAlreadyHaveUser(int PersonID)
+        {
+            return IbrahimDVLDDataAccessLayer.clsUsers.IsPersonIDAlreadyUser(PersonID);
+        }
+        public static int AddNewUser(int PersonID, string UserName, string Password, bool isActive)
+        {
+            return IbrahimDVLDDataAccessLayer.clsUsers.AddUser(PersonID, UserName, Password, isActive);
+        }
+        public static clsUsers GetUserInfoByPersonID(int PersonID)
+        {
+            clsUsers user = new clsUsers();
+            int UserID = 0;
+            string UserName = string.Empty;
+            string Password = string.Empty;
+            bool isActive = false;
+            if (IbrahimDVLDDataAccessLayer.clsUsers.getuserInfoByPersonID(PersonID, ref UserID, ref UserName, ref Password, ref isActive))
+            {
+
+                user.UserID = UserID;
+                user.PersonID = PersonID;
+                user.UserName = UserName;
+                user.isActive = isActive;
+                user.Password = Password;
+            }
+            return user;
+        }
+        public  bool UpdateUserInfo(int PersonID, string UserName, string Password, bool isActive)
+        {
+            return IbrahimDVLDDataAccessLayer.clsUsers.UpdateUser(PersonID, UserName, Password, isActive);
+        }
+         public bool DeleteUser(int PersonID)
+        {     return IbrahimDVLDDataAccessLayer.clsUsers.DeleteUser(PersonID); }
     }
 }

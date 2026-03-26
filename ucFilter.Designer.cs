@@ -79,6 +79,7 @@ namespace IbrahimDVLD
             this.pbAddNewPerson.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbAddNewPerson.TabIndex = 4;
             this.pbAddNewPerson.TabStop = false;
+            this.pbAddNewPerson.Click += new System.EventHandler(this.pbAddNewPerson_Click);
             // 
             // pbSearch
             // 
@@ -112,7 +113,7 @@ namespace IbrahimDVLD
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gbFilter);
             this.Name = "ucFilter";
-            this.Size = new System.Drawing.Size(541, 68);
+            this.Size = new System.Drawing.Size(541, 63);
             this.Load += new System.EventHandler(this.ucFilter_Load);
             this.gbFilter.ResumeLayout(false);
             this.gbFilter.PerformLayout();
