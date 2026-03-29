@@ -50,7 +50,16 @@ namespace IbrahimDVLD
 
         }
 
-
+        //public void RecievePersonIDFromAddNewPerson(object sender, int PersonID)
+        //{
+        //    _PersonID = PersonID;
+        //    if (_PersonID != -1)
+        //    {
+        //        ucPersonInfoShow1.PersonIDValue = _PersonID;
+        //        ucPersonInfoShow1.refreshPersonInfo();
+        //        btnNext.Enabled = true;
+        //    }
+        //}
 
         private void frmAddNewUser_Load(object sender, EventArgs e)
         {
@@ -68,7 +77,8 @@ namespace IbrahimDVLD
                 lblFormAddress.Text = "Edit User Info";
                 btnNext.Enabled = true;
             }
-           // btnNext.Enabled = false;
+        
+            // btnNext.Enabled = false;
         }
 
         private void btnClose_Click(object sender, EventArgs e)

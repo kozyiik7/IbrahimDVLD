@@ -125,7 +125,8 @@ namespace IbrahimDVLD
 
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("working on");
+           frmShowUserDetails showUserDetails = new frmShowUserDetails(Convert.ToInt32( dgvUsers.CurrentRow.Cells["PersonID"].Value.ToString()));
+            showUserDetails.ShowDialog();
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
@@ -158,7 +159,11 @@ namespace IbrahimDVLD
 
         private void addNewUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("working on");
+            frmAddNewUser frmAddNewUser = new frmAddNewUser();
+            frmAddNewUser.ShowDialog();
+            bs.DataSource = clsUsers.GetAllUsers();
+            dgvUsers.DataSource = bs;
+            lblRecoedValue.Text = bs.Count.ToString() + " Records Found";
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -180,6 +185,17 @@ namespace IbrahimDVLD
         }
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmChangePassword frmChangePassword = new frmChangePassword(Convert.ToInt32(dgvUsers.CurrentRow.Cells["PersonID"].Value.ToString()));
+            frmChangePassword.ShowDialog();
+        }
+
+        private void sendEmailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("working on");
+        }
+
+        private void sendSMSToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("working on");
         }

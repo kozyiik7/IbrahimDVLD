@@ -175,6 +175,7 @@
             this.sendEmailToolStripMenuItem.Name = "sendEmailToolStripMenuItem";
             this.sendEmailToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.sendEmailToolStripMenuItem.Text = "Send Email";
+            this.sendEmailToolStripMenuItem.Click += new System.EventHandler(this.sendEmailToolStripMenuItem_Click);
             // 
             // sendSMSToolStripMenuItem
             // 
@@ -182,6 +183,7 @@
             this.sendSMSToolStripMenuItem.Name = "sendSMSToolStripMenuItem";
             this.sendSMSToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.sendSMSToolStripMenuItem.Text = "Send SMS";
+            this.sendSMSToolStripMenuItem.Click += new System.EventHandler(this.sendSMSToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 

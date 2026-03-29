@@ -9,6 +9,7 @@
     <RootNamespace>IbrahimDVLD</RootNamespace>
     <AssemblyName>IbrahimDVLD</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <LangVersion>8.0</LangVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -48,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangePassword.Designer.cs">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmAddEditPersonInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +73,12 @@
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmManageApplicationTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManageApplicationTypes.Designer.cs">
+      <DependentUpon>frmManageApplicationTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmManageUsers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +96,12 @@
     </Compile>
     <Compile Include="frmPersonInfo.Designer.cs">
       <DependentUpon>frmPersonInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmShowUserDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmShowUserDetails.Designer.cs">
+      <DependentUpon>frmShowUserDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginInformation.cs">
       <SubType>UserControl</SubType>
@@ -122,6 +141,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ChangePassword.resx">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmAddEditPersonInfo.resx">
       <DependentUpon>FrmAddEditPersonInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -131,6 +153,9 @@
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmManageApplicationTypes.resx">
+      <DependentUpon>frmManageApplicationTypes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmManageUsers.resx">
       <DependentUpon>frmManageUsers.cs</DependentUpon>
     </EmbeddedResource>
@@ -139,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPersonInfo.resx">
       <DependentUpon>frmPersonInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmShowUserDetails.resx">
+      <DependentUpon>frmShowUserDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginInformation.resx">
       <DependentUpon>LoginInformation.cs</DependentUpon>

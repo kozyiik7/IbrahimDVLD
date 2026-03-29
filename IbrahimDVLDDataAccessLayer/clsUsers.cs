@@ -220,7 +220,34 @@ namespace IbrahimDVLDDataAccessLayer
             }
             return isFound;
         }
-
+        public static int getPersonIdByUserName(string UserName)
+        {
+            bool isFound = false;
+           int PersonID = -1;
+           
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "Select PersonID from Users where UserName=@UserName";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@UserName", UserName);
+            try
+            {
+                connection.Open();
+                object PersonIdvalue = command.ExecuteScalar();
+                if (PersonIdvalue!=null)
+                {
+                    PersonID = Convert.ToInt32(PersonIdvalue);
+                    // reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return PersonID;
+        }
         public static bool UpdateUser(int PersoID, string UserName, string Password, bool isActive)
         {
             int RowAffected = 0;

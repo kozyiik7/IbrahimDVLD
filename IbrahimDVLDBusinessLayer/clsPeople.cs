@@ -26,7 +26,8 @@ namespace IbrahimDVLDBusinessLayer
          
         public clsPeople()
         { 
-        
+       
+
         }
         public clsPeople(int ID, string firstName, string secondName, string thirdName, string lastName, string nationalNumber, DateTime dateOfBirth, short gendor, string phone, string email, int countryID, string address, string imagePath)
         {

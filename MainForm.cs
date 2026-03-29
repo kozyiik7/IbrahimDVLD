@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using IbrahimDVLDBusinessLayer;
+using IbrahimDVLDCommonLayer;
 
 namespace IbrahimDVLD
 {
@@ -49,6 +50,33 @@ namespace IbrahimDVLD
             this.Hide();
                 frmLogin login = new frmLogin();
                 login.ShowDialog();
+        }
+
+        private void currentUserInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmShowUserDetails frmShowUserDetails = new frmShowUserDetails(UserSession.Instance.PersonID);
+            frmShowUserDetails.ShowDialog();
+        }
+
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmChangePassword frmChangePassword = new frmChangePassword(UserSession.Instance.PersonID);
+            frmChangePassword.ShowDialog();
+
+        }
+
+        private void signOutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmLogin login = new frmLogin();
+            UserSession.Instance.Clear();
+            login.ShowDialog();
+        }
+
+        private void manageApplicationTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmManageApplicationTypes frmManageApplicationTypes = new frmManageApplicationTypes();
+            frmManageApplicationTypes.ShowDialog();
         }
     }
 }

@@ -68,5 +68,10 @@ namespace IbrahimDVLDBusinessLayer
         }
          public bool DeleteUser(int PersonID)
         {     return IbrahimDVLDDataAccessLayer.clsUsers.DeleteUser(PersonID); }
+
+        public static int GetPersonIDByUserName(string UserName)
+        {
+            return IbrahimDVLDDataAccessLayer.clsUsers.getPersonIdByUserName(UserName);
+        }
     }
 }

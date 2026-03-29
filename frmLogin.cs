@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using IbrahimDVLDCommonLayer;
 using System.Drawing.Text;
+using IbrahimDVLDBusinessLayer;
 
 
 namespace IbrahimDVLD
@@ -65,8 +66,12 @@ namespace IbrahimDVLD
 
             
                 File.WriteAllText(path, content);
+            //Properties.Settings.Default.UserName=UserName;
+            //Properties.Settings.Default.Password=Password;
 
-           
+            //Properties.Settings.Default.PersonIDOfUser=clsUsers.GetPersonIDByUserName(UserName);
+
+            UserSession.Instance.SetUser(clsUsers.GetPersonIDByUserName(UserName), UserName);
 
         }
 
