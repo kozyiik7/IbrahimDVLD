@@ -28,15 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmManageApplicationTypes));
             this.label1 = new System.Windows.Forms.Label();
             this.dgvApplicationTypes = new System.Windows.Forms.DataGridView();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblNumberOfRecords = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.cmsDataGridView = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editApplicationTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvApplicationTypes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.cmsDataGridView.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -54,20 +58,11 @@
             // 
             this.dgvApplicationTypes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvApplicationTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvApplicationTypes.ContextMenuStrip = this.cmsDataGridView;
             this.dgvApplicationTypes.Location = new System.Drawing.Point(12, 203);
             this.dgvApplicationTypes.Name = "dgvApplicationTypes";
-            this.dgvApplicationTypes.Size = new System.Drawing.Size(479, 182);
+            this.dgvApplicationTypes.Size = new System.Drawing.Size(492, 188);
             this.dgvApplicationTypes.TabIndex = 2;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(141, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(195, 131);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
             // 
             // label2
             // 
@@ -94,13 +89,39 @@
             this.btnClose.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::IbrahimDVLD.Properties.Resources.icons8_close_48;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(329, 411);
+            this.btnClose.Location = new System.Drawing.Point(342, 411);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(162, 39);
             this.btnClose.TabIndex = 9;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(153, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(195, 131);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // cmsDataGridView
+            // 
+            this.cmsDataGridView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editApplicationTypeToolStripMenuItem});
+            this.cmsDataGridView.Name = "cmsDataGridView";
+            this.cmsDataGridView.Size = new System.Drawing.Size(241, 30);
+            // 
+            // editApplicationTypeToolStripMenuItem
+            // 
+            this.editApplicationTypeToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.editApplicationTypeToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editApplicationTypeToolStripMenuItem.Image")));
+            this.editApplicationTypeToolStripMenuItem.Name = "editApplicationTypeToolStripMenuItem";
+            this.editApplicationTypeToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
+            this.editApplicationTypeToolStripMenuItem.Text = "Edit Application Type";
+            this.editApplicationTypeToolStripMenuItem.Click += new System.EventHandler(this.editApplicationTypeToolStripMenuItem_Click);
             // 
             // frmManageApplicationTypes
             // 
@@ -118,6 +139,7 @@
             this.Load += new System.EventHandler(this.frmManageApplicationTypes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvApplicationTypes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.cmsDataGridView.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,5 +153,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblNumberOfRecords;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.ContextMenuStrip cmsDataGridView;
+        private System.Windows.Forms.ToolStripMenuItem editApplicationTypeToolStripMenuItem;
     }
 }

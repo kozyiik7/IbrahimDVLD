@@ -78,5 +78,11 @@ namespace IbrahimDVLD
             frmManageApplicationTypes frmManageApplicationTypes = new frmManageApplicationTypes();
             frmManageApplicationTypes.ShowDialog();
         }
+
+        private void manageTestsTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmManageTestTypes frmManageTestTypes = new frmManageTestTypes();
+            frmManageTestTypes.ShowDialog();
+        }
     }
 }

@@ -20,16 +20,29 @@ namespace IbrahimDVLD
 
         private void frmManageApplicationTypes_Load(object sender, EventArgs e)
         {
-           bindingSource = new BindingSource();
-           bindingSource.DataSource = IbrahimDVLDBusinessLayer.clsApplicationTypes.GetApplicationTypes();
-           dgvApplicationTypes.DataSource = bindingSource;
-           lblNumberOfRecords.Text = bindingSource.Count.ToString();
+           refreshDatasource();
 
         }
-
+        private void refreshDatasource()
+        {
+            bindingSource = new BindingSource();
+            bindingSource.DataSource = IbrahimDVLDBusinessLayer.clsApplicationTypes.GetApplicationTypes();
+            dgvApplicationTypes.DataSource = bindingSource;
+            lblNumberOfRecords.Text = bindingSource.Count.ToString();
+        }
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void editApplicationTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int applicationTypeID = Convert.ToInt32(dgvApplicationTypes.CurrentRow.Cells["ApplicationTypeID"].Value);
+            string applicationTypeName = dgvApplicationTypes.CurrentRow.Cells["ApplicationTypeTitle"].Value.ToString();
+            float applicationFeesAmount = Convert.ToSingle(dgvApplicationTypes.CurrentRow.Cells["ApplicationFees"].Value);
+            frmUpdateApplicationType frm = new frmUpdateApplicationType(applicationTypeID,applicationTypeName,applicationFeesAmount);
+            frm.ShowDialog();
+            refreshDatasource();
         }
     }
 }

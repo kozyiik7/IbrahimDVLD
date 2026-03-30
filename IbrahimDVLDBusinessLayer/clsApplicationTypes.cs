@@ -14,7 +14,7 @@ namespace IbrahimDVLDBusinessLayer
         {
             return IbrahimDVLDDataAccessLayer.clsApplicationTypes.GetApplicationTypes();
         }
-        public bool update( int ApplicationTypeID, string ApplicationTypeTitle, float ApplicationFees)
+        public static bool update( int ApplicationTypeID, string ApplicationTypeTitle, float ApplicationFees)
         {
             return IbrahimDVLDDataAccessLayer.clsApplicationTypes.UpdateApplicationTypes(ApplicationTypeID, ApplicationTypeTitle, ApplicationFees);
         }
