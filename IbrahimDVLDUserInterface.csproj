@@ -79,12 +79,6 @@
     <Compile Include="frmManageApplicationTypes.Designer.cs">
       <DependentUpon>frmManageApplicationTypes.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmManageTestTypes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmManageTestTypes.Designer.cs">
-      <DependentUpon>frmManageTestTypes.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmManageUsers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,9 +161,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmManageApplicationTypes.resx">
       <DependentUpon>frmManageApplicationTypes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmManageTestTypes.resx">
-      <DependentUpon>frmManageTestTypes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmManageUsers.resx">
       <DependentUpon>frmManageUsers.cs</DependentUpon>

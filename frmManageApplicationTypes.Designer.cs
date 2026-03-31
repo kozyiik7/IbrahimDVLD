@@ -1,6 +1,6 @@
 ﻿namespace IbrahimDVLD
 {
-    partial class frmManageApplicationTypes
+    partial class frmManageApplication_TestType
     {
         /// <summary>
         /// Required designer variable.
@@ -29,40 +29,58 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmManageApplicationTypes));
-            this.label1 = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmManageApplication_TestType));
+            this.lblFormAddress = new System.Windows.Forms.Label();
             this.dgvApplicationTypes = new System.Windows.Forms.DataGridView();
+            this.cmsDataGridView = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editApplicationTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.lblNumberOfRecords = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.cmsDataGridView = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.editApplicationTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvApplicationTypes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.cmsDataGridView.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // lblFormAddress
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(103, 146);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(285, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Manage Application Types";
+            this.lblFormAddress.AutoSize = true;
+            this.lblFormAddress.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFormAddress.ForeColor = System.Drawing.Color.Red;
+            this.lblFormAddress.Location = new System.Drawing.Point(103, 146);
+            this.lblFormAddress.Name = "lblFormAddress";
+            this.lblFormAddress.Size = new System.Drawing.Size(285, 25);
+            this.lblFormAddress.TabIndex = 0;
+            this.lblFormAddress.Text = "Manage Application Types";
             // 
             // dgvApplicationTypes
             // 
+            this.dgvApplicationTypes.AllowUserToAddRows = false;
             this.dgvApplicationTypes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvApplicationTypes.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvApplicationTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvApplicationTypes.ContextMenuStrip = this.cmsDataGridView;
             this.dgvApplicationTypes.Location = new System.Drawing.Point(12, 203);
             this.dgvApplicationTypes.Name = "dgvApplicationTypes";
-            this.dgvApplicationTypes.Size = new System.Drawing.Size(492, 188);
+            this.dgvApplicationTypes.Size = new System.Drawing.Size(492, 186);
             this.dgvApplicationTypes.TabIndex = 2;
+            // 
+            // cmsDataGridView
+            // 
+            this.cmsDataGridView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editApplicationTypeToolStripMenuItem});
+            this.cmsDataGridView.Name = "cmsDataGridView";
+            this.cmsDataGridView.Size = new System.Drawing.Size(148, 30);
+            // 
+            // editApplicationTypeToolStripMenuItem
+            // 
+            this.editApplicationTypeToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.editApplicationTypeToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editApplicationTypeToolStripMenuItem.Image")));
+            this.editApplicationTypeToolStripMenuItem.Name = "editApplicationTypeToolStripMenuItem";
+            this.editApplicationTypeToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
+            this.editApplicationTypeToolStripMenuItem.Text = "Edit Type";
+            this.editApplicationTypeToolStripMenuItem.Click += new System.EventHandler(this.editApplicationTypeToolStripMenuItem_Click);
             // 
             // label2
             // 
@@ -107,23 +125,7 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // cmsDataGridView
-            // 
-            this.cmsDataGridView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editApplicationTypeToolStripMenuItem});
-            this.cmsDataGridView.Name = "cmsDataGridView";
-            this.cmsDataGridView.Size = new System.Drawing.Size(241, 30);
-            // 
-            // editApplicationTypeToolStripMenuItem
-            // 
-            this.editApplicationTypeToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editApplicationTypeToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editApplicationTypeToolStripMenuItem.Image")));
-            this.editApplicationTypeToolStripMenuItem.Name = "editApplicationTypeToolStripMenuItem";
-            this.editApplicationTypeToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
-            this.editApplicationTypeToolStripMenuItem.Text = "Edit Application Type";
-            this.editApplicationTypeToolStripMenuItem.Click += new System.EventHandler(this.editApplicationTypeToolStripMenuItem_Click);
-            // 
-            // frmManageApplicationTypes
+            // frmManageApplication_TestType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -133,13 +135,13 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dgvApplicationTypes);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label1);
-            this.Name = "frmManageApplicationTypes";
+            this.Controls.Add(this.lblFormAddress);
+            this.Name = "frmManageApplication_TestType";
             this.Text = "frmManageApplicationTypes";
             this.Load += new System.EventHandler(this.frmManageApplicationTypes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvApplicationTypes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.cmsDataGridView.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -147,7 +149,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblFormAddress;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DataGridView dgvApplicationTypes;
         private System.Windows.Forms.Label label2;

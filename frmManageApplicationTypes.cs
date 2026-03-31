@@ -10,26 +10,53 @@ using System.Windows.Forms;
 
 namespace IbrahimDVLD
 {
-    public partial class frmManageApplicationTypes : Form
+    public partial class frmManageApplication_TestType : Form
     {
+        public enum enMode { ManageApplicationType ,ManageTestType }
+        enMode Mode=enMode.ManageApplicationType;
         BindingSource bindingSource;
-        public frmManageApplicationTypes()
+        public frmManageApplication_TestType()
         {
             InitializeComponent();
         }
-
+        public frmManageApplication_TestType(enMode RecievedMode)
+        {
+            InitializeComponent();
+            Mode=RecievedMode;
+        }
         private void frmManageApplicationTypes_Load(object sender, EventArgs e)
         {
-           refreshDatasource();
+           refreshDatasource(Mode);
 
         }
-        private void refreshDatasource()
+        private void refreshDatasource(enMode recievedMode)
         {
             bindingSource = new BindingSource();
-            bindingSource.DataSource = IbrahimDVLDBusinessLayer.clsApplicationTypes.GetApplicationTypes();
+            switch(recievedMode)
+            {
+                case enMode.ManageApplicationType:
+                    bindingSource.DataSource = IbrahimDVLDBusinessLayer.clsApplicationTypes.GetApplicationTypes();
+                    lblFormAddress.Text = "Manage Application Types";
+                    frmManageApplication_TestType.ActiveForm.Text = "Manage Application Types";
+                  
+
+                    break;
+                case enMode.ManageTestType:
+                    bindingSource.DataSource = IbrahimDVLDBusinessLayer.clsTestTypes.GetTestTypes();
+                    lblFormAddress.Text = "Manage Test Types";
+                    frmManageApplication_TestType.ActiveForm.Text = "Manage Test Types";
+                    break;
+            }
             dgvApplicationTypes.DataSource = bindingSource;
+            dgvApplicationTypes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //dgvApplicationTypes.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders
+            dgvApplicationTypes.AutoSize=true;
+            this.AutoSize = true;
+            //this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             lblNumberOfRecords.Text = bindingSource.Count.ToString();
-        }
+
+                   
+            }
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -37,12 +64,22 @@ namespace IbrahimDVLD
 
         private void editApplicationTypeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int applicationTypeID = Convert.ToInt32(dgvApplicationTypes.CurrentRow.Cells["ApplicationTypeID"].Value);
-            string applicationTypeName = dgvApplicationTypes.CurrentRow.Cells["ApplicationTypeTitle"].Value.ToString();
-            float applicationFeesAmount = Convert.ToSingle(dgvApplicationTypes.CurrentRow.Cells["ApplicationFees"].Value);
-            frmUpdateApplicationType frm = new frmUpdateApplicationType(applicationTypeID,applicationTypeName,applicationFeesAmount);
-            frm.ShowDialog();
-            refreshDatasource();
+            switch(Mode)
+            {
+                case enMode.ManageApplicationType:
+                    int applicationTypeID = Convert.ToInt32(dgvApplicationTypes.CurrentRow.Cells["ApplicationTypeID"].Value);
+                    string applicationTypeName = dgvApplicationTypes.CurrentRow.Cells["ApplicationTypeTitle"].Value.ToString();
+                    float applicationFeesAmount = Convert.ToSingle(dgvApplicationTypes.CurrentRow.Cells["ApplicationFees"].Value);
+                    frmUpdateApplicationType frm = new frmUpdateApplicationType(applicationTypeID, applicationTypeName, applicationFeesAmount);
+                    frm.ShowDialog();
+                    break;
+                case enMode.ManageTestType:
+                  //  editTestType();
+                    break;
+            }
+            
+           
+            refreshDatasource(Mode);
         }
     }
 }

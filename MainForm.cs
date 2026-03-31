@@ -18,7 +18,8 @@ namespace IbrahimDVLD
         {
             InitializeComponent();
         }
-
+        
+        
         private void peopleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmManagePeople Managepeople=new frmManagePeople();
@@ -75,14 +76,15 @@ namespace IbrahimDVLD
 
         private void manageApplicationTypesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmManageApplicationTypes frmManageApplicationTypes = new frmManageApplicationTypes();
+            frmManageApplication_TestType frmManageApplicationTypes = new frmManageApplication_TestType(frmManageApplication_TestType.enMode.ManageApplicationType);
             frmManageApplicationTypes.ShowDialog();
         }
 
         private void manageTestsTypesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmManageTestTypes frmManageTestTypes = new frmManageTestTypes();
-            frmManageTestTypes.ShowDialog();
+
+            frmManageApplication_TestType frmManageApplicationTypes = new frmManageApplication_TestType(frmManageApplication_TestType.enMode.ManageTestType);
+            frmManageApplicationTypes.ShowDialog();
         }
     }
 }
