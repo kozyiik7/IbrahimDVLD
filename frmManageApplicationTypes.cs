@@ -74,7 +74,12 @@ namespace IbrahimDVLD
                     frm.ShowDialog();
                     break;
                 case enMode.ManageTestType:
-                  //  editTestType();
+                    int TestTypeID = Convert.ToInt32(dgvApplicationTypes.CurrentRow.Cells[0].Value);
+                    string TestTypeName = dgvApplicationTypes.CurrentRow.Cells[1].Value.ToString();
+                    string TestTypeDescription = dgvApplicationTypes.CurrentRow.Cells[2].Value.ToString();
+                    float aTestFeesAmount = Convert.ToSingle(dgvApplicationTypes.CurrentRow.Cells[3].Value);
+                    frmUpdateTestType frm1=new frmUpdateTestType(TestTypeID, TestTypeName, TestTypeDescription, aTestFeesAmount);
+                    frm1.ShowDialog();
                     break;
             }
             

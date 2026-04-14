@@ -33,16 +33,11 @@ namespace IbrahimDVLD
             this.lblfrmAddress = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-
             this.ucPersonInfo1 = new IbrahimDVLD.ucPersonInfo();
             this.lblPersonIDValue = new System.Windows.Forms.Label();
             this.lblPersonID = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
-
-         
-          //  this.ucPersonInfo1 = new IbrahimDVLD.ucPersonInfo();
-// 09d715aae32255d2841e0cdccf4ec6e3b86e8fe3
             this.SuspendLayout();
             // 
             // lblfrmAddress
@@ -80,9 +75,6 @@ namespace IbrahimDVLD
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-
-            // ucPersonInfo2
-            
             // ucPersonInfo1
             // 
             this.ucPersonInfo1.Address = "";
@@ -91,22 +83,17 @@ namespace IbrahimDVLD
             this.ucPersonInfo1.Email = "";
             this.ucPersonInfo1.Enabled = false;
             this.ucPersonInfo1.FirstName = "";
-            this.ucPersonInfo1.Gendor = ((short)(1));
+            this.ucPersonInfo1.Gendor = ((short)(0));
             this.ucPersonInfo1.ImagePath = null;
             this.ucPersonInfo1.LastName = "";
             this.ucPersonInfo1.LinkedLabeleRemoveVisible = false;
             this.ucPersonInfo1.LinkedlabelSetImageVisible = true;
-
-            this.ucPersonInfo1.Location = new System.Drawing.Point(-6, 26);
-
-            this.ucPersonInfo1.Location = new System.Drawing.Point(12, 93);
-
+            this.ucPersonInfo1.Location = new System.Drawing.Point(6, 38);
             this.ucPersonInfo1.Name = "ucPersonInfo1";
             this.ucPersonInfo1.NationalNUmber = "";
             this.ucPersonInfo1.Phone = "";
             this.ucPersonInfo1.SecondName = "";
-
-            this.ucPersonInfo1.Size = new System.Drawing.Size(874, 257);
+            this.ucPersonInfo1.Size = new System.Drawing.Size(892, 318);
             this.ucPersonInfo1.TabIndex = 0;
             this.ucPersonInfo1.ThirdName = "";
             // 
@@ -138,22 +125,16 @@ namespace IbrahimDVLD
             this.groupBox1.Controls.Add(this.ucPersonInfo1);
             this.groupBox1.Location = new System.Drawing.Point(12, 41);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(848, 317);
+            this.groupBox1.Size = new System.Drawing.Size(898, 328);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Person Information";
             // 
-
-            this.ucPersonInfo1.Size = new System.Drawing.Size(874, 345);
-            this.ucPersonInfo1.TabIndex = 0;
-            this.ucPersonInfo1.ThirdName = "";
-            // 
-
             // frmPersonInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(892, 450);
+            this.ClientSize = new System.Drawing.Size(922, 452);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblfrmAddress);

@@ -98,9 +98,11 @@ namespace IbrahimDVLD
             this.txtFindBy.Name = "txtFindBy";
             this.txtFindBy.Size = new System.Drawing.Size(159, 27);
             this.txtFindBy.TabIndex = 2;
+            this.txtFindBy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFindBy_KeyPress);
             // 
             // cmbFindBy
             // 
+            this.cmbFindBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbFindBy.FormattingEnabled = true;
             this.cmbFindBy.Location = new System.Drawing.Point(68, 17);
             this.cmbFindBy.Name = "cmbFindBy";

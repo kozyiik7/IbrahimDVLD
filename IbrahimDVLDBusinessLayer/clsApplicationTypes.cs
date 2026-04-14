@@ -10,14 +10,22 @@ namespace IbrahimDVLDBusinessLayer
     public class clsApplicationTypes
     {
 
-         public static DataTable GetApplicationTypes()
+        public static DataTable GetApplicationTypes()
         {
             return IbrahimDVLDDataAccessLayer.clsApplicationTypes.GetApplicationTypes();
         }
-        public static bool update( int ApplicationTypeID, string ApplicationTypeTitle, float ApplicationFees)
+        public static bool update(int ApplicationTypeID, string ApplicationTypeTitle, float ApplicationFees)
         {
             return IbrahimDVLDDataAccessLayer.clsApplicationTypes.UpdateApplicationTypes(ApplicationTypeID, ApplicationTypeTitle, ApplicationFees);
         }
-            
+        public static int GetApplicationTypeIDFromApplicatioName(string ApplicationTypeTitle)
+        {
+            return IbrahimDVLDDataAccessLayer.clsApplicationTypes.GetApplicationTypeIDFromApplicatioName(ApplicationTypeTitle);
+
+        }
+        public static int GetApplicationFeesFromApplicatioName(string ApplicationTypeTitle)
+        {
+            return IbrahimDVLDDataAccessLayer.clsApplicationTypes.GetApplicationFeesFromApplicatioName(ApplicationTypeTitle);
+        }
     }
 }

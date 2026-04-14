@@ -75,6 +75,26 @@ namespace IbrahimDVLDBusinessLayer
             }
 
         }
+        public clsPeople GetPersonInfoByPersonID(int PersonID)
+        {
+            clsPeople person = new clsPeople();
+            DataRow row = clsDataAccess.GetPersonInfoByPersonID(PersonID);
+            person.ID =(int)row["PersonID"];
+            person.FirstName =(string) row["FirstName"];
+            person.LastName = (string) row["LastName"];
+            person.SecondName = (string) row["SecondName"];
+            person.ThirdName = row["ThirdName"] as string ??string.Empty;   
+            person.NationalNumber = (string) row["NationalNo"];
+            person.DateOfBirth = Convert.ToDateTime(row["DateOfBirth"]);
+            person.Gendor = Convert.ToInt16(row["Gendor"]);
+            person.Phone = (string) row["Phone"];
+            person.Email = row["Email"] as string ?? string.Empty ;
+            person.CountryID = Convert.ToInt32(row["NationalityCountryID"]);
+            person.Address = (string) row["Address"];
+            person.ImagePath = row["ImagePath"] as string ?? string.Empty;
+            
+            return person;
+        }
         public static bool Delete(int PersonID)
         {
             return clsDataAccess.Delete(PersonID);
@@ -101,6 +121,11 @@ namespace IbrahimDVLDBusinessLayer
         public static int GetPersonIDByNationalNumber(string NationalNumber)
         {
             return clsDataAccess.GetPersonIDByNationalNumber(NationalNumber);
+        }
+
+        public static bool IsPersonIDExist(int PersonID)
+        {
+            return clsDataAccess.isPersonIDExist(PersonID);
         }
     }
 }

@@ -86,5 +86,22 @@ namespace IbrahimDVLD
             frmManageApplication_TestType frmManageApplicationTypes = new frmManageApplication_TestType(frmManageApplication_TestType.enMode.ManageTestType);
             frmManageApplicationTypes.ShowDialog();
         }
+
+        private void newDrivingLisenceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void localLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmNewDrivingLicenseApplication frmNewDrivingLicenseApplication = new frmNewDrivingLicenseApplication();
+            frmNewDrivingLicenseApplication.ShowDialog();
+        }
+
+        private void manageApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLocalDrivingLicenseApplications LDLApplications=new frmLocalDrivingLicenseApplications();
+            LDLApplications.ShowDialog();
+        }
     }
 }

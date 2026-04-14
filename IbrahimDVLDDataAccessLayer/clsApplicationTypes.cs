@@ -34,7 +34,60 @@ namespace IbrahimDVLDDataAccessLayer
             }
             return dt;
         }
+        public static int GetApplicationTypeIDFromApplicatioName(string ApplicationTypeTitle)
+        {
+           int ApplicationTypeID = -1;
+            SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "SELECT ApplicationTypeID FROM ApplicationTypes Where ApplicationTypeTitle=@ApplicationTypeTitle";
+            SqlCommand Command = new SqlCommand(query, Connection);
+            Command.Parameters.AddWithValue("@ApplicationTypeTitle", ApplicationTypeTitle);
+            try
+            {
+                Connection.Open();
+                object result = Command.ExecuteScalar();
+                if(result != null)
+                ApplicationTypeID = Convert.ToInt32(result);
 
+
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            return ApplicationTypeID;
+        }
+        public static int GetApplicationFeesFromApplicatioName(string ApplicationTypeTitle)
+        {
+            int ApplicationTypeFees = -1;
+            SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "SELECT ApplicationFees FROM ApplicationTypes Where ApplicationTypeTitle=@ApplicationTypeTitle";
+            SqlCommand Command = new SqlCommand(query, Connection);
+            Command.Parameters.AddWithValue("@ApplicationTypeTitle", ApplicationTypeTitle);
+            try
+            {
+                Connection.Open();
+                object result = Command.ExecuteScalar();
+                if (result != null)
+                    ApplicationTypeFees = Convert.ToInt32(result);
+
+
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            return ApplicationTypeFees;
+        }
         public static bool UpdateApplicationTypes(int ApplicationTypeID,string ApplicationTypeTitle,float ApplicationFees)
         {
             bool result = false;

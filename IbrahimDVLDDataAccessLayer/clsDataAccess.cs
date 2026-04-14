@@ -8,6 +8,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace IbrahimDVLDDataAccessLayer
 {
     public class clsDataAccess
@@ -102,7 +103,38 @@ namespace IbrahimDVLDDataAccessLayer
 
         }
 
-        
+        public static bool isPersonIDExist(int PersonID)
+        {
+            bool isPersonIDExist = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "SELECT * FROM People WHERE PersonID = @PersonID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    isPersonIDExist = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+
+                connection.Close();
+            }
+
+            return isPersonIDExist;
+
+
+        }
+
         public static bool GetPersonInfo(int ID, ref string FirstName, ref string SecondName, ref string ThirdName,
                                          ref string LastName, ref string NationalNUmber, ref DateTime DateOfBirth,
                                          ref short Gendor, ref string Phone, ref string Email, ref int CountryID,
@@ -151,6 +183,19 @@ namespace IbrahimDVLDDataAccessLayer
               
             }
             return IsFound;
+        }
+        public static DataRow GetPersonInfoByPersonID(int PersonID)
+        {
+            DataTable PersonInfo = clsDataAccess.GetAllPeople();
+            DataRow[] result = PersonInfo.Select("PersonID=" + PersonID);
+            try
+            {
+                return result[0];
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Problem");
+            }
         }
         public static bool  Delete(int PersonID)
         {

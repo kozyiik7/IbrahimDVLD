@@ -298,7 +298,7 @@
             this.gbPersonInfo.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbPersonInfo.Location = new System.Drawing.Point(3, 13);
             this.gbPersonInfo.Name = "gbPersonInfo";
-            this.gbPersonInfo.Size = new System.Drawing.Size(869, 255);
+            this.gbPersonInfo.Size = new System.Drawing.Size(882, 241);
             this.gbPersonInfo.TabIndex = 42;
             this.gbPersonInfo.TabStop = false;
             this.gbPersonInfo.Text = "Person Information";
@@ -396,7 +396,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gbPersonInfo);
             this.Name = "ucPersonInfoShow";
-            this.Size = new System.Drawing.Size(876, 272);
+            this.Size = new System.Drawing.Size(897, 264);
             this.Load += new System.EventHandler(this.PersonInfoShow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).EndInit();
             this.gbPersonInfo.ResumeLayout(false);

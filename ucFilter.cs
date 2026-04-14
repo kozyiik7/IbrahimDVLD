@@ -40,9 +40,19 @@ namespace IbrahimDVLD
         private void FillComboboxWithItems()
         {
             DataTable dt = clsPeople.GetAllPeople();
+            int Counter= 0;
             foreach (DataColumn column in dt.Columns)
             {
-                cmbFindBy.Items.Add(column.ColumnName);
+                if(Counter<2)
+                {
+                    Counter++;
+                    cmbFindBy.Items.Add(column.ColumnName);
+                }
+                else
+                {
+                    break;
+                }
+
             }
 
         }
@@ -51,23 +61,43 @@ namespace IbrahimDVLD
         private void ucFilter_Load(object sender, EventArgs e)
         {
             FillComboboxWithItems();
+            cmbFindBy.SelectedIndex = 0;
         }
 
         private void pbSearch_Click(object sender, EventArgs e)
         {
-            string NationalNo=string.Empty;
-            if (txtFindBy.Text != string.Empty)
+            //string NationalNo=string.Empty;
+           
+            switch(cmbFindBy.SelectedItem.ToString())
             {
-                if ( clsPeople.GetPersonIDByNationalNumber(txtFindBy.Text) != -1)
-                { 
-                    PersonID = clsPeople.GetPersonIDByNationalNumber(txtFindBy.Text);
-                //Invoke the event to send the PersonID to the parent form
-                OnPersonID?.Invoke(this, PersonID);
-                }
-                else                {
-                    MessageBox.Show("no Person found with this National Number", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+               
+                case "NationalNo":
+                    if (txtFindBy.Text != string.Empty)
+                    {
+                        if (clsPeople.GetPersonIDByNationalNumber(txtFindBy.Text) != -1)
+                        {
+                            PersonID = clsPeople.GetPersonIDByNationalNumber(txtFindBy.Text);
+                            //Invoke the event to send the PersonID to the parent form
+                            OnPersonID?.Invoke(this, PersonID);
+                        }
+                        else
+                        {
+                            MessageBox.Show("no Person found with this National Number", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    break;
+                case "PersonID":
+                    if (txtFindBy.Text != string.Empty&&clsPeople.IsPersonIDExist(int.Parse(txtFindBy.Text)))
+                    {
+                        PersonID = Convert.ToInt32(txtFindBy.Text);
+                        OnPersonID?.Invoke(this, PersonID);
+                    }
+                    break;
+                default:
+                    MessageBox.Show("Please select a valid filter criteria", "Invalid Filter", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
             }
+         
            
 
             
@@ -92,6 +122,18 @@ namespace IbrahimDVLD
             FrmAddEditPersonInfo addEditPersonInfo = new FrmAddEditPersonInfo(-1);
             addEditPersonInfo.RefreshPersonIDEvent += recievePersonIDFromAddNewPerson;
             addEditPersonInfo.ShowDialog();
+        }
+
+        private void txtFindBy_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(cmbFindBy.SelectedItem.ToString()=="PersonID")
+            {
+                // Allow only digits and control characters (like backspace)
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true; // Ignore the input
+                }
+            }
         }
     }
 }

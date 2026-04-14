@@ -32,6 +32,15 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.applicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.drivingLicensToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newDrivingLisenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.localLicenseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.internationalLicenseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.renewDrivingLicenseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
+            this.replacementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
+            this.releaseDetainedDriverLicenseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.retakeTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.manageApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
@@ -88,9 +97,81 @@
             // 
             // drivingLicensToolStripMenuItem
             // 
+            this.drivingLicensToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newDrivingLisenceToolStripMenuItem,
+            this.renewDrivingLicenseToolStripMenuItem,
+            this.toolStripMenuItem5,
+            this.replacementToolStripMenuItem,
+            this.toolStripMenuItem6,
+            this.releaseDetainedDriverLicenseToolStripMenuItem,
+            this.retakeTestToolStripMenuItem});
             this.drivingLicensToolStripMenuItem.Name = "drivingLicensToolStripMenuItem";
             this.drivingLicensToolStripMenuItem.Size = new System.Drawing.Size(318, 30);
             this.drivingLicensToolStripMenuItem.Text = "Driving Licenses Services";
+            // 
+            // newDrivingLisenceToolStripMenuItem
+            // 
+            this.newDrivingLisenceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.localLicenseToolStripMenuItem,
+            this.internationalLicenseToolStripMenuItem});
+            this.newDrivingLisenceToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newDrivingLisenceToolStripMenuItem.Image")));
+            this.newDrivingLisenceToolStripMenuItem.Name = "newDrivingLisenceToolStripMenuItem";
+            this.newDrivingLisenceToolStripMenuItem.Size = new System.Drawing.Size(444, 30);
+            this.newDrivingLisenceToolStripMenuItem.Text = "New Driving License";
+            this.newDrivingLisenceToolStripMenuItem.Click += new System.EventHandler(this.newDrivingLisenceToolStripMenuItem_Click);
+            // 
+            // localLicenseToolStripMenuItem
+            // 
+            this.localLicenseToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("localLicenseToolStripMenuItem.Image")));
+            this.localLicenseToolStripMenuItem.Name = "localLicenseToolStripMenuItem";
+            this.localLicenseToolStripMenuItem.Size = new System.Drawing.Size(269, 30);
+            this.localLicenseToolStripMenuItem.Text = "Local License";
+            this.localLicenseToolStripMenuItem.Click += new System.EventHandler(this.localLicenseToolStripMenuItem_Click);
+            // 
+            // internationalLicenseToolStripMenuItem
+            // 
+            this.internationalLicenseToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("internationalLicenseToolStripMenuItem.Image")));
+            this.internationalLicenseToolStripMenuItem.Name = "internationalLicenseToolStripMenuItem";
+            this.internationalLicenseToolStripMenuItem.Size = new System.Drawing.Size(269, 30);
+            this.internationalLicenseToolStripMenuItem.Text = "International License";
+            // 
+            // renewDrivingLicenseToolStripMenuItem
+            // 
+            this.renewDrivingLicenseToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("renewDrivingLicenseToolStripMenuItem.Image")));
+            this.renewDrivingLicenseToolStripMenuItem.Name = "renewDrivingLicenseToolStripMenuItem";
+            this.renewDrivingLicenseToolStripMenuItem.Size = new System.Drawing.Size(444, 30);
+            this.renewDrivingLicenseToolStripMenuItem.Text = "Renew Driving License";
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(441, 6);
+            // 
+            // replacementToolStripMenuItem
+            // 
+            this.replacementToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("replacementToolStripMenuItem.Image")));
+            this.replacementToolStripMenuItem.Name = "replacementToolStripMenuItem";
+            this.replacementToolStripMenuItem.Size = new System.Drawing.Size(444, 30);
+            this.replacementToolStripMenuItem.Text = "Replacement for lost or damaged license";
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(441, 6);
+            // 
+            // releaseDetainedDriverLicenseToolStripMenuItem
+            // 
+            this.releaseDetainedDriverLicenseToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("releaseDetainedDriverLicenseToolStripMenuItem.Image")));
+            this.releaseDetainedDriverLicenseToolStripMenuItem.Name = "releaseDetainedDriverLicenseToolStripMenuItem";
+            this.releaseDetainedDriverLicenseToolStripMenuItem.Size = new System.Drawing.Size(444, 30);
+            this.releaseDetainedDriverLicenseToolStripMenuItem.Text = "Release Detained driving license";
+            // 
+            // retakeTestToolStripMenuItem
+            // 
+            this.retakeTestToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("retakeTestToolStripMenuItem.Image")));
+            this.retakeTestToolStripMenuItem.Name = "retakeTestToolStripMenuItem";
+            this.retakeTestToolStripMenuItem.Size = new System.Drawing.Size(444, 30);
+            this.retakeTestToolStripMenuItem.Text = "Retake Test";
             // 
             // toolStripMenuItem1
             // 
@@ -102,6 +183,7 @@
             this.manageApplicationToolStripMenuItem.Name = "manageApplicationToolStripMenuItem";
             this.manageApplicationToolStripMenuItem.Size = new System.Drawing.Size(318, 30);
             this.manageApplicationToolStripMenuItem.Text = "Manage Application";
+            this.manageApplicationToolStripMenuItem.Click += new System.EventHandler(this.manageApplicationToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -254,6 +336,15 @@
         private System.Windows.Forms.ToolStripMenuItem manageApplicationTypesToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem manageTestsTypesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newDrivingLisenceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem localLicenseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem internationalLicenseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem renewDrivingLicenseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem replacementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
+        private System.Windows.Forms.ToolStripMenuItem releaseDetainedDriverLicenseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem retakeTestToolStripMenuItem;
     }
 }
 
