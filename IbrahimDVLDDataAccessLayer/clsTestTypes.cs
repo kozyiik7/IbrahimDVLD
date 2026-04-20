@@ -66,8 +66,36 @@ namespace IbrahimDVLDDataAccessLayer
             return result;
         }
 
+        public static int GetTestTypeIDFromTestTypeTitle(string TestTypeTitle)
+        {
+            int TestTypeId = -1;
+            SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string Query = @"select TestTypes.TestTypeID from TestTypes
+                             where TestTypes.TestTypeTitle=@TestTypeTitle";
+            SqlCommand Command = new SqlCommand(Query, Connection);
+            Command.Parameters.AddWithValue("@TestTypeTitle", TestTypeTitle);
+            try 
+            {
+                 Connection.Open();
+                object result = Command.ExecuteScalar();
+                if (result != null && int.TryParse(result.ToString(), out int id))
+                {
+                    TestTypeId = id;
+                }
 
 
-
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            return TestTypeId;
+        }
     }
 }
+        
+

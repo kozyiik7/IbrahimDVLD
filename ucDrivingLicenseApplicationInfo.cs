@@ -37,7 +37,7 @@ namespace IbrahimDVLD
         }
         public string AppliedForLicense {  get=>lblAppliedForLicense.Text; set=>lblAppliedForLicense.Text=value; }
         public string LicenseInfo {  get=>lblShowLicesnseInfo.Text; set=> lblShowLicesnseInfo.Text=value; }
-        public int PassedTests {  get=>lblPassedTests.Text != string.Empty ? Convert.ToInt32(lblPassedTests.Text) : 0; set=>lblPassedTests.Text=value.ToString(); }
+        public int PassedTests {  get=>lblPassedTests.Text != string.Empty ? Convert.ToInt32(lblPassedTests.Text) : 0; set=>lblPassedTests.Text=value.ToString()+"/3"; }
 
         private void InitializeUCInfo()
         {
@@ -51,7 +51,7 @@ namespace IbrahimDVLD
                // DLAppID = Convert.ToInt32(row["ApplicationID"]);
                 AppliedForLicense = row["ClassName"].ToString();
                 LicenseInfo = row["ClassDescription"] == DBNull.Value ? string.Empty : row["ClassDescription"].ToString();
-                PassedTests = Convert.ToInt32(row["PassedTests"]);
+                PassedTests = clsLocalDrivingLicenseApplications.GetNumberOFPassedTestByLocalDrivingLicenceID(localDrivingLicenseID);
             }
         }
         private void GetLocalDrivingLicenseID()

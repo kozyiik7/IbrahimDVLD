@@ -36,7 +36,7 @@ namespace IbrahimDVLDDataAccessLayer
             catch (Exception ex)
             {
                 // Handle exception (e.g., log it)
-                throw new Exception("An error occurred while inserting the application.", ex);
+                throw ex;
             }
             finally
             {
@@ -69,7 +69,7 @@ namespace IbrahimDVLDDataAccessLayer
             catch (Exception ex)
             {
                 // Handle exception (e.g., log it)
-                throw new Exception("An error occurred while checking for existing applications.", ex);
+                throw ex;
             }
             finally
             {

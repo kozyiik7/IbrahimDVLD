@@ -111,7 +111,6 @@
             // 
             // lblShowLicesnseInfo
             // 
-            this.lblShowLicesnseInfo.AutoSize = true;
             this.lblShowLicesnseInfo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblShowLicesnseInfo.Location = new System.Drawing.Point(57, 74);
             this.lblShowLicesnseInfo.Name = "lblShowLicesnseInfo";

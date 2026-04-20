@@ -148,5 +148,33 @@ FROM            dbo.Applications INNER JOIN
             return LocalDrivingLicenseID;
 
         }
+        public static int GetNumberOFPassedTestByLocalDrivingLicenseID(int LocalDrivingLicenseID)
+        {
+            int PassedTests = -1;
+            SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string Query = @"SELECT        count(Tests.TestID) As PassedTest
+                             FROM         Tests
+                             inner join TestAppointments on TestAppointments.TestAppointmentID=Tests.TestAppointmentID
+					         INNER JOIN LocalDrivingLicenseApplications ON LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = TestAppointments.LocalDrivingLicenseApplicationID
+					         where LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID=@LocalDrivingLicenseID and Tests.TestResult=1";
+            SqlCommand Command= new SqlCommand(Query, Connection);
+            Command.Parameters.AddWithValue("@LocalDrivingLicenseID", LocalDrivingLicenseID);
+            try
+            {
+                Connection.Open();
+                object Result = Command.ExecuteScalar();
+                if (Result != null)
+                    PassedTests = Convert.ToInt32(Result);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            { Connection.Close(); }
+            return PassedTests;
+
+
+        }
     }
 }

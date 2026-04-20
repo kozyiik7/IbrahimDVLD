@@ -20,5 +20,9 @@ namespace IbrahimDVLDBusinessLayer
         {
             return IbrahimDVLDDataAccessLayer.clsTestTypes.UpdateTestTypes(TestTypeID, TestTypeTitle, TestTypeDescription, TestTypeFees);
         }
+        public static int GetTestTypeIDByTestTypeTitle(string TestTypeTitle)
+        {
+            return IbrahimDVLDDataAccessLayer.clsTestTypes.GetTestTypeIDFromTestTypeTitle(TestTypeTitle);
+        }
     }
 }

@@ -29,18 +29,18 @@ namespace IbrahimDVLDBusinessLayer
         }
         public int CreateTestAppointment()
         {
-            return IbrahimDVLDDataAccessLayer.clsTestAppoinments.CreateTestAppointment(TestTypeID,LocalDrivingLicenseApplicationID, AppointmentDate, PaidFees, CreatedByUserID, isLOcked);
+            return IbrahimDVLDDataAccessLayer.clsTestAppoinments.CreateTestAppointment(TestTypeID, LocalDrivingLicenseApplicationID, AppointmentDate, PaidFees, CreatedByUserID, isLOcked);
         }
-         public static int GetNumberOfTrueTestsByAppID(int AppID)
+        public static int GetNumberOfTrueTestsByAppID(int AppID)
         {
             return IbrahimDVLDDataAccessLayer.clsTestAppoinments.GetNumberOfTrueTestsByAppID(AppID);
         }
         public clsTestAppointments ReadAllTestAppoinment()
         {
-           DataTable dt = IbrahimDVLDDataAccessLayer.clsTestAppoinments.ReadAllTestAppointments();
+            DataTable dt = IbrahimDVLDDataAccessLayer.clsTestAppoinments.ReadAllTestAppointments();
             if (dt.Rows.Count > 0)
             {
-                TestAppointmentsID =(int)dt.Rows[0]["TestAppointmentsID"];
+                TestAppointmentsID = (int)dt.Rows[0]["TestAppointmentsID"];
                 TestTypeID = (int)dt.Rows[0]["TestTypeID"];
                 LocalDrivingLicenseApplicationID = (int)dt.Rows[0]["LocalDrivingLicenseApplicationID"];
                 AppointmentDate = (DateTime)dt.Rows[0]["AppointmentDate"];
@@ -50,9 +50,52 @@ namespace IbrahimDVLDBusinessLayer
             }
             return this;
         }
-        public static DataRow GetVisionTestAppoinmetsByAppID(int AppID)
+        public static DataTable GetVisionTestAppoinmetsByAppID(int AppID)
         {
             return IbrahimDVLDDataAccessLayer.clsTestAppoinments.GetVisionTestAppoinmetsByAppID(AppID);
+        }
+
+        public static DataRow GetVisionTestDataByAppID(int AppID)
+        {
+            return IbrahimDVLDDataAccessLayer.clsTestAppoinments.GetVisionTestDataByAppID(AppID);
+        }
+
+        public static clsTestAppointments GetTestAppointmentByAppID(int TestAppoinmentID)
+        {
+            DataTable dt = IbrahimDVLDDataAccessLayer.clsTestAppoinments.getTestAppointmentDataByAppID(TestAppoinmentID);
+            if (dt.Rows.Count > 0)
+            {
+                clsTestAppointments testAppointment = new clsTestAppointments
+                {
+                    TestAppointmentsID = (int)dt.Rows[0]["TestAppointmentID"],
+                    TestTypeID = (int)dt.Rows[0]["TestTypeID"],
+                    LocalDrivingLicenseApplicationID = (int)dt.Rows[0]["LocalDrivingLicenseApplicationID"],
+                    AppointmentDate = (DateTime)dt.Rows[0]["AppointmentDate"],
+                    PaidFees = (decimal)dt.Rows[0]["PaidFees"],
+                    CreatedByUserID = (int)dt.Rows[0]["CreatedByUserID"],
+                    isLOcked = (bool)dt.Rows[0]["isLOcked"]
+                };
+                return testAppointment;
+            }
+            return null;
+        }
+        public static bool ISThereVisionTest(int AppID)
+        {
+            return IbrahimDVLDDataAccessLayer.clsTestAppoinments.ISThereVisionTest(AppID);
+        }
+
+        public int UpdateTestAppointmentDate(int TestAppoinmentID, DateTime AppointmentDate)
+        {
+            return IbrahimDVLDDataAccessLayer.clsTestAppoinments.EditTestAppoinmentDate(TestAppoinmentID, AppointmentDate);
+        }
+        public static bool LockTestAppointmet(int AppID)
+        {
+            return IbrahimDVLDDataAccessLayer.clsTestAppoinments.LockTestAppointment(AppID);
+
+        }
+        public static int GetTestAppointmentIDByAppID(int AppID)
+        {
+            return IbrahimDVLDDataAccessLayer.clsTestAppoinments.GetTestAppointmentIDByApplicationID(AppID);
         }
     }
 }
