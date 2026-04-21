@@ -66,17 +66,18 @@ namespace IbrahimDVLDDataAccessLayer
             }
             return TestID;
         }
-        public static int GetNumberOFTestsByLocalDrivingLicenseIDAndLicenseClassID(int LocalDrivingLicenseID,int LicenseClassID)
+        public static int GetNumberOFTestsByLocalDrivingLicenseIDAndLicenseClassID(int LocalDrivingLicenseID,int LicenseClassID,int TestTypeID)
         {
             int NumberOfTests = -1;
             SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string Query = @"select count(tests.TestID) as Tests from Tests
                             inner join TestAppointments on TestAppointments.TestAppointmentID=Tests.TestAppointmentID
                             inner join LocalDrivingLicenseApplications on LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID=TestAppointments.LocalDrivingLicenseApplicationID
-                            where LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID=@LocalDrivingLicenseID and LocalDrivingLicenseApplications.LicenseClassID=@LicenseClassID";
+                            where LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID=@LocalDrivingLicenseID and LocalDrivingLicenseApplications.LicenseClassID=@LicenseClassID and TestTypeID=@TestTypeID";
             SqlCommand command = new SqlCommand(Query, Connection);
             command.Parameters.AddWithValue("@LocalDrivingLicenseID", LocalDrivingLicenseID);
             command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
+            command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
             try
             {  Connection.Open();
                 object Result = command.ExecuteScalar();

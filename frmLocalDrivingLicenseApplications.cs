@@ -155,7 +155,7 @@ namespace IbrahimDVLD
         private void scheduleVisionTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int AppID=clsLocalDrivingLicenseApplications.GetApplicationIDByLicenseID(Convert.ToInt32(dgvLocalDrivingLicenseApplications.CurrentRow.Cells["L.D.L.AppID"].Value.ToString()));
-            frmVisionTestApointments frm = new frmVisionTestApointments(AppID);
+            frmVisionTestApointments frm = new frmVisionTestApointments(AppID,frmVisionTestApointments.enMode.VisionTest);
             frm.ShowDialog();
             SetIntializeData();
         }
@@ -198,6 +198,14 @@ namespace IbrahimDVLD
                     break;
                 }
             }
+        }
+
+        private void scheduleWrittenTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int AppID = clsLocalDrivingLicenseApplications.GetApplicationIDByLicenseID(Convert.ToInt32(dgvLocalDrivingLicenseApplications.CurrentRow.Cells["L.D.L.AppID"].Value.ToString()));
+            frmVisionTestApointments frm = new frmVisionTestApointments(AppID, frmVisionTestApointments.enMode.WriteTest);
+            frm.ShowDialog();
+            SetIntializeData();
         }
     }
 }

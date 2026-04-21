@@ -16,30 +16,76 @@ namespace IbrahimDVLD
         BindingSource bs = new BindingSource();
         private int _AppID;
         public int AppID { get; set; }
+        public enum enMode :Int32 { VisionTest=1, WriteTest=2, StreetTest=3 } 
+        private enMode _Mode = enMode.VisionTest;
         public frmVisionTestApointments()
         {
             InitializeComponent();
         }
-        public frmVisionTestApointments(int AppID)
+        public frmVisionTestApointments(int AppID,enMode Mode)
         {
             InitializeComponent();
             _AppID = AppID;
            this.AppID = AppID;
+            _Mode = Mode;
         }
         private void FillDataGridView()
         {
-            if (clsTestAppointments.GetVisionTestAppoinmetsByAppID(AppID) != null)
+            switch(_Mode)
             {
-                bs.DataSource = clsTestAppointments.GetVisionTestAppoinmetsByAppID(AppID);
-                dgvAppointments.DataSource = bs;
-                dgvAppointments.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-               dgvAppointments.AllowUserToAddRows = false;
+               case enMode.VisionTest:
+                    if (clsTestAppointments.GetVisionTestAppoinmetsByAppID(AppID) != null)
+                    {
+                        bs.DataSource = clsTestAppointments.GetVisionTestAppoinmetsByAppID(AppID);
+                        dgvAppointments.DataSource = bs;
+                    }
+                    break;
+               case enMode.WriteTest:
+                    if (clsTestAppointments.GetWriteTestAppoinmetsByAppID(AppID) != null)
+                    {
+                        bs.DataSource = clsTestAppointments.GetWriteTestAppoinmetsByAppID(AppID);
+                        dgvAppointments.DataSource = bs;
+                    }
+                    break;
+               case enMode.StreetTest:
+                    if (clsTestAppointments.GetStreetTestAppoinmetsByAppID(AppID) != null)
+                    {
+                        bs.DataSource = clsTestAppointments.GetStreetTestAppoinmetsByAppID(AppID);
+                        dgvAppointments.DataSource = bs;
+                    }
+                    break;
+
             }
+           
+                dgvAppointments.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvAppointments.AllowUserToAddRows = false;
+            
             lblNumberOfRecords.Text = "#Records :" + " " + dgvAppointments.Rows.Count.ToString();
+        }
+        private void FillFormData()
+        {
+            switch (_Mode)
+            {
+                case enMode.VisionTest:
+                    pbMainImage.Image = ImageListMode.Images[0];
+                    lblMainAddress.Text = "Vision Test Appointment";
+                    break;
+                case enMode.WriteTest:
+                    pbMainImage.Image = ImageListMode.Images[1];
+                    lblMainAddress.Text = "Write Test Appointment";
+                    break;
+                case enMode.StreetTest:
+                    pbMainImage.Image = ImageListMode.Images[2];
+                    lblMainAddress.Text = "Street Test Appointment";
+                    break;
+
+            }
         }
         private void frmVisionTestApointments_Load(object sender, EventArgs e)
         {
+            
             ucApplicationAllInfo1.AppID = _AppID;
+            FillFormData();
             FillDataGridView();
 
         }
@@ -48,32 +94,79 @@ namespace IbrahimDVLD
         {
             int LocalDrivingLicenseID = 0;
             LocalDrivingLicenseID=clsLocalDrivingLicenseApplications.GetLicenseIDByApplicationID(AppID);
-            if (clsLocalDrivingLicenseApplications.GetNumberOFPassedTestByLocalDrivingLicenceID(LocalDrivingLicenseID) == 1)
-            {
-                MessageBox.Show("Person has passed this Test");
-                return;
+            switch(_Mode)
+            { 
+                case enMode.VisionTest:
+
+                    if (clsLocalDrivingLicenseApplications.GetNumberOFPassedTestByLocalDrivingLicenceID(LocalDrivingLicenseID) == 1)
+                    {
+                        MessageBox.Show("Person has passed this Test");
+                        return;
+                    }
+                    if (clsTestAppointments.ISThereVisionTest(AppID))
+                    {
+
+                        MessageBox.Show("There is already a vision test appointment for this application, you can't schedule another one until the current one is locked");
+                        return;
+                    }
+                    else
+                    {
+                        frmScheduleTest frm = new frmScheduleTest(_AppID, frmScheduleTest.enFormMode.add,_Mode);
+                        frm.ShowDialog();
+                        FillDataGridView();
+
+                    }
+                    break;
+                case enMode.WriteTest:
+
+                    if (clsLocalDrivingLicenseApplications.GetNumberOFPassedTestByLocalDrivingLicenceID(LocalDrivingLicenseID) == 2)
+                    {
+                        MessageBox.Show("Person has passed this Test");
+                        return;
+                    }
+                    if (clsTestAppointments.ISThereWriteTest(AppID))
+                    {
+
+                        MessageBox.Show("There is already a vision test appointment for this application, you can't schedule another one until the current one is locked");
+                        return;
+                    }
+                    else
+                    {
+                        frmScheduleTest frm = new frmScheduleTest(_AppID, frmScheduleTest.enFormMode.add, _Mode);
+                        frm.ShowDialog();
+                        FillDataGridView();
+
+                    }
+                    break;
+                case enMode.StreetTest:
+
+                    if (clsLocalDrivingLicenseApplications.GetNumberOFPassedTestByLocalDrivingLicenceID(LocalDrivingLicenseID) == 3)
+                    {
+                        MessageBox.Show("Person has passed this Test");
+                        return;
+                    }
+                    if (clsTestAppointments.ISThereStreetTest(AppID))
+                    {
+
+                        MessageBox.Show("There is already a vision test appointment for this application, you can't schedule another one until the current one is locked");
+                        return;
+                    }
+                    else
+                    {
+                        frmScheduleTest frm = new frmScheduleTest(_AppID, frmScheduleTest.enFormMode.add, _Mode);
+                        frm.ShowDialog();
+                        FillDataGridView();
+
+                    }
+                    break;
+
             }
-            if (clsTestAppointments.ISThereVisionTest(AppID))
-            {
-                
-                MessageBox.Show("There is already a vision test appointment for this application, you can't schedule another one until the current one is locked");
-                return;
-            }
-            else
-            {
-                frmScheduleTest frm = new frmScheduleTest(_AppID,frmScheduleTest.enFormMode.add);
-                frm.ShowDialog();
-                FillDataGridView();
-               
-            }
+            
         }
-        private void RefreshForm()
-        {
-            frmVisionTestApointments_Load(null, null)   ;
-        }
+     
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           frmScheduleTest frm = new frmScheduleTest(_AppID, frmScheduleTest.enFormMode.edit);
+           frmScheduleTest frm = new frmScheduleTest(_AppID, frmScheduleTest.enFormMode.edit,_Mode);
             frm.ShowDialog();
             FillDataGridView();
         }
@@ -83,7 +176,7 @@ namespace IbrahimDVLD
            
             if (dgvAppointments.CurrentRow.Cells["Is Locked"].Value.ToString()=="False")
             {
-                frmScheduleTest Test = new frmScheduleTest(_AppID, frmScheduleTest.enFormMode.TakeTest);
+                frmScheduleTest Test = new frmScheduleTest(_AppID, frmScheduleTest.enFormMode.TakeTest,_Mode);
                 
                 Test.ShowDialog();
                 FillDataGridView();

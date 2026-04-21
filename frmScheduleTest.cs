@@ -16,6 +16,8 @@ namespace IbrahimDVLD
     public partial class frmScheduleTest : Form
     {
         public enum enFormMode { add, edit,TakeTest }
+        private frmVisionTestApointments.enMode _EnTestType=frmVisionTestApointments.enMode.VisionTest;
+
         enFormMode FormMode { get; set; }
         private int _AppID;
         public int AppID { get; set; }
@@ -24,10 +26,11 @@ namespace IbrahimDVLD
             InitializeComponent();
         }
        
-        public frmScheduleTest(int AppID, enFormMode formMode)
+        public frmScheduleTest(int AppID, enFormMode formMode,frmVisionTestApointments.enMode enTestType)
         {
             InitializeComponent();
             FormMode = formMode;
+            _EnTestType = enTestType;
             _AppID = AppID;
             this.AppID = AppID;
         }
@@ -43,12 +46,14 @@ namespace IbrahimDVLD
         {
             if (!DesignMode)
             {
+                ucVisionTest1.EnTestMode=_EnTestType;
                 ucVisionTest1.AppID = _AppID;
                 switch (FormMode)
                 {
                     case enFormMode.add:
                         ucVisionTest1.lblTestIDVisible = false;
                         pnlTest.Visible = false;
+                       // ucVisionTest1.gbRetakeTestVisible = false;
                         break;
                     case enFormMode.edit:
                         ucVisionTest1.lblTestIDVisible = false;
@@ -69,6 +74,22 @@ namespace IbrahimDVLD
 
                 }
             }
+            if(!DesignMode)
+            {
+                switch(_EnTestType )
+                {
+                    case frmVisionTestApointments.enMode.VisionTest:
+                        ucVisionTest1.MainImage = ImageListMode.Images[0];
+                        break;
+                    case frmVisionTestApointments.enMode.WriteTest:
+                        ucVisionTest1.MainImage = ImageListMode.Images[1];
+                        break;
+                    case frmVisionTestApointments.enMode.StreetTest:
+                        ucVisionTest1.MainImage = ImageListMode.Images[2];
+                        break;
+                }
+
+            }
 
         }
         private void frmScheduleTest_Load(object sender, EventArgs e)
@@ -79,7 +100,18 @@ namespace IbrahimDVLD
         {
             clsTestAppointments testAppointment = new clsTestAppointments();
             testAppointment.LocalDrivingLicenseApplicationID = ucVisionTest1.DLAppID;
-            testAppointment.TestTypeID = 1; // Assuming 1 represents the vision test
+            switch (_EnTestType)
+            {
+                case frmVisionTestApointments.enMode.VisionTest:
+                    testAppointment.TestTypeID = 1; // Assuming 1 represents the vision test
+                    break;
+                case frmVisionTestApointments.enMode.WriteTest:
+                    testAppointment.TestTypeID = 2;
+                    break;
+                case frmVisionTestApointments.enMode.StreetTest:
+                    testAppointment.TestTypeID = 3;
+                    break;
+            }
             testAppointment.AppointmentDate = ucVisionTest1.AppointmentDate;
             testAppointment.PaidFees = ucVisionTest1.Fees;
             testAppointment.CreatedByUserID = UserSession.Instance.PersonID;

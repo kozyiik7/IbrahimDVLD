@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucVisionTest));
             this.gbVisionTest = new System.Windows.Forms.GroupBox();
+            this.lblSubAddress = new System.Windows.Forms.Label();
             this.lblTestIDValue = new System.Windows.Forms.Label();
             this.iconTestID = new System.Windows.Forms.PictureBox();
             this.lblTestID = new System.Windows.Forms.Label();
@@ -56,14 +57,13 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblMainAddress = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbMainImage = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblSubAddress = new System.Windows.Forms.Label();
             this.gbVisionTest.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconTestID)).BeginInit();
             this.gbRetakeTestInfo.SuspendLayout();
@@ -76,7 +76,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMainImage)).BeginInit();
             this.SuspendLayout();
             // 
             // gbVisionTest
@@ -99,7 +99,7 @@
             this.gbVisionTest.Controls.Add(this.pictureBox3);
             this.gbVisionTest.Controls.Add(this.pictureBox2);
             this.gbVisionTest.Controls.Add(this.lblMainAddress);
-            this.gbVisionTest.Controls.Add(this.pictureBox1);
+            this.gbVisionTest.Controls.Add(this.pbMainImage);
             this.gbVisionTest.Controls.Add(this.label6);
             this.gbVisionTest.Controls.Add(this.label5);
             this.gbVisionTest.Controls.Add(this.label4);
@@ -114,14 +114,26 @@
             this.gbVisionTest.TabStop = false;
             this.gbVisionTest.Text = "Vision Test";
             // 
+            // lblSubAddress
+            // 
+            this.lblSubAddress.AutoSize = true;
+            this.lblSubAddress.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubAddress.ForeColor = System.Drawing.Color.Red;
+            this.lblSubAddress.Location = new System.Drawing.Point(6, 130);
+            this.lblSubAddress.Name = "lblSubAddress";
+            this.lblSubAddress.Size = new System.Drawing.Size(471, 19);
+            this.lblSubAddress.TabIndex = 23;
+            this.lblSubAddress.Text = "Person Already Sat for The Test , Appointment is Locked";
+            this.lblSubAddress.Visible = false;
+            // 
             // lblTestIDValue
             // 
             this.lblTestIDValue.AutoSize = true;
             this.lblTestIDValue.Location = new System.Drawing.Point(147, 363);
             this.lblTestIDValue.Name = "lblTestIDValue";
-            this.lblTestIDValue.Size = new System.Drawing.Size(64, 19);
+            this.lblTestIDValue.Size = new System.Drawing.Size(133, 19);
             this.lblTestIDValue.TabIndex = 22;
-            this.lblTestIDValue.Text = "TestID";
+            this.lblTestIDValue.Text = "Not known yet ";
             // 
             // iconTestID
             // 
@@ -375,15 +387,15 @@
             this.lblMainAddress.TabIndex = 7;
             this.lblMainAddress.Text = "Schedule Test";
             // 
-            // pictureBox1
+            // pbMainImage
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(191, 26);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 64);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
+            this.pbMainImage.Image = ((System.Drawing.Image)(resources.GetObject("pbMainImage.Image")));
+            this.pbMainImage.Location = new System.Drawing.Point(191, 26);
+            this.pbMainImage.Name = "pbMainImage";
+            this.pbMainImage.Size = new System.Drawing.Size(100, 64);
+            this.pbMainImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbMainImage.TabIndex = 6;
+            this.pbMainImage.TabStop = false;
             // 
             // label6
             // 
@@ -439,18 +451,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "D.L.AppID :";
             // 
-            // lblSubAddress
-            // 
-            this.lblSubAddress.AutoSize = true;
-            this.lblSubAddress.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubAddress.ForeColor = System.Drawing.Color.Red;
-            this.lblSubAddress.Location = new System.Drawing.Point(6, 130);
-            this.lblSubAddress.Name = "lblSubAddress";
-            this.lblSubAddress.Size = new System.Drawing.Size(471, 19);
-            this.lblSubAddress.TabIndex = 23;
-            this.lblSubAddress.Text = "Person Already Sat for The Test , Appointment is Locked";
-            this.lblSubAddress.Visible = false;
-            // 
             // ucVisionTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -473,7 +473,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMainImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -488,7 +488,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblMainAddress;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbMainImage;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;

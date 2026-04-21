@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVisionTestApointments));
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblMainAddress = new System.Windows.Forms.Label();
+            this.pbMainImage = new System.Windows.Forms.PictureBox();
             this.dgvAppointments = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,32 +40,33 @@
             this.lblNumberOfRecords = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.ucApplicationAllInfo1 = new IbrahimDVLD.ucApplicationAllInfo();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.ImageListMode = new System.Windows.Forms.ImageList(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.pbMainImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAppointments)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // lblMainAddress
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(326, 120);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(275, 25);
-            this.label1.TabIndex = 1;
-            this.label1.Text = " Vision Test Appoinments";
+            this.lblMainAddress.AutoSize = true;
+            this.lblMainAddress.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMainAddress.ForeColor = System.Drawing.Color.Red;
+            this.lblMainAddress.Location = new System.Drawing.Point(326, 120);
+            this.lblMainAddress.Name = "lblMainAddress";
+            this.lblMainAddress.Size = new System.Drawing.Size(275, 25);
+            this.lblMainAddress.TabIndex = 1;
+            this.lblMainAddress.Text = " Vision Test Appoinments";
             // 
-            // pictureBox1
+            // pbMainImage
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(382, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(187, 105);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.pbMainImage.Image = ((System.Drawing.Image)(resources.GetObject("pbMainImage.Image")));
+            this.pbMainImage.Location = new System.Drawing.Point(382, 12);
+            this.pbMainImage.Name = "pbMainImage";
+            this.pbMainImage.Size = new System.Drawing.Size(187, 105);
+            this.pbMainImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbMainImage.TabIndex = 2;
+            this.pbMainImage.TabStop = false;
             // 
             // dgvAppointments
             // 
@@ -82,19 +83,19 @@
             this.editToolStripMenuItem,
             this.takeTestToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(121, 48);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.editToolStripMenuItem.Text = "&Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // takeTestToolStripMenuItem
             // 
             this.takeTestToolStripMenuItem.Name = "takeTestToolStripMenuItem";
-            this.takeTestToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.takeTestToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.takeTestToolStripMenuItem.Text = "&Take Test";
             this.takeTestToolStripMenuItem.Click += new System.EventHandler(this.takeTestToolStripMenuItem_Click);
             // 
@@ -137,6 +138,14 @@
             this.ucApplicationAllInfo1.Size = new System.Drawing.Size(898, 347);
             this.ucApplicationAllInfo1.TabIndex = 0;
             // 
+            // ImageListMode
+            // 
+            this.ImageListMode.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImageListMode.ImageStream")));
+            this.ImageListMode.TransparentColor = System.Drawing.Color.Transparent;
+            this.ImageListMode.Images.SetKeyName(0, "VisionTest.png");
+            this.ImageListMode.Images.SetKeyName(1, "WriteTest.png");
+            this.ImageListMode.Images.SetKeyName(2, "StreetTest.png");
+            // 
             // frmVisionTestApointments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -146,13 +155,13 @@
             this.Controls.Add(this.lblNumberOfRecords);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dgvAppointments);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pbMainImage);
+            this.Controls.Add(this.lblMainAddress);
             this.Controls.Add(this.ucApplicationAllInfo1);
             this.Name = "frmVisionTestApointments";
             this.Text = "frmVisionTestApointments";
             this.Load += new System.EventHandler(this.frmVisionTestApointments_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMainImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAppointments)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -164,8 +173,8 @@
         #endregion
 
         private ucApplicationAllInfo ucApplicationAllInfo1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblMainAddress;
+        private System.Windows.Forms.PictureBox pbMainImage;
         private System.Windows.Forms.DataGridView dgvAppointments;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblNumberOfRecords;
@@ -173,5 +182,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem takeTestToolStripMenuItem;
+        private System.Windows.Forms.ImageList ImageListMode;
     }
 }

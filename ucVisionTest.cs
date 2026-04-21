@@ -14,6 +14,7 @@ namespace IbrahimDVLD
     public partial class ucVisionTest : UserControl
     {
         private int _AppID;
+        private frmVisionTestApointments.enMode _EnTestMode;
         public int AppID
         {   get => _AppID; 
             set 
@@ -21,6 +22,7 @@ namespace IbrahimDVLD
                 SetVisionTestData();
             }
         }
+        public frmVisionTestApointments.enMode EnTestMode {get=> _EnTestMode;set=>_EnTestMode=value;  }
         public int DLAppID { get=>int.Parse(lblDLAppID.Text); set { lblDLAppID.Text = value.ToString(); } }
         public int TestTypeID { get=>clsTestTypes.GetTestTypeIDByTestTypeTitle(lblDClass.Text); private set { }  }
         public DateTime AppointmentDate { get => dtpDate.Value; set => dtpDate.Value = value; }
@@ -33,6 +35,7 @@ namespace IbrahimDVLD
                 iconTestID.Visible = value;
             }
         }
+        public Image MainImage {  get=>pbMainImage.Image; set=>pbMainImage.Image=value; }
         public string lblMainAddressText { get => lblMainAddress.Text;set=>lblMainAddress.Text=value;  }
         public bool visibleSubAddressLable { get=>lblSubAddress.Visible; set => lblSubAddress.Visible = value; }
         public bool EnableDateTimePicker { get => dtpDate.Enabled;set => dtpDate.Enabled = value;  }
@@ -65,7 +68,7 @@ namespace IbrahimDVLD
         }
         private void SetRetakePanelData()
         {
-            int NumberOFTest = clsTests.GetNumberOFTestsByLocalDrivingLicenseIDAndLicenseClassID(Convert.ToInt32(lblDLAppID.Text), clsLicenseClasses.GetLicenseClassIDFromClassName(Convert.ToString(lblDClass.Text)));
+            int NumberOFTest = clsTests.GetNumberOFTestsByLocalDrivingLicenseIDAndLicenseClassID(Convert.ToInt32(lblDLAppID.Text), clsLicenseClasses.GetLicenseClassIDFromClassName(Convert.ToString(lblDClass.Text)),(int)_EnTestMode);
             switch (NumberOFTest)
             {
                 case 0:
@@ -84,7 +87,7 @@ namespace IbrahimDVLD
         }
         private void SetVisionTestData()
         {
-            DataRow dr = clsTestAppointments.GetVisionTestDataByAppID(_AppID);
+            DataRow dr = clsTestAppointments.GetVisionTestDataByAppID(_AppID,(int)_EnTestMode);
             if (dr != null)
             {
 

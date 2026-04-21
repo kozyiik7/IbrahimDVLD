@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmScheduleTest));
             this.btnSave = new System.Windows.Forms.Button();
             this.pnlTest = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
@@ -37,6 +39,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.ucVisionTest1 = new IbrahimDVLD.ucVisionTest();
             this.btnClose = new System.Windows.Forms.Button();
+            this.ImageListMode = new System.Windows.Forms.ImageList(this.components);
             this.pnlTest.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -123,12 +126,15 @@
             // 
             this.ucVisionTest1.AppID = 0;
             this.ucVisionTest1.AppointmentDate = new System.DateTime(2026, 4, 18, 10, 3, 42, 819);
+            this.ucVisionTest1.EnableDateTimePicker = true;
             this.ucVisionTest1.gbRetakeTestVisible = true;
+            this.ucVisionTest1.lblMainAddressText = "Schedule Test";
             this.ucVisionTest1.lblTestIDVisible = true;
             this.ucVisionTest1.Location = new System.Drawing.Point(-3, 2);
             this.ucVisionTest1.Name = "ucVisionTest1";
             this.ucVisionTest1.Size = new System.Drawing.Size(558, 587);
             this.ucVisionTest1.TabIndex = 0;
+            this.ucVisionTest1.visibleSubAddressLable = false;
             this.ucVisionTest1.Load += new System.EventHandler(this.ucVisionTest1_Load);
             // 
             // btnClose
@@ -144,6 +150,14 @@
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // ImageListMode
+            // 
+            this.ImageListMode.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImageListMode.ImageStream")));
+            this.ImageListMode.TransparentColor = System.Drawing.Color.Transparent;
+            this.ImageListMode.Images.SetKeyName(0, "VisionTest.png");
+            this.ImageListMode.Images.SetKeyName(1, "WriteTest.png");
+            this.ImageListMode.Images.SetKeyName(2, "StreetTest.png");
             // 
             // frmScheduleTest
             // 
@@ -174,5 +188,6 @@
         private System.Windows.Forms.RadioButton rbPass;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.ImageList ImageListMode;
     }
 }

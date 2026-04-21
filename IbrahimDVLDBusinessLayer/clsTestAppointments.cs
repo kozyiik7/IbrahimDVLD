@@ -55,9 +55,19 @@ namespace IbrahimDVLDBusinessLayer
             return IbrahimDVLDDataAccessLayer.clsTestAppoinments.GetVisionTestAppoinmetsByAppID(AppID);
         }
 
-        public static DataRow GetVisionTestDataByAppID(int AppID)
+        public static DataTable GetWriteTestAppoinmetsByAppID(int AppID)
         {
-            return IbrahimDVLDDataAccessLayer.clsTestAppoinments.GetVisionTestDataByAppID(AppID);
+            return IbrahimDVLDDataAccessLayer.clsTestAppoinments.GetWriteTestAppoinmetsByAppID(AppID);
+        }
+
+        public static DataTable GetStreetTestAppoinmetsByAppID(int AppID)
+        {
+            return IbrahimDVLDDataAccessLayer.clsTestAppoinments.GetStreetTestAppoinmetsByAppID(AppID);
+        }
+
+        public static DataRow GetVisionTestDataByAppID(int AppID,int TestType)
+        {
+            return IbrahimDVLDDataAccessLayer.clsTestAppoinments.GetVisionTestDataByAppID(AppID,TestType);
         }
 
         public static clsTestAppointments GetTestAppointmentByAppID(int TestAppoinmentID)
@@ -82,6 +92,15 @@ namespace IbrahimDVLDBusinessLayer
         public static bool ISThereVisionTest(int AppID)
         {
             return IbrahimDVLDDataAccessLayer.clsTestAppoinments.ISThereVisionTest(AppID);
+        }
+
+        public static bool ISThereWriteTest(int AppID)
+        {
+            return IbrahimDVLDDataAccessLayer.clsTestAppoinments.ISThereWriteTest(AppID);
+        }
+        public static bool ISThereStreetTest(int AppID)
+        {
+            return IbrahimDVLDDataAccessLayer.clsTestAppoinments.ISThereStreetTest(AppID);
         }
 
         public int UpdateTestAppointmentDate(int TestAppoinmentID, DateTime AppointmentDate)

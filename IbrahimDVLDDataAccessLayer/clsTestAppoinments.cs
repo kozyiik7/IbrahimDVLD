@@ -123,6 +123,72 @@ namespace IbrahimDVLDDataAccessLayer
             }
             return table.Rows.Count == 0 ? null : table;
         }
+
+        public static DataTable GetWriteTestAppoinmetsByAppID(int AppID)
+        {
+
+            DataTable table = new DataTable();
+            SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string Query = @"SELECT        TestAppointments.TestAppointmentID as 'Appointment ID' ,TestAppointments.AppointmentDate as 'Appointment Date',TestAppointments.PaidFees as 'Paid Fees' ,TestAppointments.IsLocked as 'Is Locked'
+                             FROM            Applications
+                            INNER JOIN LocalDrivingLicenseApplications ON Applications.ApplicationID = LocalDrivingLicenseApplications.ApplicationID
+			                INNER JOIN TestAppointments ON LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = TestAppointments.LocalDrivingLicenseApplicationID
+			              	
+			                where Applications.ApplicationID=@AppID and TestAppointments.TestTypeID=2";
+            SqlCommand Command = new SqlCommand(Query, Connection);
+            Command.Parameters.AddWithValue("@AppID", AppID);
+            try
+            {
+                Connection.Open();
+                SqlDataReader reader = Command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    table.Load(reader);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            return table.Rows.Count == 0 ? null : table;
+        }
+
+        public static DataTable GetStreetTestAppoinmetsByAppID(int AppID)
+        {
+
+            DataTable table = new DataTable();
+            SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string Query = @"SELECT        TestAppointments.TestAppointmentID as 'Appointment ID' ,TestAppointments.AppointmentDate as 'Appointment Date',TestAppointments.PaidFees as 'Paid Fees' ,TestAppointments.IsLocked as 'Is Locked'
+                             FROM            Applications
+                            INNER JOIN LocalDrivingLicenseApplications ON Applications.ApplicationID = LocalDrivingLicenseApplications.ApplicationID
+			                INNER JOIN TestAppointments ON LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = TestAppointments.LocalDrivingLicenseApplicationID
+			              	
+			                where Applications.ApplicationID=@AppID and TestAppointments.TestTypeID=3";
+            SqlCommand Command = new SqlCommand(Query, Connection);
+            Command.Parameters.AddWithValue("@AppID", AppID);
+            try
+            {
+                Connection.Open();
+                SqlDataReader reader = Command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    table.Load(reader);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            return table.Rows.Count == 0 ? null : table;
+        }
         public static bool ISThereVisionTest(int AppID)
         {
 
@@ -153,14 +219,72 @@ namespace IbrahimDVLDDataAccessLayer
             return ThereISVisionTest;
         }
 
-        public static DataRow GetVisionTestDataByAppID(int AppID)
+        public static bool ISThereWriteTest(int AppID)
+        {
+
+            bool ThereISVisionTest = false;
+            SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string Query = @"SELECT       count( TestAppointments.TestAppointmentID )as ISThereVisionTest
+                             FROM            Applications 
+							 inner join LocalDrivingLicenseApplications on Applications.ApplicationID=LocalDrivingLicenseApplications.ApplicationID
+							 inner join TestAppointments on TestAppointments.LocalDrivingLicenseApplicationID=LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
+                           
+			                where Applications.ApplicationID=@AppID and TestAppointments.TestTypeID=2 and TestAppointments.IsLocked=0 ";
+            SqlCommand Command = new SqlCommand(Query, Connection);
+            Command.Parameters.AddWithValue("@AppID", AppID);
+            try
+            {
+                Connection.Open();
+                object obj = Command.ExecuteScalar();
+                ThereISVisionTest = Convert.ToInt32(obj) > 0 ? true : false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            return ThereISVisionTest;
+        }
+        public static bool ISThereStreetTest(int AppID)
+        {
+
+            bool ThereISVisionTest = false;
+            SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string Query = @"SELECT       count( TestAppointments.TestAppointmentID )as ISThereVisionTest
+                             FROM            Applications 
+							 inner join LocalDrivingLicenseApplications on Applications.ApplicationID=LocalDrivingLicenseApplications.ApplicationID
+							 inner join TestAppointments on TestAppointments.LocalDrivingLicenseApplicationID=LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
+                           
+			                where Applications.ApplicationID=@AppID and TestAppointments.TestTypeID=3 and TestAppointments.IsLocked=0 ";
+            SqlCommand Command = new SqlCommand(Query, Connection);
+            Command.Parameters.AddWithValue("@AppID", AppID);
+            try
+            {
+                Connection.Open();
+                object obj = Command.ExecuteScalar();
+                ThereISVisionTest = Convert.ToInt32(obj) > 0 ? true : false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            return ThereISVisionTest;
+        }
+        public static DataRow GetVisionTestDataByAppID(int AppID,int TestType)
         {
             DataTable table = new DataTable();
             SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string Query = @"SELECT        LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID as DLAppID
              , LicenseClasses.ClassName as DClass
 			 , People.FirstName+' '+People.SecondName+' '+ISNULL(People.ThirdName,'')+' '+People.LastName as 'Full Name'
-			 , (select count (TestAppointments.TestTypeID ) from TestAppointments Where TestAppointments.LocalDrivingLicenseApplicationID=LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID and Applications.ApplicationID=@AppID) as Trials
+			 , (select count (TestAppointments.TestTypeID ) from TestAppointments Where TestAppointments.LocalDrivingLicenseApplicationID=LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID and Applications.ApplicationID=@AppID and TestAppointments.TestTypeID=@TestType) as Trials
 			 , (Select TestTypes.TestTypeFees from TestTypes where TestTypes.TestTypeID=1) As Fees
                FROM            Applications INNER JOIN
                          LocalDrivingLicenseApplications ON Applications.ApplicationID = LocalDrivingLicenseApplications.ApplicationID INNER JOIN
@@ -170,6 +294,8 @@ namespace IbrahimDVLDDataAccessLayer
 					     where Applications.ApplicationID=@AppID";
             SqlCommand Command = new SqlCommand(Query, Connection);
             Command.Parameters.AddWithValue("@AppID", AppID);
+            Command.Parameters.AddWithValue("@TestType", TestType);
+
             try
             {
                 Connection.Open();
@@ -189,6 +315,7 @@ namespace IbrahimDVLDDataAccessLayer
             }
             return table.Rows.Count == 0 ? null : table.Rows[0];
         }
+      
         public static int EditTestAppoinmentDate(int testAppointmentID, DateTime dateTime)
         {
             int AffectedRows = 0;
