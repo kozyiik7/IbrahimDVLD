@@ -207,5 +207,13 @@ namespace IbrahimDVLD
             frm.ShowDialog();
             SetIntializeData();
         }
+
+        private void scheduleStreetTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int AppID = clsLocalDrivingLicenseApplications.GetApplicationIDByLicenseID(Convert.ToInt32(dgvLocalDrivingLicenseApplications.CurrentRow.Cells["L.D.L.AppID"].Value.ToString()));
+            frmVisionTestApointments frm = new frmVisionTestApointments(AppID, frmVisionTestApointments.enMode.StreetTest);
+            frm.ShowDialog();
+            SetIntializeData();
+        }
     }
 }

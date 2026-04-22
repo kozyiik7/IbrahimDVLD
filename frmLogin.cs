@@ -70,8 +70,11 @@ namespace IbrahimDVLD
             //Properties.Settings.Default.Password=Password;
 
             //Properties.Settings.Default.PersonIDOfUser=clsUsers.GetPersonIDByUserName(UserName);
-
-            UserSession.Instance.SetUser(clsUsers.GetPersonIDByUserName(UserName), UserName);
+            clsUsers User=clsUsers.GetUserInfoByPersonID(clsUsers.GetPersonIDByUserName(UserName));
+            int PersonID = User.PersonID;
+            int UserID = User.UserID;
+            bool IsActive = User.isActive;
+            UserSession.Instance.SetUser(PersonID,UserName,UserID,Password,IsActive);
 
         }
 

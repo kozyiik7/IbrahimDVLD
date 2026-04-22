@@ -114,7 +114,7 @@ namespace IbrahimDVLD
             }
             testAppointment.AppointmentDate = ucVisionTest1.AppointmentDate;
             testAppointment.PaidFees = ucVisionTest1.Fees;
-            testAppointment.CreatedByUserID = UserSession.Instance.PersonID;
+            testAppointment.CreatedByUserID = UserSession.Instance.UserID;
             testAppointment.isLOcked = false;
             return testAppointment;
 
@@ -154,7 +154,7 @@ namespace IbrahimDVLD
         private void TakeTest()
         {
             int testAppointmentID=clsTestAppointments.GetTestAppointmentIDByAppID(_AppID);
-            clsTests tests = new clsTests {TestAppointmentID=testAppointmentID,TestResult =  rbPass.Checked ? true : false ,Notes=txtNotes.Text,CreatedByUserID=UserSession.Instance.PersonID};
+            clsTests tests = new clsTests {TestAppointmentID=testAppointmentID,TestResult =  rbPass.Checked ? true : false ,Notes=txtNotes.Text,CreatedByUserID=UserSession.Instance.UserID};
             int TestID = 0;
             TestID= tests.Create();
             if (TestID != 0)

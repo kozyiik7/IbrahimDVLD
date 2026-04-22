@@ -79,7 +79,7 @@ namespace IbrahimDVLD
                     gbRetakeTestInfo.Enabled=true;
                     lblRAppFees.Text = "5";
                     lblTotalFees.Text = (Convert.ToDecimal(lblRAppFees.Text)+Convert.ToDecimal(lblFees.Text)).ToString();
-                    Nullable<int> LastTestID = clsTests.GetLastTestIDByApplicationID(_AppID);
+                    Nullable<int> LastTestID = clsTests.GetLastTestIDByApplicationID();
                     if (LastTestID!=null)
                     lblRTestAppID.Text=LastTestID.ToString();
                     break;

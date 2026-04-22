@@ -38,6 +38,7 @@ namespace IbrahimDVLD
                     {
                         bs.DataSource = clsTestAppointments.GetVisionTestAppoinmetsByAppID(AppID);
                         dgvAppointments.DataSource = bs;
+                        dgvAppointments.Sort(dgvAppointments.Columns["Appointment ID"], ListSortDirection.Descending);
                     }
                     break;
                case enMode.WriteTest:
@@ -45,6 +46,7 @@ namespace IbrahimDVLD
                     {
                         bs.DataSource = clsTestAppointments.GetWriteTestAppoinmetsByAppID(AppID);
                         dgvAppointments.DataSource = bs;
+                        dgvAppointments.Sort(dgvAppointments.Columns["Appointment ID"], ListSortDirection.Descending);
                     }
                     break;
                case enMode.StreetTest:
@@ -52,6 +54,7 @@ namespace IbrahimDVLD
                     {
                         bs.DataSource = clsTestAppointments.GetStreetTestAppoinmetsByAppID(AppID);
                         dgvAppointments.DataSource = bs;
+                        dgvAppointments.Sort(dgvAppointments.Columns["Appointment ID"], ListSortDirection.Descending);
                     }
                     break;
 

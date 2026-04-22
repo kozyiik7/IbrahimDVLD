@@ -86,7 +86,7 @@ namespace IbrahimDVLD
             ApplicationData.ApplicationStatus = (short)enApplicationStatus.New;
             ApplicationData.LastStatusDate = DateTime.Now;
             ApplicationData.PaidFees = clsApplicationTypes.GetApplicationFeesFromApplicatioName("New Local Driving License Service");
-            ApplicationData.CreatedcByUserID = IbrahimDVLDCommonLayer.UserSession.Instance.PersonID;
+            ApplicationData.CreatedcByUserID = IbrahimDVLDCommonLayer.UserSession.Instance.UserID;
             return true;
         }
         private void tpPersonInfo_Click(object sender, EventArgs e)

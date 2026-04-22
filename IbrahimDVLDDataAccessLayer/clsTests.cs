@@ -70,10 +70,8 @@ namespace IbrahimDVLDDataAccessLayer
         {
             int NumberOfTests = -1;
             SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string Query = @"select count(tests.TestID) as Tests from Tests
-                            inner join TestAppointments on TestAppointments.TestAppointmentID=Tests.TestAppointmentID
-                            inner join LocalDrivingLicenseApplications on LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID=TestAppointments.LocalDrivingLicenseApplicationID
-                            where LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID=@LocalDrivingLicenseID and LocalDrivingLicenseApplications.LicenseClassID=@LicenseClassID and TestTypeID=@TestTypeID";
+            string Query = @"select count(TestAppointments.TestAppointmentID) as Trials from TestAppointments                    
+                             where TestAppointments.LocalDrivingLicenseApplicationID=@LocalDrivingLicenseID  and TestAppointments.TestTypeID=@TestTypeID";
             SqlCommand command = new SqlCommand(Query, Connection);
             command.Parameters.AddWithValue("@LocalDrivingLicenseID", LocalDrivingLicenseID);
             command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
@@ -101,18 +99,20 @@ namespace IbrahimDVLDDataAccessLayer
             return NumberOfTests;
 
         }
-        public static int GetLastTestIDByApplicationID(int ApplicationID)
+        public static int GetLastTestIDByApplicationID()
         {
             int NumberOfTests = -1;
             SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            //   string Query = @"SELECT      Max(Tests.TestID) as LastID
+            //                  FROM            Tests INNER JOIN
+            //                  LocalDrivingLicenseApplications ON Applications.ApplicationID = LocalDrivingLicenseApplications.ApplicationID INNER JOIN
+            //                  TestAppointments ON LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = TestAppointments.LocalDrivingLicenseApplicationID INNER JOIN
+            //                  Tests ON TestAppointments.TestAppointmentID = Tests.TestAppointmentID
+            //where Applications.ApplicationID=@ApplicationID";
             string Query = @"SELECT      Max(Tests.TestID) as LastID
-                           FROM            Applications INNER JOIN
-                           LocalDrivingLicenseApplications ON Applications.ApplicationID = LocalDrivingLicenseApplications.ApplicationID INNER JOIN
-                           TestAppointments ON LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = TestAppointments.LocalDrivingLicenseApplicationID INNER JOIN
-                           Tests ON TestAppointments.TestAppointmentID = Tests.TestAppointmentID
-						   where Applications.ApplicationID=@ApplicationID";
+                              FROM            Tests";
             SqlCommand Command = new SqlCommand(Query, Connection);
-            Command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+           // Command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
             try
             {
                 Connection.Open();

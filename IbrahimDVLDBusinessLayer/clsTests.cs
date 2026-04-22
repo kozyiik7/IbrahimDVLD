@@ -39,9 +39,9 @@ namespace IbrahimDVLDBusinessLayer
         {
             return IbrahimDVLDDataAccessLayer.clsTests.GetNumberOFTestsByLocalDrivingLicenseIDAndLicenseClassID(LocalDrivingLicenseID, LicenseClassID,TestTypeID) ;
         }
-        public static int GetLastTestIDByApplicationID(int ApplicationID)
+        public static int GetLastTestIDByApplicationID( )
         {
-            return IbrahimDVLDDataAccessLayer.clsTests.GetLastTestIDByApplicationID(ApplicationID);
+            return IbrahimDVLDDataAccessLayer.clsTests.GetLastTestIDByApplicationID();
         }
     }
 }

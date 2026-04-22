@@ -14,21 +14,31 @@ namespace IbrahimDVLDCommonLayer
         
         public static UserSession Instance => _instance.Value;
 
+        public int UserID { get; set; }
         public int PersonID { get; private set; }
         public string UserName { get; private set; }
+        public string Password { get; private set; }
+        public bool IsActive { get; private set; }
+
 
         private UserSession() { }
 
-        public void SetUser(int personId, string userName)
+        public void SetUser(int personId, string userName,int Userid,string password,bool isactive)
         {
             PersonID = personId;
             UserName = userName;
+            Password = password;
+            UserID = Userid;
+            IsActive = isactive;
         }
 
         public void Clear()
         {
             PersonID = 0;
-            UserName = null;
+            UserName = string.Empty;
+            UserID= 0;
+            Password = string.Empty;
+            IsActive= false;
         }
     }
 
