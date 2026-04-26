@@ -83,7 +83,7 @@ namespace IbrahimDVLD
             ApplicationData.ApplicationPersonID = _PersonID;
             ApplicationData.ApplicationDate = Convert.ToDateTime(lblApplicationDate.Text);
             ApplicationData.ApplicationTypeID = clsApplicationTypes.GetApplicationTypeIDFromApplicatioName("New Local Driving License Service");
-            ApplicationData.ApplicationStatus = (short)enApplicationStatus.New;
+            ApplicationData.ApplicationStatus = (byte)enApplicationStatus.New;
             ApplicationData.LastStatusDate = DateTime.Now;
             ApplicationData.PaidFees = clsApplicationTypes.GetApplicationFeesFromApplicatioName("New Local Driving License Service");
             ApplicationData.CreatedcByUserID = IbrahimDVLDCommonLayer.UserSession.Instance.UserID;
@@ -99,6 +99,11 @@ namespace IbrahimDVLD
             FillApplicationData();
             if (ApplicationData != null && PersonData != null && !clsApplication.IsDriverHasSameApplicationTypeWithStatus(_PersonID, _LicenseClassID) )
             {
+                if(clsLicense.IsThereNonExpiredLicenseForThisPerson(_PersonID, _LicenseClassID))
+                {
+                    MessageBox.Show("there Is Non Expired License for this Person");
+                    return;
+                }
                _ApplicationID= ApplicationData.InsertApplication();
                 lblApplicationID.Text = _ApplicationID.ToString();
                 _LicenseClassID=clsLicenseClasses.GetLicenseClassIDFromClassName(cmbLicenseClasses.Text);

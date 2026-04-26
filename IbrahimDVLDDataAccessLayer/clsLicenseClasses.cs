@@ -74,5 +74,31 @@ namespace IbrahimDVLDDataAccessLayer
             return LicenseClassID;
 
         }
+
+        public static DataTable GetLicenseClassDataByLicenseClassID(int LicensesClassID)
+        {
+            DataTable licenseClassData = new DataTable();
+            SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string Query = @"select * from LicenseClasses
+                            where LicenseClassID=@LicensesClassID";
+            SqlCommand Command= new SqlCommand(Query, Connection);
+            Command.Parameters.AddWithValue("@LicensesClassID", LicensesClassID);
+            try
+            {
+                Connection.Open();
+                SqlDataReader Reader = Command.ExecuteReader();
+                if (Reader.HasRows)
+                    licenseClassData.Load(Reader);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            return licenseClassData;
+        }
     }
 }

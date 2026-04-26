@@ -12,9 +12,20 @@ namespace IbrahimDVLD
 {
     public partial class ucFilterWithPersonInof : UserControl
     {
-        public int PersonID;
+        public int PersonID
+        {
+            get=>ucFilter1.PersonID;
+            set=>ucFilter1.PersonID = value;
+        }
+            
         public delegate void ucFilterWithPersonInofDelegate(object sender, int PersonIDval);
         public event ucFilterWithPersonInofDelegate OnPersonID;
+
+        public bool EnableucFilter 
+        {
+            get=>ucFilter1.Enabled;
+            set=>ucFilter1.Enabled = value;
+        }
         public ucFilterWithPersonInof()
         {
             InitializeComponent();

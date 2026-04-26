@@ -24,8 +24,8 @@ namespace IbrahimDVLD
             _ApplicationID = AppID;
         }
         public int ApplicationID 
-        { 
-            get => lblID.Text!=string.Empty?Convert.ToInt32(lblID.Text):0;
+        {
+            get => lblID.Text != string.Empty ?( int.TryParse(lblID.Text, out int AppID) ? AppID : 0):0;//Convert.ToInt32(lblID.Text):0;
             set
             {
                 _ApplicationID=value;
@@ -34,7 +34,13 @@ namespace IbrahimDVLD
             }
         } 
         public string Status { get => lblStatus.Text; set { lblStatus.Text = value; } }
-        public int Fees { get => lblFees.Text!=string.Empty?Convert.ToInt32(lblFees.Text):0; set { lblFees.Text = value.ToString(); } }
+        public decimal Fees {
+            get
+            { if (decimal.TryParse(lblFees.Text, out decimal fees)) 
+                    return fees;
+            else return 0;
+            }
+            set { lblFees.Text = value.ToString(); } } 
         public string Type { get => lblType.Text; set { lblType.Text = value; } }
         public string ApplicantName { get => lblApplicatnt.Text; set { lblApplicatnt.Text = value; } }
         public DateTime ApplicationDate { get => dtpApplicationDate.Value; set { dtpApplicationDate.Value = value; } }

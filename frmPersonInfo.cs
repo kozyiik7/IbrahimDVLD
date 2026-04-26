@@ -13,7 +13,7 @@ namespace IbrahimDVLD
 {
     public partial class frmPersonInfo : Form
     {
-        int CountryId = -1;
+      //  int CountryId = -1;
         private int _PersonID=-1;
         clsPeople _Person;
         private bool _UpdateMode = false;

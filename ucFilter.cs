@@ -14,7 +14,7 @@ namespace IbrahimDVLD
     public partial class ucFilter : UserControl
     {
        
-       public int PersonID= -1;
+       public int PersonID{ get; set; }
         public ucFilter()
         {
             InitializeComponent();

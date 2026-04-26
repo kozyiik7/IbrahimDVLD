@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.SymbolStore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,9 +15,9 @@ namespace IbrahimDVLDBusinessLayer
         public int ApplicationPersonID { get; set; }
         public DateTime ApplicationDate { get; set; }
         public int ApplicationTypeID { get; set; }
-        public short ApplicationStatus { get; set; }
+        public byte ApplicationStatus { get; set; }
         public DateTime LastStatusDate { get; set; }
-        public int PaidFees { get; set; }
+        public decimal PaidFees { get; set; }
         public int CreatedcByUserID { get; set; }
 
         public int InsertApplication()
@@ -38,10 +39,10 @@ namespace IbrahimDVLDBusinessLayer
                 application.ApplicationPersonID = (int)ApplicationDataRow["ApplicantPersonID"];
                 application.ApplicationDate = (DateTime)ApplicationDataRow["ApplicationDate"];
                 application.ApplicationTypeID = (int)ApplicationDataRow["ApplicationTypeID"];
-                application.ApplicationStatus = Convert.ToInt16(ApplicationDataRow["ApplicationStatus"]);
+                application.ApplicationStatus = Convert.ToByte(ApplicationDataRow["ApplicationStatus"]);
 
                   application.LastStatusDate = (DateTime)ApplicationDataRow["LastStatusDate"];
-                application.PaidFees = Convert.ToInt32( ApplicationDataRow["PaidFees"]);
+                application.PaidFees = Convert.ToDecimal( ApplicationDataRow["PaidFees"]);
                 application.CreatedcByUserID = (int)ApplicationDataRow["CreatedByUserID"];
             }
             return application;
@@ -68,6 +69,10 @@ namespace IbrahimDVLDBusinessLayer
         {        
            return IbrahimDVLDDataAccessLayer.clsApplication.GetApplicationInfoWithDetailsByAppID(AppID);
        
+        }
+        public bool  Update()
+        {
+            return IbrahimDVLDDataAccessLayer.clsApplication.UpdateApplication(ApplicationID, ApplicationPersonID, ApplicationDate, ApplicationTypeID,ApplicationStatus, LastStatusDate, PaidFees, CreatedcByUserID);
         }
     }
 }

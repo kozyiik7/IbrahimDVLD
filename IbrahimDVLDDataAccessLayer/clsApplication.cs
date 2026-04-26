@@ -10,7 +10,7 @@ namespace IbrahimDVLDDataAccessLayer
 {
     public class clsApplication
     {
-        public static int InsertApplication(int ApplicationPersonID, DateTime ApplicationDate, int ApplicationTypeID, short ApplicationStatus, DateTime LastStatusDate, int PaidFees, int CreatedcByUserID)
+        public static int InsertApplication(int ApplicationPersonID, DateTime ApplicationDate, int ApplicationTypeID, byte ApplicationStatus, DateTime LastStatusDate, decimal PaidFees, int CreatedcByUserID)
         {
             int NewApplicationID = -1;
             SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -249,6 +249,47 @@ namespace IbrahimDVLDDataAccessLayer
                 Connection.Close();
             }
             return dt!=null && dt.Rows.Count > 0 ? dt : null;
+        }
+
+        public static bool UpdateApplication(int ApplicationID, int ApplicationPersonID, DateTime ApplicationDate, int ApplicationTypeID, byte ApplicationStatus, DateTime LastStatusDate, decimal PaidFees, int CreatedcByUserID)
+        {
+            int AffectedRows = -1;
+            SqlConnection Connection= new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string Query = @"UPDATE [dbo].[Applications]
+                            SET ApplicantPersonID =@ApplicationPersonID
+                               ,ApplicationDate = @ApplicationDate
+                               ,ApplicationTypeID = @ApplicationTypeID
+                               ,ApplicationStatus =@ApplicationStatus
+                               ,LastStatusDate = @LastStatusDate
+                               ,PaidFees = @PaidFees
+                               ,CreatedByUserID =@CreatedcByUserID
+                           WHERE ApplicationID=@ApplicationID ";
+            SqlCommand Command = new SqlCommand(Query, Connection);
+            Command.Parameters.AddWithValue("@ApplicationPersonID", ApplicationPersonID);
+            Command.Parameters.AddWithValue("@ApplicationDate", ApplicationDate);
+            Command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
+            Command.Parameters.AddWithValue("@ApplicationStatus", ApplicationStatus);
+            Command.Parameters.AddWithValue("@LastStatusDate", LastStatusDate);
+            Command.Parameters.AddWithValue("@PaidFees", PaidFees);
+            Command.Parameters.AddWithValue("@CreatedcByUserID", CreatedcByUserID);
+            Command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+            try
+            {
+                Connection.Open();
+                int NumberOFRows = Command.ExecuteNonQuery();
+                AffectedRows = NumberOFRows > 0 ? NumberOFRows : -1;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            return AffectedRows>0;
+
         }
     }
 }

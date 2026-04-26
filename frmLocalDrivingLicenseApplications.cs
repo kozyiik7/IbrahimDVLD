@@ -152,54 +152,86 @@ namespace IbrahimDVLD
         }
 
 
-        private void scheduleVisionTestToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            int AppID=clsLocalDrivingLicenseApplications.GetApplicationIDByLicenseID(Convert.ToInt32(dgvLocalDrivingLicenseApplications.CurrentRow.Cells["L.D.L.AppID"].Value.ToString()));
-            frmVisionTestApointments frm = new frmVisionTestApointments(AppID,frmVisionTestApointments.enMode.VisionTest);
-            frm.ShowDialog();
-            SetIntializeData();
-        }
+
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
+            ResetContextMenuStripValues();
+
             int AppID = clsLocalDrivingLicenseApplications.GetApplicationIDByLicenseID(Convert.ToInt32(dgvLocalDrivingLicenseApplications.CurrentRow.Cells["L.D.L.AppID"].Value.ToString()));
-            
+
             int NumberOFAppliedTest = clsTestAppointments.GetNumberOfTrueTestsByAppID(AppID);
             clsApplication Application = clsApplication.GetApplicationData(AppID);
-            if(Application.ApplicationStatus != 1)
+            if (Application.ApplicationStatus != 1)
             {
-                scheduleVisionTestToolStripMenuItem.Enabled = false;
-                scheduleWrittenTestToolStripMenuItem.Enabled = false;
-                scheduleStreetTestToolStripMenuItem.Enabled = false;
-                return;
+           
+                scheduleTestsToolStripMenuItem.Enabled = false;
+                
             }
-            else { 
-            switch (NumberOFAppliedTest)
+            
             {
-                case 0:
-                    scheduleVisionTestToolStripMenuItem.Enabled = true;
-                    scheduleWrittenTestToolStripMenuItem.Enabled = false;
-                    scheduleStreetTestToolStripMenuItem.Enabled = false;
-                    break;
-                case 1:
-                    scheduleVisionTestToolStripMenuItem.Enabled = false;
-                    scheduleWrittenTestToolStripMenuItem.Enabled = true;
-                    scheduleStreetTestToolStripMenuItem.Enabled = false;
-                    break;
-                case 2:
-                    scheduleVisionTestToolStripMenuItem.Enabled = false;
-                    scheduleWrittenTestToolStripMenuItem.Enabled = false;
-                    scheduleStreetTestToolStripMenuItem.Enabled = true;
-                    break;
-                default:
-                    scheduleVisionTestToolStripMenuItem.Enabled = false;
-                    scheduleWrittenTestToolStripMenuItem.Enabled = false;
-                    scheduleStreetTestToolStripMenuItem.Enabled = false;
-                    break;
+                switch (NumberOFAppliedTest)
+                {
+                    case 0:
+                        scheduleVisionTestToolStripMenuItem.Enabled = true;
+                        scheduleWrittenTestToolStripMenuItem.Enabled = false;
+                        scheduleStreetTestToolStripMenuItem.Enabled = false;
+                        break;
+                    case 1:
+                        scheduleVisionTestToolStripMenuItem.Enabled = false;
+                        scheduleWrittenTestToolStripMenuItem.Enabled = true;
+                        scheduleStreetTestToolStripMenuItem.Enabled = false;
+                        break;
+                    case 2:
+                        scheduleVisionTestToolStripMenuItem.Enabled = false;
+                        scheduleWrittenTestToolStripMenuItem.Enabled = false;
+                        scheduleStreetTestToolStripMenuItem.Enabled = true;
+                        break;
+                    default:
+                       
+                        scheduleTestsToolStripMenuItem.Enabled = false;
+                        break;
+                        
+
                 }
+                if (dgvLocalDrivingLicenseApplications.CurrentRow.Cells["Status"].Value.ToString() != "Completed")
+                {
+                    showLicenseToolStripMenuItem.Enabled = false;
+                    issueDrivingLicenseToolStripMenuItem.Enabled = true;
+
+                }
+                else
+                {
+                    editApplicationToolStripMenuItem.Enabled = false;
+                    deleteApplicationToolStripMenuItem.Enabled = false;
+                    cancelApplicationToolStripMenuItem.Enabled = false;
+                    scheduleTestsToolStripMenuItem.Enabled = false;
+                    issueDrivingLicenseToolStripMenuItem.Enabled = false;
+
+                }
+                SetIntializeData();
             }
         }
 
+        private void ResetContextMenuStripValues()
+        {
+            scheduleVisionTestToolStripMenuItem.Enabled = true;
+            scheduleWrittenTestToolStripMenuItem.Enabled =  true;
+            scheduleStreetTestToolStripMenuItem.Enabled = true;
+            scheduleTestsToolStripMenuItem.Enabled = true;
+            editApplicationToolStripMenuItem.Enabled = true;
+            deleteApplicationToolStripMenuItem.Enabled = true;
+            cancelApplicationToolStripMenuItem.Enabled = true;
+            issueDrivingLicenseToolStripMenuItem.Enabled = true;
+            showLicenseToolStripMenuItem.Enabled = true;
+        }
+        private void scheduleVisionTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int AppID = clsLocalDrivingLicenseApplications.GetApplicationIDByLicenseID(Convert.ToInt32(dgvLocalDrivingLicenseApplications.CurrentRow.Cells["L.D.L.AppID"].Value.ToString()));
+            frmVisionTestApointments frm = new frmVisionTestApointments(AppID, frmVisionTestApointments.enMode.VisionTest);
+            frm.ShowDialog();
+            SetIntializeData();
+        }
         private void scheduleWrittenTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int AppID = clsLocalDrivingLicenseApplications.GetApplicationIDByLicenseID(Convert.ToInt32(dgvLocalDrivingLicenseApplications.CurrentRow.Cells["L.D.L.AppID"].Value.ToString()));
@@ -214,6 +246,33 @@ namespace IbrahimDVLD
             frmVisionTestApointments frm = new frmVisionTestApointments(AppID, frmVisionTestApointments.enMode.StreetTest);
             frm.ShowDialog();
             SetIntializeData();
+        }
+
+        private void issueDrivingLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int LocalDrivingLicenseID = int.TryParse(dgvLocalDrivingLicenseApplications.CurrentRow.Cells["L.D.L.AppID"].Value.ToString(), out int Result) ? Result:-1 ;
+            int ApplicationID=clsLocalDrivingLicenseApplications.GetApplicationIDByLicenseID((int)LocalDrivingLicenseID);
+            frmIssueDriverLicenseForTheFirstTime frm = new frmIssueDriverLicenseForTheFirstTime(ApplicationID);
+            frm.ShowDialog();
+            dgvLocalDrivingLicenseApplications.DataSource = bindingSource;
+        }
+
+        private void showApplicationDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void showLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLicenseInfo frm = new frmLicenseInfo(Convert.ToInt32(dgvLocalDrivingLicenseApplications.CurrentRow.Cells["L.D.L.AppID"].Value.ToString()));
+            frm.ShowDialog();
+        }
+
+        private void showPersonLicenseHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int PersonID = clsPeople.GetPersonIDByNationalNumber(dgvLocalDrivingLicenseApplications.CurrentRow.Cells["NationalNo"].Value.ToString());
+            frmLicenseHistory frm = new frmLicenseHistory(PersonID);
+            frm.ShowDialog();
         }
     }
 }
