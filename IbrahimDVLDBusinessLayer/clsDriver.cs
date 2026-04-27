@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,19 @@ namespace IbrahimDVLDBusinessLayer
         {
             DriverID = IbrahimDVLDDataAccessLayer.clsDriver.CreateNewDriver(PersonID, CreatedByUserID, CreatedDate);
             return DriverID;
+        }
+        public static bool IsDriverExistByPersonID(int PersonID)
+        {
+            return IbrahimDVLDDataAccessLayer.clsDriver.IsDriverExistByPersonID(PersonID);
+        }
+
+        public static int GetDriverIDByPersonID(int PersonID)
+        {
+            return IbrahimDVLDDataAccessLayer.clsDriver.GetDriverIDByPersonID(PersonID);
+        }
+        public static DataTable GetAllDrivers()
+        {
+            return IbrahimDVLDDataAccessLayer.clsDriver.GetAllDrivers();
         }
     }
 }

@@ -48,6 +48,12 @@ namespace IbrahimDVLD
         }
         private void GetDriverInfoAndCreateDriver()
         {
+            if (clsDriver.IsDriverExistByPersonID(PersonID))
+            {
+                DriverID = clsDriver.GetDriverIDByPersonID(PersonID);
+                Driver.DriverID = DriverID;
+                return;
+            }
             Driver.PersonID=PersonID;
             Driver.CreatedByUserID=IbrahimDVLDCommonLayer.UserSession.Instance.UserID;
             Driver.CreatedDate=DateTime.Now;
@@ -107,6 +113,7 @@ namespace IbrahimDVLD
                                    And Give him LicenseID : {LicenseID}
                                    Application StatusUpdate Successfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             btnIssue.Enabled = false;
+            
         }
     }
 }

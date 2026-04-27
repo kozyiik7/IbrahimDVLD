@@ -36,7 +36,8 @@ namespace IbrahimDVLD
 
         private void drivresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            frmManageDrivers drivres = new frmManageDrivers();
+            drivres.ShowDialog();
         }
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)

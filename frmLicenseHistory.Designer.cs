@@ -32,9 +32,9 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgvLocalDrivingLicensesHistory = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dgvInternationalLicenses = new System.Windows.Forms.DataGridView();
             this.lblRecords = new System.Windows.Forms.Label();
             this.ucPersonInfoShow1 = new IbrahimDVLD.ucPersonInfoShow();
-            this.dgvInternationalLicenses = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalDrivingLicensesHistory)).BeginInit();
@@ -51,6 +51,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(891, 265);
             this.tabControl1.TabIndex = 1;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -84,6 +85,17 @@
             this.tabPage2.Text = "International Licenses";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // dgvInternationalLicenses
+            // 
+            this.dgvInternationalLicenses.AllowUserToAddRows = false;
+            this.dgvInternationalLicenses.AllowUserToDeleteRows = false;
+            this.dgvInternationalLicenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvInternationalLicenses.Location = new System.Drawing.Point(0, 0);
+            this.dgvInternationalLicenses.Name = "dgvInternationalLicenses";
+            this.dgvInternationalLicenses.ReadOnly = true;
+            this.dgvInternationalLicenses.Size = new System.Drawing.Size(883, 239);
+            this.dgvInternationalLicenses.TabIndex = 0;
+            // 
             // lblRecords
             // 
             this.lblRecords.AutoSize = true;
@@ -103,17 +115,6 @@
             this.ucPersonInfoShow1.PersonIDValue = 0;
             this.ucPersonInfoShow1.Size = new System.Drawing.Size(897, 264);
             this.ucPersonInfoShow1.TabIndex = 3;
-            // 
-            // dgvInternationalLicenses
-            // 
-            this.dgvInternationalLicenses.AllowUserToAddRows = false;
-            this.dgvInternationalLicenses.AllowUserToDeleteRows = false;
-            this.dgvInternationalLicenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvInternationalLicenses.Location = new System.Drawing.Point(0, 0);
-            this.dgvInternationalLicenses.Name = "dgvInternationalLicenses";
-            this.dgvInternationalLicenses.ReadOnly = true;
-            this.dgvInternationalLicenses.Size = new System.Drawing.Size(883, 239);
-            this.dgvInternationalLicenses.TabIndex = 0;
             // 
             // frmLicenseHistory
             // 

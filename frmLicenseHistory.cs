@@ -33,7 +33,6 @@ namespace IbrahimDVLD
             dgvLocalDrivingLicensesHistory.AllowUserToAddRows = false;
             dgvLocalDrivingLicensesHistory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             // dgvLocalDrivingLicensesHistory.Font.Size.Equals(8);
-            if (tabControl1.SelectedIndex==0)
             lblRecords.Text = "#Records : " + dgvLocalDrivingLicensesHistory.RowCount.ToString();
         }
         private void GetInternationalLicenseHistory()
@@ -44,14 +43,29 @@ namespace IbrahimDVLD
             dgvInternationalLicenses.AllowUserToAddRows = false;
             dgvInternationalLicenses.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             // dgvLocalDrivingLicensesHistory.Font.Size.Equals(8);
-            if (tabControl1.SelectedIndex == 1)
-                lblRecords.Text = "#Records : " + dgvInternationalLicenses.RowCount.ToString();
+           
         }
         private void frmLicenseHistory_Load(object sender, EventArgs e)
         {
             GetLocalDrivingLicenseHistory();
            GetInternationalLicenseHistory();
+            tabControl1.SelectedIndex = 0;
 
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (tabControl1.SelectedIndex)
+            {
+                    case 0:
+                    lblRecords.Text = "#Records : " + dgvLocalDrivingLicensesHistory.RowCount.ToString();
+                    break;
+                    case 1:
+                    lblRecords.Text = "#Records : " + dgvInternationalLicenses.RowCount.ToString();
+                    break ;
+                default:
+                    break;   
+            }
         }
     }
 }

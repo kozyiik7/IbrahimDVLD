@@ -255,6 +255,7 @@ namespace IbrahimDVLD
             frmIssueDriverLicenseForTheFirstTime frm = new frmIssueDriverLicenseForTheFirstTime(ApplicationID);
             frm.ShowDialog();
             dgvLocalDrivingLicenseApplications.DataSource = bindingSource;
+            this.Refresh();
         }
 
         private void showApplicationDetailsToolStripMenuItem_Click(object sender, EventArgs e)
