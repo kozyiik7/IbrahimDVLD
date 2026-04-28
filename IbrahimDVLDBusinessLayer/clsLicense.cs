@@ -56,6 +56,10 @@ namespace IbrahimDVLDBusinessLayer
             return IbrahimDVLDDataAccessLayer.clsLicense.GetLocalDrivingLicenseHistoryByPersonID(PersonID);
         }
 
+        public static bool IsDriverLicensClass3ExistsAndCByLicenseID(int DrvingLicenseID)
+        {
+            return IbrahimDVLDDataAccessLayer.clsLicense.IsDriverLicensClass3ExistsAndCByLicenseID(DrvingLicenseID);
+        }
 
     }
 }

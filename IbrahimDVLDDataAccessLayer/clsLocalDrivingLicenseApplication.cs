@@ -176,5 +176,36 @@ FROM            dbo.Applications INNER JOIN
 
 
         }
+
+        public static int GetLocalDrivingLicensIDFromLicenseID(int LicenseID)
+        {
+            int LocalDrivingLicenseID = -1;
+            SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string Query = @"SELECT        LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
+                           FROM            Licenses INNER JOIN
+                           Applications ON Licenses.ApplicationID = Applications.ApplicationID INNER JOIN
+                           LocalDrivingLicenseApplications ON Applications.ApplicationID = LocalDrivingLicenseApplications.ApplicationID
+						   where Licenses.LicenseID=@LicenseID";
+            SqlCommand Command = new SqlCommand(Query, Connection);
+            Command.Parameters.AddWithValue("@LicenseID", LicenseID);
+            try
+            {
+                Connection.Open();
+                object Result = Command.ExecuteScalar();
+                if (Result != null)
+                    LocalDrivingLicenseID = Convert.ToInt32(Result);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            { 
+                Connection.Close(); 
+            }
+            return LocalDrivingLicenseID;
+
+
+        }
     }
 }

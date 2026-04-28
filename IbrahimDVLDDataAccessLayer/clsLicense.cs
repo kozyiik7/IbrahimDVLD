@@ -192,5 +192,32 @@ namespace IbrahimDVLDDataAccessLayer
 
 
         }
+        public static bool IsDriverLicensClass3ExistsAndCByLicenseID( int DrvingLicenseID)
+        {
+            bool thereIsLicense = false;
+            SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string Query = @"select top 1 * from Licenses
+                             where Licenses.LicenseID=@DrvingLicenseID and Licenses.LicenseClass=3";
+            SqlCommand Command = new SqlCommand(Query, Connection);
+            Command.Parameters.AddWithValue("@DrvingLicenseID", DrvingLicenseID);
+            try
+            {
+                Connection.Open();
+                object Result = Command.ExecuteScalar();
+                if (Result != null)
+                   thereIsLicense =true;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            return thereIsLicense;
+
+        }
     }
 }

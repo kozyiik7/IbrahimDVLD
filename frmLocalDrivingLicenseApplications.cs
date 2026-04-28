@@ -62,7 +62,8 @@ namespace IbrahimDVLD
        
         private void txtFilter_TextChanged(object sender, EventArgs e)
         {
-           switch(txtfilterValue)
+            //SetIntializeData();
+            switch (txtfilterValue)
             {
                 case entxtfilterValue.text:
                     bindingSource.Filter = string.Format("[{0}] LIKE '%{1}%'", cmbFilter.Text, txtFilter.Text);
@@ -209,7 +210,7 @@ namespace IbrahimDVLD
                     issueDrivingLicenseToolStripMenuItem.Enabled = false;
 
                 }
-                SetIntializeData();
+               
             }
         }
 

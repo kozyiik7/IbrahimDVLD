@@ -104,5 +104,11 @@ namespace IbrahimDVLD
             frmLocalDrivingLicenseApplications LDLApplications=new frmLocalDrivingLicenseApplications();
             LDLApplications.ShowDialog();
         }
+
+        private void internationalLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmNewInternationalLicenseApplication frm=new frmNewInternationalLicenseApplication();
+            frm.ShowDialog();
+        }
     }
 }
