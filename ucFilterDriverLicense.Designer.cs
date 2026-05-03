@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucFilterDriverLicense));
             this.gbFilter = new System.Windows.Forms.GroupBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.txtFilter = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ucLicenseInfo1 = new IbrahimDVLD.ucLicenseInfo();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.gbFilter.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,12 +51,24 @@
             this.gbFilter.Text = "Filter";
             this.gbFilter.Enter += new System.EventHandler(this.gbFilter_Enter);
             // 
+            // btnSearch
+            // 
+            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
+            this.btnSearch.Location = new System.Drawing.Point(286, 30);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 32);
+            this.btnSearch.TabIndex = 2;
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // txtFilter
             // 
             this.txtFilter.Location = new System.Drawing.Point(116, 34);
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.Size = new System.Drawing.Size(147, 27);
             this.txtFilter.TabIndex = 1;
+            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
+            this.txtFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFilter_KeyDown);
             // 
             // label1
             // 
@@ -76,7 +88,7 @@
             this.ucLicenseInfo1.ImagePath = "";
             this.ucLicenseInfo1.IsActive = false;
             this.ucLicenseInfo1.IsDetained = false;
-            this.ucLicenseInfo1.IssueDate = new System.DateTime(2026, 4, 28, 5, 23, 20, 0);
+            this.ucLicenseInfo1.IssueDate = new System.DateTime(2026, 5, 1, 10, 57, 12, 0);
             this.ucLicenseInfo1.IssueReason = "";
             this.ucLicenseInfo1.licenseClassName = "";
             this.ucLicenseInfo1.LicenseID = 0;
@@ -88,16 +100,6 @@
             this.ucLicenseInfo1.PersonName = "";
             this.ucLicenseInfo1.Size = new System.Drawing.Size(1108, 389);
             this.ucLicenseInfo1.TabIndex = 1;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(286, 30);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 32);
-            this.btnSearch.TabIndex = 2;
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // ucFilterDriverLicense
             // 

@@ -127,5 +127,9 @@ namespace IbrahimDVLDBusinessLayer
         {
             return clsDataAccess.isPersonIDExist(PersonID);
         }
+        public static int GetPersonIDByDriverID(int DriverID)
+        {
+            return IbrahimDVLDDataAccessLayer.clsUsers.GetPersonIDByDriverID(DriverID);
+        }
     }
 }

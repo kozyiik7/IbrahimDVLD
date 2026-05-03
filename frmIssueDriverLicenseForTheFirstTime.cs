@@ -62,7 +62,7 @@ namespace IbrahimDVLD
 
         private void GetLicensClassInfo()
         {
-           licenseClass= licenseClass.GetLicenseClassDataByLicenseClassID(LicenseClassID);
+           licenseClass= clsLicenseClasses.GetLicenseClassDataByLicenseClassID(LicenseClassID);
         }
         private void GetApplicationInfo()
         {

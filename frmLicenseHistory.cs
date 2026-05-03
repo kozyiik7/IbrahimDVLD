@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace IbrahimDVLD
 {
@@ -65,6 +66,29 @@ namespace IbrahimDVLD
                     break ;
                 default:
                     break;   
+            }
+        }
+
+        private void showLicenseInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            switch(tabControl1.SelectedIndex)
+            {
+                case 0:
+                    int localDrivringLicenseID =clsLocalDrivingLicenseApplications.GetLicenseIDByApplicationID( Convert.ToInt32(dgvLocalDrivingLicensesHistory.CurrentRow.Cells["ApplicationID"].Value.ToString()));
+                    frmLicenseInfo frm = new frmLicenseInfo(localDrivringLicenseID);
+                        frm.ShowDialog();
+                    break;
+                case 1:
+                    clsInternationalLicense ILicense = clsInternationalLicense.GetDriverInternationalLicenseInfoByInternationalLicenseID( Convert.ToInt32(dgvInternationalLicenses.CurrentRow.Cells["InternationalLicenseID"].Value.ToString()));
+                    frmInternationalLicenseInfo frm2 = new frmInternationalLicenseInfo(ILicense.DriverID);
+                        frm2.ShowDialog();
+                    break;
+                default:
+                    break;
+
+
+
+
             }
         }
     }

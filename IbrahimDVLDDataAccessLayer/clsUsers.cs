@@ -301,5 +301,35 @@ namespace IbrahimDVLDDataAccessLayer
             }
             return RowAffected > 0;
         }
+
+        public static int GetPersonIDByDriverID(int DriverID)
+        {
+            int PersonID = 0;
+            SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string Query = @"select  PersonID As PersonID from Drivers
+
+                      where DriverID=@DriverID";
+            SqlCommand Command = new SqlCommand(Query, Connection);
+            Command.Parameters.AddWithValue("@DriverID", DriverID);
+
+            try
+            {
+                Connection.Open();
+                object Result = Command.ExecuteScalar();
+                if (Result != null)
+                    PersonID = Convert.ToInt32(Result);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            return PersonID;
+
+        }
+
     }
 }

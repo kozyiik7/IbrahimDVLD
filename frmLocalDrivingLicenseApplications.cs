@@ -17,6 +17,7 @@ namespace IbrahimDVLD
     {
         BindingSource bindingSource=new BindingSource();
         public enum entxtfilterValue { text, Numbers }
+       
         public entxtfilterValue txtfilterValue { get; set; }=entxtfilterValue.text;
         public frmLocalDrivingLicenseApplications()
         {
@@ -39,6 +40,7 @@ namespace IbrahimDVLD
         }
         private void cmbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             switch (cmbFilter.Text)
             {
                 case "None":

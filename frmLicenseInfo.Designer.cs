@@ -66,7 +66,7 @@
             this.ucLicenseInfo1.ImagePath = "";
             this.ucLicenseInfo1.IsActive = false;
             this.ucLicenseInfo1.IsDetained = false;
-            this.ucLicenseInfo1.IssueDate = new System.DateTime(2026, 4, 25, 10, 27, 36, 0);
+            this.ucLicenseInfo1.IssueDate = new System.DateTime(2026, 5, 1, 17, 50, 11, 0);
             this.ucLicenseInfo1.IssueReason = "";
             this.ucLicenseInfo1.licenseClassName = "";
             this.ucLicenseInfo1.LicenseID = 0;
@@ -104,6 +104,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "frmLicenseInfo";
             this.Text = "License Info";
+            this.Load += new System.EventHandler(this.frmLicenseInfo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

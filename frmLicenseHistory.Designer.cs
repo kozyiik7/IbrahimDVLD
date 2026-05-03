@@ -28,18 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgvLocalDrivingLicensesHistory = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgvInternationalLicenses = new System.Windows.Forms.DataGridView();
             this.lblRecords = new System.Windows.Forms.Label();
+            this.cmsDGVLicenseHistory = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showLicenseInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ucPersonInfoShow1 = new IbrahimDVLD.ucPersonInfoShow();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalDrivingLicensesHistory)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInternationalLicenses)).BeginInit();
+            this.cmsDGVLicenseHistory.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -68,6 +72,7 @@
             // dgvLocalDrivingLicensesHistory
             // 
             this.dgvLocalDrivingLicensesHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLocalDrivingLicensesHistory.ContextMenuStrip = this.cmsDGVLicenseHistory;
             this.dgvLocalDrivingLicensesHistory.Location = new System.Drawing.Point(0, 0);
             this.dgvLocalDrivingLicensesHistory.Name = "dgvLocalDrivingLicensesHistory";
             this.dgvLocalDrivingLicensesHistory.Size = new System.Drawing.Size(880, 236);
@@ -90,6 +95,7 @@
             this.dgvInternationalLicenses.AllowUserToAddRows = false;
             this.dgvInternationalLicenses.AllowUserToDeleteRows = false;
             this.dgvInternationalLicenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvInternationalLicenses.ContextMenuStrip = this.cmsDGVLicenseHistory;
             this.dgvInternationalLicenses.Location = new System.Drawing.Point(0, 0);
             this.dgvInternationalLicenses.Name = "dgvInternationalLicenses";
             this.dgvInternationalLicenses.ReadOnly = true;
@@ -105,6 +111,20 @@
             this.lblRecords.Size = new System.Drawing.Size(98, 19);
             this.lblRecords.TabIndex = 2;
             this.lblRecords.Text = "#Records :";
+            // 
+            // cmsDGVLicenseHistory
+            // 
+            this.cmsDGVLicenseHistory.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showLicenseInfoToolStripMenuItem});
+            this.cmsDGVLicenseHistory.Name = "cmsDGVLicenseHistory";
+            this.cmsDGVLicenseHistory.Size = new System.Drawing.Size(170, 26);
+            // 
+            // showLicenseInfoToolStripMenuItem
+            // 
+            this.showLicenseInfoToolStripMenuItem.Name = "showLicenseInfoToolStripMenuItem";
+            this.showLicenseInfoToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.showLicenseInfoToolStripMenuItem.Text = "Show License Info";
+            this.showLicenseInfoToolStripMenuItem.Click += new System.EventHandler(this.showLicenseInfoToolStripMenuItem_Click);
             // 
             // ucPersonInfoShow1
             // 
@@ -132,6 +152,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalDrivingLicensesHistory)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInternationalLicenses)).EndInit();
+            this.cmsDGVLicenseHistory.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,5 +166,7 @@
         private System.Windows.Forms.Label lblRecords;
         private ucPersonInfoShow ucPersonInfoShow1;
         private System.Windows.Forms.DataGridView dgvInternationalLicenses;
+        private System.Windows.Forms.ContextMenuStrip cmsDGVLicenseHistory;
+        private System.Windows.Forms.ToolStripMenuItem showLicenseInfoToolStripMenuItem;
     }
 }

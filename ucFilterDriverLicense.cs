@@ -39,13 +39,29 @@ namespace IbrahimDVLD
         private void btnSearch_Click(object sender, EventArgs e)
         {
            if(int.TryParse(txtFilter.Text, out int result) )
-            if (clsLicense.IsDriverLicensClass3ExistsAndCByLicenseID(result))
+            if (clsLicense.GetDriverLicensDataLicenseID(result).Rows.Count>0)
             {
                     int LocalDrivngLicenseID=clsLocalDrivingLicenseApplications.GetLocalDrivingLicensIDFromLicenseID(result);
                     // OnlicensIDChanged?.Invoke(Convert.ToInt32(txtFilter.Text), this);
                     ucLicenseInfo1.LocalDrivingLicenseID = LocalDrivngLicenseID;
                     LicensedIDChanged?.Invoke(result, this);
             }
+        }
+
+        private void txtFilter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch.PerformClick();
+                e.SuppressKeyPress = true;
+                txtFilter.SelectAll();
+                txtFilter.Focus();
+            }
+        }
+
+        private void txtFilter_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

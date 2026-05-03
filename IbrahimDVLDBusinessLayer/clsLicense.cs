@@ -10,17 +10,17 @@ namespace IbrahimDVLDBusinessLayer
 {
     public class clsLicense
     {
-        public int LicenseID {  get; set; }
+        public int LicenseID { get; set; }
         public int ApplicationID { get; set; }
         public int DriverID { get; set; }
         public int LicenseClass { get; set; }
-        public DateTime IssueDate {  get; set; }
+        public DateTime IssueDate { get; set; }
         public DateTime ExpirationDate { get; set; }
         public string Notes { get; set; }
-        public Decimal PaidFees {  get; set; }
-        public bool IsActive {  get; set; }
+        public Decimal PaidFees { get; set; }
+        public bool IsActive { get; set; }
         public byte IssueReason { get; set; }
-        public int CreatedByUserID { get; set; }    
+        public int CreatedByUserID { get; set; }
 
         public clsLicense()
         {
@@ -39,14 +39,14 @@ namespace IbrahimDVLDBusinessLayer
         }
         public int Create()
         {
-          return LicenseID=IbrahimDVLDDataAccessLayer.clsLicense.CreateNewLicense(ApplicationID, DriverID, LicenseClass, IssueDate,ExpirationDate, Notes,PaidFees,IsActive,IssueReason,CreatedByUserID);
+            return LicenseID = IbrahimDVLDDataAccessLayer.clsLicense.CreateNewLicense(ApplicationID, DriverID, LicenseClass, IssueDate, ExpirationDate, Notes, PaidFees, IsActive, IssueReason, CreatedByUserID);
         }
         public static DataTable GetDriverLicenseData(int LocalDrivingLicenseID)
         {
             return IbrahimDVLDDataAccessLayer.clsLicense.GetDriverLicenseInfo(LocalDrivingLicenseID);
         }
 
-        public static bool IsThereNonExpiredLicenseForThisPerson(int PersonID,int licenseClassID)
+        public static bool IsThereNonExpiredLicenseForThisPerson(int PersonID, int licenseClassID)
         {
             return IbrahimDVLDDataAccessLayer.clsLicense.IsThereNonExpiredLicenseForThisPerson(PersonID, licenseClassID);
         }
@@ -60,6 +60,36 @@ namespace IbrahimDVLDBusinessLayer
         {
             return IbrahimDVLDDataAccessLayer.clsLicense.IsDriverLicensClass3ExistsAndCByLicenseID(DrvingLicenseID);
         }
+        public static DataTable GetDriverLicensDataLicenseID(int DrvingLicenseID)
+        {
+            return IbrahimDVLDDataAccessLayer.clsLicense.GetDriverLicensDataLicenseID(DrvingLicenseID);
+        }
+        public static clsLicense GetDriverLicensDataLicenseID_object(int DrvingLicenseID)
+        {
+            clsLicense License = new clsLicense();
+            DataTable LicensesData = IbrahimDVLDDataAccessLayer.clsLicense.GetDriverLicensDataLicenseID(DrvingLicenseID);
+            DataRow LicenseData = LicensesData.Rows[0];
+            License.LicenseID = (int)LicenseData["LicenseID"];
+            License.ApplicationID = (int)LicenseData["ApplicationID"];
+            License.DriverID = (int)LicenseData["DriverID"];
+            License.LicenseClass = (int)LicenseData["LicenseClass"];
+            License.IssueDate = (DateTime)LicenseData["IssueDate"];
+            License.ExpirationDate = (DateTime)LicenseData["ExpirationDate"];
+            License.Notes = (LicenseData["Notes"]) != DBNull.Value ? (string)LicenseData["Notes"] : "";
+            License.PaidFees = (decimal)LicenseData["PaidFees"];
+            License.IsActive = (bool)LicenseData["IsActive"];
+            License.IssueReason = (byte)LicenseData["IssueReason"];
+            License.CreatedByUserID = (int)LicenseData["CreatedByUserID"];
+            return License;
 
+        }
+        public static bool Active_DeaciveLicense(int LicensID, bool Active_Deactive)
+        {
+            return IbrahimDVLDDataAccessLayer.clsLicense.Active_DeaciveLicense(LicensID, Active_Deactive);
+        }
+        public bool Update()
+        {
+            return IbrahimDVLDDataAccessLayer.clsLicense.UpdateLicense(LicenseID, ApplicationID, DriverID, LicenseClass, IssueDate, ExpirationDate, Notes, PaidFees, IsActive, IssueReason, CreatedByUserID);
+        }
     }
 }

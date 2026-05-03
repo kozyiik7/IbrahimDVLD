@@ -136,6 +136,7 @@
             this.gbLicenseInfo.TabIndex = 0;
             this.gbLicenseInfo.TabStop = false;
             this.gbLicenseInfo.Text = "Driver License Info";
+            this.gbLicenseInfo.Enter += new System.EventHandler(this.gbLicenseInfo_Enter);
             // 
             // dtpExpirationDate
             // 
@@ -179,9 +180,9 @@
             this.lblIsDetained.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIsDetained.Location = new System.Drawing.Point(671, 275);
             this.lblIsDetained.Name = "lblIsDetained";
-            this.lblIsDetained.Size = new System.Drawing.Size(114, 19);
+            this.lblIsDetained.Size = new System.Drawing.Size(70, 19);
             this.lblIsDetained.TabIndex = 55;
-            this.lblIsDetained.Text = "Is Detained :";
+            this.lblIsDetained.Text = "[ ? ? ? ]";
             // 
             // lblDriverID
             // 
@@ -189,9 +190,9 @@
             this.lblDriverID.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDriverID.Location = new System.Drawing.Point(671, 197);
             this.lblDriverID.Name = "lblDriverID";
-            this.lblDriverID.Size = new System.Drawing.Size(94, 19);
+            this.lblDriverID.Size = new System.Drawing.Size(70, 19);
             this.lblDriverID.TabIndex = 53;
-            this.lblDriverID.Text = "Driver ID :";
+            this.lblDriverID.Text = "[ ? ? ? ]";
             // 
             // lblIsActive
             // 
@@ -199,9 +200,9 @@
             this.lblIsActive.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIsActive.Location = new System.Drawing.Point(671, 119);
             this.lblIsActive.Name = "lblIsActive";
-            this.lblIsActive.Size = new System.Drawing.Size(91, 19);
+            this.lblIsActive.Size = new System.Drawing.Size(70, 19);
             this.lblIsActive.TabIndex = 51;
-            this.lblIsActive.Text = "Is Active :";
+            this.lblIsActive.Text = "[ ? ? ? ]";
             // 
             // lblPersonName
             // 
@@ -210,9 +211,9 @@
             this.lblPersonName.ForeColor = System.Drawing.Color.Red;
             this.lblPersonName.Location = new System.Drawing.Point(201, 80);
             this.lblPersonName.Name = "lblPersonName";
-            this.lblPersonName.Size = new System.Drawing.Size(67, 19);
+            this.lblPersonName.Size = new System.Drawing.Size(70, 19);
             this.lblPersonName.TabIndex = 50;
-            this.lblPersonName.Text = "Name :";
+            this.lblPersonName.Text = "[ ? ? ? ]";
             // 
             // lblNotes
             // 
@@ -220,9 +221,9 @@
             this.lblNotes.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNotes.Location = new System.Drawing.Point(201, 314);
             this.lblNotes.Name = "lblNotes";
-            this.lblNotes.Size = new System.Drawing.Size(67, 19);
+            this.lblNotes.Size = new System.Drawing.Size(70, 19);
             this.lblNotes.TabIndex = 49;
-            this.lblNotes.Text = "Notes :";
+            this.lblNotes.Text = "[ ? ? ? ]";
             // 
             // lblIssueReason
             // 
@@ -230,9 +231,9 @@
             this.lblIssueReason.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIssueReason.Location = new System.Drawing.Point(201, 275);
             this.lblIssueReason.Name = "lblIssueReason";
-            this.lblIssueReason.Size = new System.Drawing.Size(128, 19);
+            this.lblIssueReason.Size = new System.Drawing.Size(70, 19);
             this.lblIssueReason.TabIndex = 48;
-            this.lblIssueReason.Text = "Issue Reason :";
+            this.lblIssueReason.Text = "[ ? ? ? ]";
             // 
             // lblGendor
             // 
@@ -240,9 +241,9 @@
             this.lblGendor.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGendor.Location = new System.Drawing.Point(201, 197);
             this.lblGendor.Name = "lblGendor";
-            this.lblGendor.Size = new System.Drawing.Size(79, 19);
+            this.lblGendor.Size = new System.Drawing.Size(70, 19);
             this.lblGendor.TabIndex = 46;
-            this.lblGendor.Text = "Gendor :";
+            this.lblGendor.Text = "[ ? ? ? ]";
             // 
             // lblNationalNumber
             // 
@@ -250,9 +251,9 @@
             this.lblNationalNumber.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNationalNumber.Location = new System.Drawing.Point(201, 158);
             this.lblNationalNumber.Name = "lblNationalNumber";
-            this.lblNationalNumber.Size = new System.Drawing.Size(116, 19);
+            this.lblNationalNumber.Size = new System.Drawing.Size(70, 19);
             this.lblNationalNumber.TabIndex = 45;
-            this.lblNationalNumber.Text = "National No :";
+            this.lblNationalNumber.Text = "[ ? ? ? ]";
             // 
             // lblLicenseID
             // 
@@ -260,9 +261,9 @@
             this.lblLicenseID.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLicenseID.Location = new System.Drawing.Point(201, 119);
             this.lblLicenseID.Name = "lblLicenseID";
-            this.lblLicenseID.Size = new System.Drawing.Size(104, 19);
+            this.lblLicenseID.Size = new System.Drawing.Size(70, 19);
             this.lblLicenseID.TabIndex = 44;
-            this.lblLicenseID.Text = "License ID :";
+            this.lblLicenseID.Text = "[ ? ? ? ]";
             // 
             // lblClassName
             // 
@@ -270,9 +271,9 @@
             this.lblClassName.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblClassName.Location = new System.Drawing.Point(201, 41);
             this.lblClassName.Name = "lblClassName";
-            this.lblClassName.Size = new System.Drawing.Size(62, 19);
+            this.lblClassName.Size = new System.Drawing.Size(70, 19);
             this.lblClassName.TabIndex = 43;
-            this.lblClassName.Text = "Class :";
+            this.lblClassName.Text = "[ ? ? ? ]";
             // 
             // pictureBox13
             // 

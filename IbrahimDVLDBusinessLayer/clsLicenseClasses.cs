@@ -34,7 +34,7 @@ namespace IbrahimDVLDBusinessLayer
             return IbrahimDVLDDataAccessLayer.clsLicenseClasses.GetLicenseClassIDFromClassName(ClassName);
         }
 
-        public clsLicenseClasses GetLicenseClassDataByLicenseClassID(int LicenseClassID)
+        public static clsLicenseClasses GetLicenseClassDataByLicenseClassID(int LicenseClassID)
         {
             clsLicenseClasses GettingLicenseClassData = new clsLicenseClasses();
             DataTable LicensClassData=IbrahimDVLDDataAccessLayer.clsLicenseClasses.GetLicenseClassDataByLicenseClassID(LicenseClassID);

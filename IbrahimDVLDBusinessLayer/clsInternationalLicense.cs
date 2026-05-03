@@ -33,5 +33,41 @@ namespace IbrahimDVLDBusinessLayer
         {
             return IbrahimDVLDDataAccessLayer.clsInternationalLicenses.GetInternationalLicenseHistoryByPersonID(PersonID);
         }
+        public int Creat()
+        {
+            int InternationalLicenseID = IbrahimDVLDDataAccessLayer.clsInternationalLicenses.InsertNewInternationalLicenseData(ApplicationID, DriverID, IssuedUsingLocalLicenseID, IssueDate, ExpirationDate, IsActive, CreatedByUserID);
+            return InternationalLicenseID;
+        }
+        public static bool IsDriverHasActiveInternationalLicenseByDriverID(int DriverID)
+        {
+            return IbrahimDVLDDataAccessLayer.clsInternationalLicenses.IsDriverHasActiveInternationalLicenseByDriverID(DriverID);
+        }
+        public static DataRow GetDriverInternationalLicenseInfoByDriverID(int DriverID)
+        {
+            return IbrahimDVLDDataAccessLayer.clsInternationalLicenses.GetDriverInternationalLicenseInfoByDriverID(DriverID);
+        }
+        public static DataTable GetAllInternationalLicenses()
+        {
+            return IbrahimDVLDDataAccessLayer.clsInternationalLicenses.GetAllInternationalLicenses();
+        }
+        public static clsInternationalLicense GetDriverInternationalLicenseInfoByInternationalLicenseID(int InternationalLicenseID)
+        {
+            DataRow drLicenseInfo = IbrahimDVLDDataAccessLayer.clsInternationalLicenses.GetDriverInternationalLicenseInfoByInternationalLicenseID(InternationalLicenseID);
+            clsInternationalLicense MyLicense = new clsInternationalLicense();
+            if (drLicenseInfo != null)
+            {
+                MyLicense.ApplicationID = (int)drLicenseInfo["ApplicationID"];
+                MyLicense.DriverID = (int)drLicenseInfo["DriverID"];
+                MyLicense.IssuedUsingLocalLicenseID = (int)drLicenseInfo["IssuedUsingLocalLicenseID"];
+                MyLicense.IssueDate = (DateTime)drLicenseInfo["IssueDate"];
+                MyLicense.ExpirationDate = (DateTime)drLicenseInfo["ExpirationDate"];
+                MyLicense.IsActive = (bool)drLicenseInfo["IsActive"];
+                MyLicense.CreatedByUserID = (int)drLicenseInfo["CreatedByUserID"];
+                MyLicense.InternationalLicenseID = (int)drLicenseInfo["InternationalLicenseID"];
+
+                return MyLicense;
+            }
+            return null;
+        }
     }
 }

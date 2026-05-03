@@ -97,17 +97,42 @@ namespace IbrahimDVLD
         {
             frmNewDrivingLicenseApplication frmNewDrivingLicenseApplication = new frmNewDrivingLicenseApplication();
             frmNewDrivingLicenseApplication.ShowDialog();
+
         }
 
         private void manageApplicationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmLocalDrivingLicenseApplications LDLApplications=new frmLocalDrivingLicenseApplications();
-            LDLApplications.ShowDialog();
+           
         }
 
         private void internationalLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmNewInternationalLicenseApplication frm=new frmNewInternationalLicenseApplication();
+            frm.ShowDialog();
+        }
+
+        private void localDrivingLicenseApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLocalDrivingLicenseApplications LDLApplications = new frmLocalDrivingLicenseApplications();
+            LDLApplications.ShowDialog();
+
+        }
+
+        private void internationalLicenseApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListInternationalLicenseApplications frm=new frmListInternationalLicenseApplications();
+            frm.ShowDialog();
+        }
+
+        private void renewDrivingLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRenewLocalDrivingLicense frm=new frmRenewLocalDrivingLicense();
+            frm.ShowDialog();
+        }
+
+        private void replacementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReplaceForDamage_LostLicense frm=new frmReplaceForDamage_LostLicense();
             frm.ShowDialog();
         }
     }

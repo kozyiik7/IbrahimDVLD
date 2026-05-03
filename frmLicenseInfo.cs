@@ -27,5 +27,10 @@ namespace IbrahimDVLD
         {
             Close();
         }
+
+        private void frmLicenseInfo_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

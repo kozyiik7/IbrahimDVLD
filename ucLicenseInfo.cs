@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -143,7 +144,15 @@ namespace IbrahimDVLD
                     NationalNumber = (string)Data["NationalNo"];
                     Gendor = (byte)Data["Gendor"];
                     IssueDate = Convert.ToDateTime(Data["IssueDate"]);
-                    IssueReason = ((byte)Data["IssueReason"] == 1 )? "New" : "Not New";
+                    IssueReason = ((byte)Data["IssueReason"]) switch 
+                                  {
+                                    1=>  "New License",
+                                    2=>  "Renew",
+                                    3=>  "Damaged",
+                                    4=>  "Lost",
+                                    _=>  "Unknown"
+                                  };
+
                     Notes = (string)Data["Notes"];
                     IsActive = (bool)Data["IsActive"];
                     DateOfBirth = Convert.ToDateTime(Data["DateOfBirth"]);
@@ -155,6 +164,11 @@ namespace IbrahimDVLD
 
 
             }
+        }
+
+        private void gbLicenseInfo_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
