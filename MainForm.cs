@@ -135,5 +135,11 @@ namespace IbrahimDVLD
             frmReplaceForDamage_LostLicense frm=new frmReplaceForDamage_LostLicense();
             frm.ShowDialog();
         }
+
+        private void detainLicenseToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmDetainLicense frm=new frmDetainLicense();
+            frm.ShowDialog();
+        }
     }
 }

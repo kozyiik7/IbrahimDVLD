@@ -93,7 +93,7 @@ namespace IbrahimDVLD
             }
             set
             {
-                lblIsDetained.Text = (value.ToString() == "1") ? "Yes" : "No";
+                lblIsDetained.Text = value ? "Yes" : "No";
             }
         }
         public string ImagePath
@@ -158,7 +158,8 @@ namespace IbrahimDVLD
                     DateOfBirth = Convert.ToDateTime(Data["DateOfBirth"]);
                     DriverID = (int)Data["DriverID"];
                     ExpirationDate = Convert.ToDateTime(Data["ExpirationDate"]);
-                    IsDetained= ((int)Data["IsDetained"]==1)?true:false;
+                   // Console.WriteLine(Data["IsDetained"].GetType().Name);
+                    IsDetained = (int)(Data["IsDetained"]) > 0 ;
                     ImagePath = (string)Data["ImagePath"];
                 }
 
