@@ -48,6 +48,8 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.detainLicenseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.detainLicenseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.releaseDetainedLicensToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageDetainedLicensesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.manageApplicationTypesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
@@ -60,8 +62,6 @@
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
             this.signOutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.releaseDetainedLicensToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.manageDetainedLicensesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -234,6 +234,19 @@
             this.detainLicenseToolStripMenuItem1.Text = "Detain License";
             this.detainLicenseToolStripMenuItem1.Click += new System.EventHandler(this.detainLicenseToolStripMenuItem1_Click);
             // 
+            // releaseDetainedLicensToolStripMenuItem
+            // 
+            this.releaseDetainedLicensToolStripMenuItem.Name = "releaseDetainedLicensToolStripMenuItem";
+            this.releaseDetainedLicensToolStripMenuItem.Size = new System.Drawing.Size(310, 30);
+            this.releaseDetainedLicensToolStripMenuItem.Text = "Release Detained License";
+            this.releaseDetainedLicensToolStripMenuItem.Click += new System.EventHandler(this.releaseDetainedLicensToolStripMenuItem_Click);
+            // 
+            // manageDetainedLicensesToolStripMenuItem
+            // 
+            this.manageDetainedLicensesToolStripMenuItem.Name = "manageDetainedLicensesToolStripMenuItem";
+            this.manageDetainedLicensesToolStripMenuItem.Size = new System.Drawing.Size(310, 30);
+            this.manageDetainedLicensesToolStripMenuItem.Text = "Manage Detained License";
+            // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
@@ -331,18 +344,6 @@
             this.signOutToolStripMenuItem1.Size = new System.Drawing.Size(241, 30);
             this.signOutToolStripMenuItem1.Text = "Sign Out";
             this.signOutToolStripMenuItem1.Click += new System.EventHandler(this.signOutToolStripMenuItem1_Click);
-            // 
-            // releaseDetainedLicensToolStripMenuItem
-            // 
-            this.releaseDetainedLicensToolStripMenuItem.Name = "releaseDetainedLicensToolStripMenuItem";
-            this.releaseDetainedLicensToolStripMenuItem.Size = new System.Drawing.Size(310, 30);
-            this.releaseDetainedLicensToolStripMenuItem.Text = "Release Detained License";
-            // 
-            // manageDetainedLicensesToolStripMenuItem
-            // 
-            this.manageDetainedLicensesToolStripMenuItem.Name = "manageDetainedLicensesToolStripMenuItem";
-            this.manageDetainedLicensesToolStripMenuItem.Size = new System.Drawing.Size(310, 30);
-            this.manageDetainedLicensesToolStripMenuItem.Text = "Manage Detained License";
             // 
             // MainForm
             // 

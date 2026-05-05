@@ -330,6 +330,37 @@ namespace IbrahimDVLDDataAccessLayer
             return PersonID;
 
         }
+        public static DataRow GetUserInfoByUserID(int UserID)
+        {
+            DataTable dtUserInfo = new DataTable();
+            SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string Query = @"select  * from Users
+                      where UserID=@UserID";
+            SqlCommand Command = new SqlCommand(Query, Connection);
+            Command.Parameters.AddWithValue("@UserID", UserID);
+            try
+            {
+                Connection.Open();
+                SqlDataReader reader = Command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    dtUserInfo.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            if (dtUserInfo.Rows.Count > 0)
+                return dtUserInfo.Rows[0];
+            else
+                return null;
+        }
 
     }
 }

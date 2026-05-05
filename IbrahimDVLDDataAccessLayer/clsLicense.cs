@@ -88,7 +88,7 @@ namespace IbrahimDVLDDataAccessLayer
                             , People.DateOfBirth
                             , Drivers.DriverID
                             , Licenses.ExpirationDate
-                            ,(select count(*) from DetainedLicenses where DetainedLicenses.LicenseID=Licenses.LicenseID) as IsDetained
+                            ,(select count(*) from DetainedLicenses where DetainedLicenses.LicenseID=Licenses.LicenseID and IsReleased is null) as IsDetained
                             ,ISNULL( People.ImagePath,'') as ImagePath
                             FROM            People
                             INNER JOIN Applications 

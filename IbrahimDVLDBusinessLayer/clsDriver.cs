@@ -41,5 +41,21 @@ namespace IbrahimDVLDBusinessLayer
         {
             return IbrahimDVLDDataAccessLayer.clsDriver.GetAllDrivers();
         }
+
+        public static clsDriver Read(int DriverID)
+        {
+            DataRow Dr = IbrahimDVLDDataAccessLayer.clsDriver.GetDriverInfoByDriverID(DriverID);
+            if (Dr != null)
+            {
+                clsDriver MyDriver = new clsDriver();
+                MyDriver.DriverID = (int)Dr["DriverID"];
+                MyDriver.PersonID = (int)Dr["PersonID"];
+                MyDriver.CreatedByUserID = (int)Dr["CreatedByUserID"];
+                MyDriver.CreatedDate = (DateTime)Dr["CreatedDate"];
+                return MyDriver;
+            }
+            else
+                return null;
+        }
     }
 }

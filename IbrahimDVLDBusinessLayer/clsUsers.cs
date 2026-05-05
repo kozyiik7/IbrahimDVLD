@@ -73,5 +73,24 @@ namespace IbrahimDVLDBusinessLayer
         {
             return IbrahimDVLDDataAccessLayer.clsUsers.getPersonIdByUserName(UserName);
         }
+        public static clsUsers GetUserInfoByUserID(int UserID)
+        {
+            DataRow dr =IbrahimDVLDDataAccessLayer.clsUsers.GetUserInfoByUserID(UserID);
+            if (dr != null)
+            {
+                clsUsers user = new clsUsers();
+                user.UserID = UserID;
+                user.PersonID = Convert.ToInt32(dr["PersonID"]);
+                user.UserName = dr["UserName"].ToString();
+                user.isActive = Convert.ToBoolean(dr["IsActive"]);
+                user.Password = dr["Password"].ToString();
+                return user;
+
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

@@ -12,10 +12,10 @@ namespace IbrahimDVLDDataAccessLayer
     {
         public clsDriver() { }
 
-        public static int CreateNewDriver(int PersonID,int CreatedByPersonID,DateTime CreatedDate)
+        public static int CreateNewDriver(int PersonID, int CreatedByPersonID, DateTime CreatedDate)
         {
             int DriverID = 0;
-            SqlConnection Connection=new SqlConnection(clsDataAccessSettings.ConnectionString)  ;
+            SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string Query = @"INSERT INTO [dbo].[Drivers]
                            ([PersonID]
                            ,[CreatedByUserID]
@@ -55,7 +55,7 @@ namespace IbrahimDVLDDataAccessLayer
                              where PersonID=@PersonID";
             SqlCommand Command = new SqlCommand(Query, Connection);
             Command.Parameters.AddWithValue("@PersonID", PersonID);
-           
+
             try
             {
                 Connection.Open();
@@ -71,7 +71,7 @@ namespace IbrahimDVLDDataAccessLayer
             {
                 Connection.Close();
             }
-            return DriverCount>0;
+            return DriverCount > 0;
 
         }
 
@@ -122,8 +122,8 @@ namespace IbrahimDVLDDataAccessLayer
             try
             {
                 Connection.Open();
-                SqlDataReader reader= Command.ExecuteReader();
-                if(reader.HasRows)
+                SqlDataReader reader = Command.ExecuteReader();
+                if (reader.HasRows)
                     dtDrivers.Load(reader);
 
             }
@@ -136,6 +136,32 @@ namespace IbrahimDVLDDataAccessLayer
                 Connection.Close();
             }
             return dtDrivers;
+        }
+        public static DataRow GetDriverInfoByDriverID(int DriverID)
+        {
+            DataTable dtDriver = new DataTable();
+            SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string Query = @"select top 1 * from Drivers
+                             where DriverID=@DriverID";
+            SqlCommand Command = new SqlCommand(Query, Connection);
+            Command.Parameters.AddWithValue("@DriverID", DriverID);
+            try 
+            {
+            Connection.Open();
+                SqlDataReader Reader = Command.ExecuteReader();
+                if (Reader.HasRows)
+                    dtDriver.Load(Reader);
+                Reader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            return (dtDriver.Rows.Count > 0) ? dtDriver.Rows[0] : null;
         }
     }
 }

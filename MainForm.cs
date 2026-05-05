@@ -141,5 +141,11 @@ namespace IbrahimDVLD
             frmDetainLicense frm=new frmDetainLicense();
             frm.ShowDialog();
         }
+
+        private void releaseDetainedLicensToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReleaseDetainedLicense frm=new frmReleaseDetainedLicense();
+            frm.ShowDialog();
+        }
     }
 }

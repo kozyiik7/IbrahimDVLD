@@ -107,14 +107,14 @@ namespace IbrahimDVLDDataAccessLayer
             SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"Update [dbo].[DetainedLicenses]
                            set
-                            ([LicenseID]=@LicenseID
+                            [LicenseID]=@LicenseID
                             ,[DetainDate]=@DetainDate
                             ,[FineFees]=@FineFees
                             ,[CreatedByUserID]=@CreatedByUserID
-                            ,[@IsReleased]=@IsReleased
+                            ,[IsReleased]=@IsReleased
                             ,[ReleaseDate]=ISNULL(@ReleaseDate, NULL)
                             ,[ReleasedByUserID]=ISNULL(@ReleasedByUserID, NULL)
-                            ,[ReleaseApplicationID]=ISNULL(@ReleaseApplicationID, NULL));
+                            ,[ReleaseApplicationID]=ISNULL(@ReleaseApplicationID, NULL)
                              where DetainID=@DetainID";
             SqlCommand Command = new SqlCommand(query, Connection);
             Command.Parameters.AddWithValue("@LicenseID", LicenseID);
@@ -122,9 +122,9 @@ namespace IbrahimDVLDDataAccessLayer
             Command.Parameters.AddWithValue("@FineFees", FineFees);
             Command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
             Command.Parameters.AddWithValue("@IsReleased", IsReleased);
-            Command.Parameters.AddWithValue("@ReleaseDate", ReleaseDate);
-            Command.Parameters.AddWithValue("@ReleasedByUserID", ReleasedByUserID);
-            Command.Parameters.AddWithValue("@ReleaseApplicationID", ReleaseApplicationID);
+            Command.Parameters.AddWithValue("@ReleaseDate", (object) ReleaseDate??DBNull.Value);
+            Command.Parameters.AddWithValue("@ReleasedByUserID", (object) ReleasedByUserID??DBNull.Value);
+            Command.Parameters.AddWithValue("@ReleaseApplicationID", (object)ReleaseApplicationID ?? DBNull.Value);
             Command.Parameters.AddWithValue("@DetainID", DetainID);
             try
             {
@@ -153,5 +153,21 @@ namespace IbrahimDVLDDataAccessLayer
 
 
         }
+    //    public static DataTable GetAllDetainedLicense()
+    //    {
+    //        DataTable table = new DataTable();
+    //        SqlConnection Connection= new SqlConnection(clsDataAccessSettings.ConnectionString);
+    //        string Query= @"SELECT  DetainedLicenses.DetainID
+    //   ,DetainedLicenses.LicenseID
+	   //,DetainedLicenses.DetainDate
+	   //,DetainedLicenses.IsReleased
+	   //,DetainedLicenses.FineFees
+	   //,DetainedLicenses.ReleaseDate
+	   //,(select People.NationalNo from People where People.PersonID =Applications.ApplicantPersonID) as 'N.No'
+	   
+    //     FROM            Applications INNER JOIN
+    //                     People ON Applications.ApplicantPersonID = People.PersonID INNER JOIN
+    //                     DetainedLicenses ON Applications.ApplicationID = DetainedLicenses.ReleaseApplicationID";
+    //    }
     }
 }
