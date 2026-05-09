@@ -246,6 +246,7 @@
             this.manageDetainedLicensesToolStripMenuItem.Name = "manageDetainedLicensesToolStripMenuItem";
             this.manageDetainedLicensesToolStripMenuItem.Size = new System.Drawing.Size(310, 30);
             this.manageDetainedLicensesToolStripMenuItem.Text = "Manage Detained License";
+            this.manageDetainedLicensesToolStripMenuItem.Click += new System.EventHandler(this.manageDetainedLicensesToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -153,21 +154,43 @@ namespace IbrahimDVLDDataAccessLayer
 
 
         }
-    //    public static DataTable GetAllDetainedLicense()
-    //    {
-    //        DataTable table = new DataTable();
-    //        SqlConnection Connection= new SqlConnection(clsDataAccessSettings.ConnectionString);
-    //        string Query= @"SELECT  DetainedLicenses.DetainID
-    //   ,DetainedLicenses.LicenseID
-	   //,DetainedLicenses.DetainDate
-	   //,DetainedLicenses.IsReleased
-	   //,DetainedLicenses.FineFees
-	   //,DetainedLicenses.ReleaseDate
-	   //,(select People.NationalNo from People where People.PersonID =Applications.ApplicantPersonID) as 'N.No'
-	   
-    //     FROM            Applications INNER JOIN
-    //                     People ON Applications.ApplicantPersonID = People.PersonID INNER JOIN
-    //                     DetainedLicenses ON Applications.ApplicationID = DetainedLicenses.ReleaseApplicationID";
-    //    }
+        public static DataTable GetAllDetainedLicense()
+        {
+            DataTable table = new DataTable();
+            SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string Query = @"SELECT  DetainedLicenses.DetainID
+                            ,DetainedLicenses.LicenseID
+	                        ,DetainedLicenses.DetainDate
+	                        ,DetainedLicenses.IsReleased
+	                        ,DetainedLicenses.FineFees
+	                        ,DetainedLicenses.ReleaseDate
+	                        ,(select People.NationalNo from People where People.PersonID =Applications.ApplicantPersonID) as 'N.No'
+	                        ,(select CONCAT_WS(' ',People.FirstName,People.SecondName,People.ThirdName,People.LastName) from People where People.PersonID =Applications.ApplicantPersonID) as 'FullName'
+	                        ,DetainedLicenses.ReleaseApplicationID
+	                        from DetainedLicenses left join Applications
+	                         ON Applications.ApplicationID = DetainedLicenses.ReleaseApplicationID
+                            left JOIN People 
+	                        ON Applications.ApplicantPersonID = People.PersonID";
+            SqlCommand Command=new SqlCommand(Query, Connection);
+            try
+            {
+                Connection.Open();
+                SqlDataReader Reader = Command.ExecuteReader();
+                if (Reader.HasRows)
+                {
+                    table.Load(Reader);
+                }
+                Connection.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            return table!=null?table:null;
+        }
     }
 }

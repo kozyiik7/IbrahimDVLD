@@ -23,6 +23,14 @@ namespace IbrahimDVLD
         {
             InitializeComponent();
         }
+        public frmReleaseDetainedLicense(int licenseID)
+        {
+            InitializeComponent();
+            _LicenseID = licenseID;
+            ucFilterDriverLicense1.ucFilterValue = licenseID;
+            GetLicenseID(licenseID, this);
+           
+        }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -79,7 +87,7 @@ namespace IbrahimDVLD
            lblDetainDate.Text= MyDetainLicense.DetainDate.ToString();
            lblLicenseID.Text= MyDetainLicense.LicenseID.ToString();
            lblCreatedBy.Text=clsUsers.GetUserInfoByUserID(MyDetainLicense.CreatedByUserID).UserName;
-            lblApplicationFees.Text=clsApplicationTypes.GetApplicationFeesFromApplicatioName(ApplicationName).ToString();
+           lblApplicationFees.Text=clsApplicationTypes.GetApplicationFeesFromApplicatioName(ApplicationName).ToString();
            lblFineFees.Text= MyDetainLicense.FineFees.ToString();
            lblTotalFees.Text= (MyDetainLicense.FineFees+ clsApplicationTypes.GetApplicationFeesFromApplicatioName(ApplicationName)).ToString();
             
@@ -95,8 +103,11 @@ namespace IbrahimDVLD
         }
         private void frmReleaseDetainedLicense_Load(object sender, EventArgs e)
         {
+            if (_LicenseID == -1)
+            { 
             _PrepareInitialState();
             ucFilterDriverLicense1.LicensedIDChanged += GetLicenseID;
+            }
         }
         private void  _ReleaseLicense()
         {

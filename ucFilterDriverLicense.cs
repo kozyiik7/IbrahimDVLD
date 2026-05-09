@@ -19,6 +19,24 @@ namespace IbrahimDVLD
         }
        public delegate void LicenseID(int licendID,object sender);
         public event LicenseID LicensedIDChanged;
+        public int ucFilterValue
+        {
+            get
+            {
+                if (int.TryParse(txtFilter.Text, out int result))
+                    return result;
+                else
+                    return -1;
+            }
+            set
+            {
+               
+                txtFilter.Text = value.ToString();
+                ExecuteSearch();
+                txtFilter.Enabled = false;
+                btnSearch.Enabled = false;
+            }
+        }
         private void gbFilter_Enter(object sender, EventArgs e)
         {
 
@@ -38,16 +56,19 @@ namespace IbrahimDVLD
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-           if(int.TryParse(txtFilter.Text, out int result) )
-            if (clsLicense.GetDriverLicensDataLicenseID(result).Rows.Count>0)
-            {
-                    int LocalDrivngLicenseID=clsLocalDrivingLicenseApplications.GetLocalDrivingLicensIDFromLicenseID(result);
+           ExecuteSearch();
+        }
+        private void ExecuteSearch()
+        {
+            if (int.TryParse(txtFilter.Text, out int result))
+                if (clsLicense.GetDriverLicensDataLicenseID(result).Rows.Count > 0)
+                {
+                    int LocalDrivngLicenseID = clsLocalDrivingLicenseApplications.GetLocalDrivingLicensIDFromLicenseID(result);
                     // OnlicensIDChanged?.Invoke(Convert.ToInt32(txtFilter.Text), this);
                     ucLicenseInfo1.LocalDrivingLicenseID = LocalDrivngLicenseID;
                     LicensedIDChanged?.Invoke(result, this);
-            }
+                }
         }
-
         private void txtFilter_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

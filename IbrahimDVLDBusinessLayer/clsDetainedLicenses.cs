@@ -62,5 +62,9 @@ namespace IbrahimDVLDBusinessLayer
         {
             return IbrahimDVLDDataAccessLayer.clsDetainedLicenses.UpdateDetainLicense(DetainID, LicenseID, DetainDate, FineFees, CreatedByUserID, IsReleased, ReleaseDate, ReleasedByUserID, ReleaseApplicationID);
         }
+        public static DataTable GetAllDetainedLicense()
+        { 
+            return IbrahimDVLDDataAccessLayer.clsDetainedLicenses.GetAllDetainedLicense();
+        }
     }
 }
