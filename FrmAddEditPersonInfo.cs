@@ -33,9 +33,7 @@ namespace IbrahimDVLD
             short Gendor = 0;
             int CountryID = -1;
 
-            _Person = clsPeople.GetPersonInfo(_PersonID, ref FirstName, ref SecondName, ref ThirdName, ref LastName,
-                                                          ref NationalNumber, ref DateOfBirth, ref Gendor, ref Phone,
-                                                          ref Email, ref CountryID, ref Address, ref imagePath);
+            _Person = clsPeople.GetPersonInfoPersonID(_PersonID);
             if (_Person != null)
             {
              
@@ -81,19 +79,19 @@ namespace IbrahimDVLD
             if (GetPersonInfo())
             {
                 lblPersonID.Text = _PersonID.ToString();
-
-                ucPersonInfo1.FirstName = _Person.FirstName;
-                ucPersonInfo1.SecondName = _Person.SecondName;
-                ucPersonInfo1.ThirdName = _Person.ThirdName;
-                ucPersonInfo1.LastName = _Person.LastName;
-                ucPersonInfo1.NationalNUmber = _Person.NationalNumber;
-                ucPersonInfo1.DateOfBirth = _Person.DateOfBirth;
-                ucPersonInfo1.Gendor = _Person.Gendor;
-                ucPersonInfo1.Phone = _Person.Phone;
-                ucPersonInfo1.Email = _Person.Email;
-                ucPersonInfo1.CountryID = _Person.CountryID;
-                ucPersonInfo1.Address = _Person.Address;
-                ucPersonInfo1.ImagePath = _Person.ImagePath;
+                ucPersonInfo1.LoadPersonInfo(_PersonID);
+                //ucPersonInfo1.FirstName = _Person.FirstName;
+                //ucPersonInfo1.SecondName = _Person.SecondName;
+                //ucPersonInfo1.ThirdName = _Person.ThirdName;
+                //ucPersonInfo1.LastName = _Person.LastName;
+                //ucPersonInfo1.NationalNUmber = _Person.NationalNumber;
+                //ucPersonInfo1.DateOfBirth = _Person.DateOfBirth;
+                //ucPersonInfo1.Gendor = _Person.Gendor;
+                //ucPersonInfo1.Phone = _Person.Phone;
+                //ucPersonInfo1.Email = _Person.Email;
+                //ucPersonInfo1.CountryID = _Person.CountryID;
+                //ucPersonInfo1.Address = _Person.Address;
+                //ucPersonInfo1.ImagePath = _Person.ImagePath;
             }
         }
 
@@ -111,18 +109,18 @@ namespace IbrahimDVLD
                 _Person = new clsPeople();
 
             // نقل البيانات من الـ UserControl إلى الكائن
-            _Person.FirstName = ucPersonInfo1.FirstName;
-            _Person.SecondName = ucPersonInfo1.SecondName;
-            _Person.ThirdName = ucPersonInfo1.ThirdName;
-            _Person.LastName = ucPersonInfo1.LastName;
-            _Person.NationalNumber = ucPersonInfo1.NationalNUmber;
-            _Person.DateOfBirth = ucPersonInfo1.DateOfBirth;
-            _Person.Gendor = ucPersonInfo1.Gendor;
-            _Person.Phone = ucPersonInfo1.Phone;
-            _Person.Email = ucPersonInfo1.Email;
-            _Person.CountryID = ucPersonInfo1.CountryID;
-            _Person.Address = ucPersonInfo1.Address;
-            _Person.ImagePath = ucPersonInfo1.ImagePath;
+            _Person.FirstName = ucPersonInfo1.GetPersonInfo.FirstName;
+            _Person.SecondName = ucPersonInfo1.GetPersonInfo.SecondName;
+            _Person.ThirdName = ucPersonInfo1.GetPersonInfo.ThirdName;
+            _Person.LastName = ucPersonInfo1.GetPersonInfo.LastName;
+            _Person.NationalNumber = ucPersonInfo1.GetPersonInfo.NationalNumber;
+            _Person.DateOfBirth = ucPersonInfo1.GetPersonInfo.DateOfBirth;
+            _Person.Gendor = ucPersonInfo1.GetPersonInfo.Gendor;
+            _Person.Phone = ucPersonInfo1.GetPersonInfo.Phone;
+            _Person.Email = ucPersonInfo1.GetPersonInfo.Email;
+            _Person.CountryID = ucPersonInfo1.GetPersonInfo.CountryID;
+            _Person.Address = ucPersonInfo1.GetPersonInfo.Address;
+            _Person.ImagePath = ucPersonInfo1.GetPersonInfo.ImagePath;
 
             return true;
         }
@@ -134,20 +132,9 @@ namespace IbrahimDVLD
                 return;
 
             // 2) نفّذ عملية الإدخال أو التعديل
-            _Person.ID = _Person.Insert(
-                _Person.FirstName,
-                _Person.SecondName,
-                _Person.ThirdName,
-                _Person.LastName,
-                _Person.NationalNumber,
-                _Person.DateOfBirth,
-                _Person.Gendor,
-                _Person.Phone,
-                _Person.Email,
-                _Person.CountryID,
-                _Person.Address,
-                _Person.ImagePath
-            );
+            _Person.Save();
+            
+            
 
             // 3) تحقق من نجاح العملية
             if (_Person.ID != -1)

@@ -153,5 +153,16 @@ namespace IbrahimDVLD
             frmListDetainedLicenses frm=new frmListDetainedLicenses();
             frm.ShowDialog();
         }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+          //  MessageBox.Show(AppDomain.CurrentDomain.BaseDirectory);
+
+        }
     }
 }

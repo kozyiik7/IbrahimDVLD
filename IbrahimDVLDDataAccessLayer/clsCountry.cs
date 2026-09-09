@@ -94,5 +94,31 @@ namespace IbrahimDVLDDataAccessLayer
             }
             return "";
         }
+        public static bool GetCountryInfoByCountryID(int CountryID,ref string CountryName)
+        {
+            bool isFound = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "Select * from Countries Where CountryID =@CountryID";
+            SqlCommand command = new SqlCommand(query, connection);
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read()) 
+                {
+                    isFound = true;
+                    CountryName = (string)reader["CountryName"];
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isFound;
+        }
     }
 }

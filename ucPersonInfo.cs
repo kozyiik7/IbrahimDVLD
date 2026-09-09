@@ -9,6 +9,58 @@ namespace IbrahimDVLD
 {
     public partial class ucPersonInfo : UserControl
     {
+        public enum enGendor{Male = 0, Female}
+        private int _PersonID = -1;
+        private clsPeople _Person;
+
+        public void LoadPersonInfo(int personID)
+        {
+            _PersonID = personID;
+            _Person = clsPeople.GetPersonInfoPersonID(_PersonID);
+            if (_Person != null)
+            {
+                txtFirstName.Text = _Person.FirstName;
+                txtSecondName.Text = _Person.SecondName;
+                txtThirdName.Text = _Person.ThirdName;
+                txtLastName.Text = _Person.LastName;
+                txtNationalNumber.Text = _Person.NationalNumber;
+                dtpDateOfBirth.Value = _Person.DateOfBirth;
+                rbMale.Checked = _Person.Gendor ==(byte)enGendor.Male;
+                rbFemale.Checked = _Person.Gendor ==(byte)enGendor.Female;
+                txtPhone.Text = _Person.Phone;
+                txtEmail.Text = _Person.Email;
+                cmbCountry.SelectedIndex = cmbCountry.FindStringExact(clsCountry.GetCountyNameByCountryID(_Person.CountryID));
+                txtAddress.Text = _Person.Address;
+                pbImage.ImageLocation = _Person.ImagePath;
+            }
+            else
+            {
+                resetPersonInfo();
+            }
+        }
+        public int GetPersonID
+        {
+            get { return _PersonID; }
+        }
+        public clsPeople GetPersonInfo
+        {
+            get { return _Person; }
+        }
+        private void resetPersonInfo()
+        {
+            txtFirstName.Text = "";
+            txtSecondName.Text = "";
+            txtThirdName.Text = "";
+            txtLastName.Text = "";
+            txtNationalNumber.Text = "";
+            dtpDateOfBirth.Value = DateTime.Today.AddYears(-18);
+            rbMale.Checked = true;
+            txtPhone.Text = "";
+            txtEmail.Text = "";
+            cmbCountry.SelectedIndex = cmbCountry.FindStringExact("Syria");
+            txtAddress.Text = "";
+            pbImage.ImageLocation = null;
+        }
         public ucPersonInfo()
         {
             InitializeComponent();
@@ -17,44 +69,44 @@ namespace IbrahimDVLD
         string SourceFolder = "";
         string DestinationFolder = @"C:\Project_People_Images";
         string DestinationWithNewName = "";
-        public string FirstName { get { return txtFirstName.Text; } set { txtFirstName.Text = value; } }
-        public string SecondName { get { return txtSecondName.Text; } set { txtSecondName.Text = value; } }
-        public string ThirdName { get { return txtThirdName.Text; } set { txtThirdName.Text = value; } }
-        public string LastName { get { return txtLastName.Text; } set { txtLastName.Text = value; } }
-        public string NationalNUmber { get { return txtNationalNumber.Text; } set { txtNationalNumber.Text = value; } }
-        public DateTime DateOfBirth { get { return dtpDateOfBirth.Value; } set { dtpDateOfBirth.Value = value; } }
-        public short Gendor
-        {
-            get
-            {
-                if (rbMale.Checked) return 0;
-                if (rbFemale.Checked) return 1;
-                else return -1;
-            }
-            set
-            {
-                if (value == 0)
-                    rbMale.Checked = true;
-                else if (value == 1)
-                    rbFemale.Checked = true;
-            }
-        }
-        public string Phone { get { return txtPhone.Text; } set { txtPhone.Text = value; } }
-        public string Email { get { return txtEmail.Text; } set { txtEmail.Text = value; } }
-        public int CountryID
-        {
-            get { return (int)clsCountry.GetCountyIDByCountryName(cmbCountry.Text); } //return clsCountry.GetCountyIDByCountryName(cmbCountry.SelectedItem?.ToString()); }
+        //public string FirstName { get { return txtFirstName.Text; } set { txtFirstName.Text = value; } }
+        //public string SecondName { get { return txtSecondName.Text; } set { txtSecondName.Text = value; } }
+        //public string ThirdName { get { return txtThirdName.Text; } set { txtThirdName.Text = value; } }
+        //public string LastName { get { return txtLastName.Text; } set { txtLastName.Text = value; } }
+        //public string NationalNUmber { get { return txtNationalNumber.Text; } set { txtNationalNumber.Text = value; } }
+        //public DateTime DateOfBirth { get { return dtpDateOfBirth.Value; } set { dtpDateOfBirth.Value = value; } }
+        //public byte Gendor
+        //{
+        //    get
+        //    {
+        //        if (rbMale.Checked) return 0;
+        //        if (rbFemale.Checked) return 1;
+        //        else return 0;
+        //    }
+        //    set
+        //    {
+        //        if (value == 0)
+        //            rbMale.Checked = true;
+        //        else if (value == 1)
+        //            rbFemale.Checked = true;
+        //    }
+        //}
+        //public string Phone { get { return txtPhone.Text; } set { txtPhone.Text = value; } }
+        //public string Email { get { return txtEmail.Text; } set { txtEmail.Text = value; } }
+        //public int CountryID
+        //{
+        //    get { return (int)clsCountry.GetCountyIDByCountryName(cmbCountry.Text); } //return clsCountry.GetCountyIDByCountryName(cmbCountry.SelectedItem?.ToString()); }
 
-            set
-            {
-                if (value == -1)
-                    cmbCountry.SelectedIndex = cmbCountry.FindStringExact("Syria");
-                else
-                    cmbCountry.SelectedIndex = cmbCountry.FindStringExact(clsCountry.GetCountyNameByCountryID(value));
-            }
-        }
-        public string Address { get { return txtAddress.Text; } set { txtAddress.Text = value; } }
-        public string ImagePath { get { return pbImage.ImageLocation; } set { pbImage.ImageLocation = value; } }
+        //    set
+        //    {
+        //        if (value == -1)
+        //            cmbCountry.SelectedIndex = cmbCountry.FindStringExact("Syria");
+        //        else
+        //            cmbCountry.SelectedIndex = cmbCountry.FindStringExact(clsCountry.GetCountyNameByCountryID(value));
+        //    }
+        //}
+        //public string Address { get { return txtAddress.Text; } set { txtAddress.Text = value; } }
+        //public string ImagePath { get { return pbImage.ImageLocation; } set { pbImage.ImageLocation = value; } }
 
         public bool LinkedLabeleRemoveVisible
         {
@@ -67,7 +119,7 @@ namespace IbrahimDVLD
             set { llSetImage.Visible = value; }
         }
 
-       
+
         private void FillCountriesComboBox()
         {
             cmbCountry.DataSource = IbrahimDVLDBusinessLayer.clsCountry.GetAllCountries();
@@ -203,10 +255,9 @@ namespace IbrahimDVLD
         }
         private void ucPersonInfo_Load(object sender, EventArgs e)
         {
-            if (CountryID != -1)
+            if (_Person != null && _Person.CountryID != -1)
             {
-                cmbCountry.SelectedIndex = cmbCountry.FindString(clsCountry.GetCountyNameByCountryID(CountryID));
-
+                cmbCountry.SelectedIndex = cmbCountry.FindString(clsCountry.GetCountyNameByCountryID(_Person.CountryID));
             }
             FillCountriesComboBox();
             SetDateTimePickerRange();

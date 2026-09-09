@@ -97,24 +97,24 @@
             // 
             // ucPersonInfo1
             // 
-            this.ucPersonInfo1.Address = "";
-            this.ucPersonInfo1.CountryID = 169;
-            this.ucPersonInfo1.DateOfBirth = new System.DateTime(2008, 2, 7, 0, 0, 0, 0);
-            this.ucPersonInfo1.Email = "";
-            this.ucPersonInfo1.FirstName = "";
-            this.ucPersonInfo1.Gendor = ((short)(0));
-            this.ucPersonInfo1.ImagePath = null;
-            this.ucPersonInfo1.LastName = "";
-            this.ucPersonInfo1.LinkedLabeleRemoveVisible = false;
-            this.ucPersonInfo1.LinkedlabelSetImageVisible = true;
-            this.ucPersonInfo1.Location = new System.Drawing.Point(-2, 93);
-            this.ucPersonInfo1.Name = "ucPersonInfo1";
-            this.ucPersonInfo1.NationalNUmber = "";
-            this.ucPersonInfo1.Phone = "";
-            this.ucPersonInfo1.SecondName = "";
-            this.ucPersonInfo1.Size = new System.Drawing.Size(874, 334);
-            this.ucPersonInfo1.TabIndex = 3;
-            this.ucPersonInfo1.ThirdName = "";
+            //this.ucPersonInfo1.Address = "";
+            //this.ucPersonInfo1.CountryID = 169;
+            //this.ucPersonInfo1.DateOfBirth = new System.DateTime(2008, 2, 7, 0, 0, 0, 0);
+            //this.ucPersonInfo1.Email = "";
+            //this.ucPersonInfo1.FirstName = "";
+            //this.ucPersonInfo1.Gendor = ((byte)(0));
+            //this.ucPersonInfo1.ImagePath = null;
+            //this.ucPersonInfo1.LastName = "";
+            //this.ucPersonInfo1.LinkedLabeleRemoveVisible = false;
+            //this.ucPersonInfo1.LinkedlabelSetImageVisible = true;
+            //this.ucPersonInfo1.Location = new System.Drawing.Point(-2, 93);
+            //this.ucPersonInfo1.Name = "ucPersonInfo1";
+            //this.ucPersonInfo1.NationalNUmber = "";
+            //this.ucPersonInfo1.Phone = "";
+            //this.ucPersonInfo1.SecondName = "";
+            //this.ucPersonInfo1.Size = new System.Drawing.Size(874, 334);
+            //this.ucPersonInfo1.TabIndex = 3;
+            //this.ucPersonInfo1.ThirdName = "";
             // 
             // FrmAddEditPersonInfo
             // 

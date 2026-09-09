@@ -1,4 +1,5 @@
 ﻿using IbrahimDVLDBusinessLayer;
+using IbrahimDVLDCommonLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -153,7 +154,7 @@ namespace IbrahimDVLD
         {
             if(!editMode)
             { 
-                _UserID = clsUsers.AddNewUser(_PersonID, txtUserName.Text.Trim(), txtPassword.Text.Trim(), chkIsActive.Checked);
+                _UserID = clsUsers.AddNewUser(_PersonID, txtUserName.Text.Trim(), clsCommonLayer.HashPassword(txtPassword.Text.Trim()), chkIsActive.Checked);
                 if (_UserID != -1)
                 {
                     lblFormAddress.Text = "Update User";
@@ -171,7 +172,7 @@ namespace IbrahimDVLD
             else
             {
                 clsUsers user = clsUsers.GetUserInfoByPersonID(_PersonID);
-               if( user.UpdateUserInfo(_PersonID, txtUserName.Text.Trim(), txtPassword.Text.Trim(), chkIsActive.Checked) )
+               if( user.UpdateUserInfo(_PersonID, txtUserName.Text.Trim(), clsCommonLayer.HashPassword(txtPassword.Text.Trim()), chkIsActive.Checked) )
                 { 
                     MessageBox.Show("User Updated Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }

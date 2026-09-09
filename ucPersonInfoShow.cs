@@ -109,9 +109,7 @@ namespace IbrahimDVLD
             short Gendor = 0;
             int CountryID = -1;
             llEditPersonInfo.Enabled = false;
-            personInfo = clsPeople.GetPersonInfo(_PersonID, ref FirstName, ref SecondName, ref ThirdName, ref LastName,
-                                                          ref NationalNumber, ref DateOfBirth, ref Gendor, ref Phone,
-                                                          ref Email, ref CountryID, ref Address, ref imagePath);
+            personInfo = clsPeople.GetPersonInfoPersonID(_PersonID);
             if (personInfo != null)
             {
                 llEditPersonInfo.Enabled = true;

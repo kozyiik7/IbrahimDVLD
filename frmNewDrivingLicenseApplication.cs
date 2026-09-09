@@ -74,7 +74,7 @@ namespace IbrahimDVLD
         public void GetPersonIDFromFilter(object sender, int PersonIDval)
         {
             _PersonID = PersonIDval;
-            this.PersonData=PersonData.GetPersonInfoByPersonID(_PersonID);
+            this.PersonData=clsPeople.GetPersonInfoPersonID(_PersonID);
             
         }
         private bool FillApplicationData() 

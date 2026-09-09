@@ -46,30 +46,37 @@ namespace IbrahimDVLD
 
         private void _SaveUserNameIfChecked(string UserName,string Password)
         {
-          
-            Properties.Settings.Default.SaveUserAndPass=true;
-            
-            string folder = "C:\\Users\\kozy\\source\\repos\\IbrahimDVLD\\UsersNameAndPassword";
+
+            //Properties.Settings.Default.SaveUserAndPass=true;
+
+            // string folder = "C:\\Users\\kozy\\source\\repos\\IbrahimDVLD\\UsersNameAndPassword";
 
             // إنشاء المجلد إذا لم يكن موجودًا
-            Directory.CreateDirectory(folder);
+            // Directory.CreateDirectory(folder);
 
             // اسم الملف (الأفضل عدم وضع كلمة المرور في اسم الملف)
-            string fileName = UserName + ".txt";
+            // string fileName = UserName + ".txt";
 
             // دمج المسار مع اسم الملف بطريقة آمنة
-            string path = Path.Combine(folder, fileName);
-            Properties.Settings.Default.Path = path;
-            Properties.Settings.Default.Save();
+            // string path = Path.Combine(folder, fileName);
+            //  Properties.Settings.Default.Path = path;
+            //Properties.Settings.Default.Save();
             // محتوى الملف
-            string content = UserName + "###" + Password;
+            // string content = UserName + "###" + Password;
 
-            
-                File.WriteAllText(path, content);
+
+            //  File.WriteAllText(path, content);
             //Properties.Settings.Default.UserName=UserName;
             //Properties.Settings.Default.Password=Password;
 
             //Properties.Settings.Default.PersonIDOfUser=clsUsers.GetPersonIDByUserName(UserName);
+            try
+            {
+             IbrahimDVLDCommonLayer.clsCommonLayer.SaveUserNameAndPasswoordInRegistry(UserName, Password);
+            } catch (Exception ex) 
+            {
+                throw ex;
+            }
             clsUsers User=clsUsers.GetUserInfoByPersonID(clsUsers.GetPersonIDByUserName(UserName));
             int PersonID = User.PersonID;
             int UserID = User.UserID;
@@ -80,13 +87,24 @@ namespace IbrahimDVLD
 
         private void _LoadUserNameIfExist()
         {
-            if (Properties.Settings.Default.SaveUserAndPass)
+            string RegistryPath = @"HKEY_CURRENT_USER\SOFTWARE\IbrahimDVLD";
+            string UserNameKey = "Username";
+            string PasswordKey = "Password";
+            string savedUserName = (string)Microsoft.Win32.Registry.GetValue(RegistryPath, UserNameKey, null);
+            if (savedUserName != null)
             {
-                string[] UserNameAndPassword = File.ReadAllText(Properties.Settings.Default.Path).Split(new string[] { "###" }, StringSplitOptions.None);
-                txtUserName.Text = UserNameAndPassword[0];
-                txtPassword.Text = UserNameAndPassword[1];
-                chkRememberMe.Checked = true;
+                chkRememberMe.Checked = true; 
+                string savedPassword = (string)Microsoft.Win32.Registry.GetValue(RegistryPath, PasswordKey, null);
+                txtPassword.Text = savedPassword;
+                txtUserName.Text = savedUserName;
             }
+            //if (Properties.Settings.Default.SaveUserAndPass)
+            //{
+            //    string[] UserNameAndPassword = File.ReadAllText(Properties.Settings.Default.Path).Split(new string[] { "###" }, StringSplitOptions.None);
+            //    txtUserName.Text = UserNameAndPassword[0];
+            //    txtPassword.Text = UserNameAndPassword[1];
+            //    chkRememberMe.Checked = true;
+            //}
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -94,7 +112,7 @@ namespace IbrahimDVLD
             
            
 
-            if (IbrahimDVLDBusinessLayer.clsUsers.IsUserExist(txtUserName.Text, txtPassword.Text))
+            if (IbrahimDVLDBusinessLayer.clsUsers.IsUserNameExist(txtUserName.Text))
             {
                 MessageBox.Show("البيانات صحيحة");
                 if(!IbrahimDVLDBusinessLayer.clsUsers.isUserActive(txtUserName.Text))

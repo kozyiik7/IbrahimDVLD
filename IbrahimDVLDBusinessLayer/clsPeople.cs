@@ -10,63 +10,93 @@ namespace IbrahimDVLDBusinessLayer
 {
     public class clsPeople
     {
+        public enum enMode { AddNew = 0, Update = 1 }
+        private enMode _Mode=enMode.AddNew;
         public int ID { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }
         public string ThirdName {  get; set; }
         public string LastName {  get; set; }
+        public string FullName { get { return FirstName + " " + SecondName + " " + ThirdName + " " + LastName; } }
         public string NationalNumber {  get; set; }
         public DateTime DateOfBirth {  get; set; }
-        public short Gendor {  get; set; }
+        public byte Gendor {  get; set; }
         public string Phone {  get; set; }
         public string Email {  get; set; }
         public int CountryID { get; set; }
+        public clsCountry CountryInfo
+        {
+            get
+            {
+                if (CountryInfo == null && CountryID > 0)
+                {
+                    return clsCountry.GetCountryInfoByCountryID(CountryID);
+                }
+                return clsCountry.GetCountryInfoByCountryID(CountryID);
+            }
+        }
         public string Address {  get; set; }
         public string ImagePath {  get; set; }
          
         public clsPeople()
         { 
-       
+            this.ID = 0;
+            this.FirstName = string.Empty;
+            this.SecondName = string.Empty;
+            this.ThirdName = string.Empty;
+            this.LastName = string.Empty;
+            this.NationalNumber = string.Empty;
+            this.DateOfBirth = DateTime.Now;
+            this.Gendor = 0;
+            this.Phone = string.Empty;
+            this.Email = string.Empty;
+            this.CountryID = 0;
+            this.Address = string.Empty;
+            this.ImagePath = string.Empty;
+            _Mode = enMode.AddNew;
+
 
         }
-        public clsPeople(int ID, string firstName, string secondName, string thirdName, string lastName, string nationalNumber, DateTime dateOfBirth, short gendor, string phone, string email, int countryID, string address, string imagePath)
+        private clsPeople(int ID, string firstName, string secondName, string thirdName, string lastName, string nationalNumber, DateTime dateOfBirth, byte gendor, string phone, string email, int countryID, string address, string imagePath)
         {
             this.ID = ID;
-            FirstName = firstName;
-            SecondName = secondName;
-            ThirdName = thirdName;
-            LastName = lastName;
-            NationalNumber = nationalNumber;
-            DateOfBirth = dateOfBirth;
-            Gendor = gendor;
-            Phone = phone;
-            Email = email;
-            CountryID = countryID;
-            Address = address;
-            ImagePath = imagePath;
+           this.FirstName = firstName;
+            this.SecondName = secondName;
+            this.ThirdName = thirdName;
+            this.LastName = lastName;
+            this.NationalNumber = nationalNumber;
+            this.DateOfBirth = dateOfBirth;
+            this.Gendor = gendor;
+            this.Phone = phone;
+            this.Email = email;
+            this.CountryID = countryID;
+            this.Address = address;
+            this.ImagePath = imagePath;
+            _Mode = enMode.Update; 
         }
 
-        public static DataTable GetAllPeople()
-        {
-            return clsDataAccess.GetAllPeople();
-        }
-        public static bool IsNationalnumberExist(string number)
-        {
-            return clsDataAccess.isNationalNumberExist(number);
-        }
-
-        public  static clsPeople GetPersonInfo(int ID , ref string FirstName, ref string SecondName, ref string ThirdName,
-                                         ref string LastName, ref string NationalNUmber,ref DateTime DateOfBirth ,
-                                         ref short Gendor, ref string Phone, ref string Email, ref int CountryID,
-                                         ref string Address , ref string ImagePath)
-        {
+         public  static clsPeople GetPersonInfoPersonID(int ID )
             
-           if( clsDataAccess.GetPersonInfo(ID, ref FirstName, ref SecondName, ref ThirdName,
-                                         ref LastName, ref NationalNUmber, ref DateOfBirth,
+        {
+            string FirstName = string.Empty;
+            string SecondName = string.Empty;
+            string ThirdName = string.Empty;
+            string LastName = string.Empty;
+            string NationalNumber = string.Empty;
+            DateTime DateOfBirth = DateTime.Now;
+            byte Gendor = 0;
+            string Phone = string.Empty;
+            string Email = string.Empty;
+            int CountryID = 0;
+            string Address = string.Empty;
+            string ImagePath = string.Empty;
+
+            if ( clsPeopleDataAccess.GetPersonInfoByPersonID(ID, ref FirstName, ref SecondName, ref ThirdName,
+                                         ref LastName, ref NationalNumber, ref DateOfBirth,
                                          ref Gendor, ref Phone, ref Email, ref CountryID,
                                          ref Address, ref ImagePath))
             {
-                return new clsPeople(ID, FirstName, SecondName, ThirdName, LastName, NationalNUmber, DateOfBirth,
+                return new clsPeople(ID, FirstName, SecondName, ThirdName, LastName, NationalNumber, DateOfBirth,
                                    Gendor, Phone, Email, CountryID, Address, ImagePath);
             }
             else
@@ -75,57 +105,71 @@ namespace IbrahimDVLDBusinessLayer
             }
 
         }
-        public clsPeople GetPersonInfoByPersonID(int PersonID)
-        {
-            clsPeople person = new clsPeople();
-            DataRow row = clsDataAccess.GetPersonInfoByPersonID(PersonID);
-            person.ID =(int)row["PersonID"];
-            person.FirstName =(string) row["FirstName"];
-            person.LastName = (string) row["LastName"];
-            person.SecondName = (string) row["SecondName"];
-            person.ThirdName = row["ThirdName"] as string ??string.Empty;   
-            person.NationalNumber = (string) row["NationalNo"];
-            person.DateOfBirth = Convert.ToDateTime(row["DateOfBirth"]);
-            person.Gendor = Convert.ToInt16(row["Gendor"]);
-            person.Phone = (string) row["Phone"];
-            person.Email = row["Email"] as string ?? string.Empty ;
-            person.CountryID = Convert.ToInt32(row["NationalityCountryID"]);
-            person.Address = (string) row["Address"];
-            person.ImagePath = row["ImagePath"] as string ?? string.Empty;
-            
-            return person;
-        }
+
         public static bool Delete(int PersonID)
         {
-            return clsDataAccess.Delete(PersonID);
+            return clsPeopleDataAccess.Delete(PersonID);
         }
 
-        public  bool Update(int PersonID, string FirstName, string SecondName, string ThirdName,
-                                         string LastName, string NationalNumber, DateTime DateOfBirth,
-                                         short Gendor, string Phone, string Email, int CountryID,
-                                         string Address, string ImagePath)
+
+
+
+        public static DataTable GetAllPeople()
+        {
+            return clsPeopleDataAccess.GetAllPeople();
+        }
+        public static bool IsNationalnumberExist(string number)
+        {
+            return clsPeopleDataAccess.isNationalNumberExist(number);
+        }
+
+       
+        
+       
+
+        private  bool _Update()
         {
 
-            return clsDataAccess.Update(PersonID, FirstName, SecondName, ThirdName, LastName, NationalNumber,
-                DateOfBirth,Gendor, Phone, Email, CountryID, Address, ImagePath);
+            return clsPeopleDataAccess.Update(this.ID, this.FirstName, this.SecondName, this.ThirdName, this.LastName, this.NationalNumber,
+                this.DateOfBirth,this.Gendor, this.Phone, this.Email, this.CountryID, this.Address, this.ImagePath);
         }
-        public  int Insert(string FirstName, string SecondName, string ThirdName,
-                                            string LastName, string NationalNumber, DateTime DateOfBirth,
-                                            short Gendor, string Phone, string Email, int CountryID,
-                                            string Address, string ImagePath)
+        private  bool _AddNew()
             {
     
-                return clsDataAccess.AddNew(FirstName, SecondName, ThirdName, LastName, NationalNumber,
-                    DateOfBirth, Gendor, Phone, Email, CountryID, Address, ImagePath);
+                this.ID = clsPeopleDataAccess.AddNew(this.FirstName, this.SecondName, this.ThirdName, this.LastName, this.NationalNumber,
+                    DateOfBirth, this.Gendor, this.Phone, this.Email, this.CountryID, this.Address, this.ImagePath);
+                return this.ID > 0;
+            }
+        
+        public bool Save()
+        {
+            switch(_Mode)
+            {
+                case enMode.AddNew:
+                  
+                    if (_AddNew())
+                    {
+                        _Mode = enMode.Update;
+                        return true;
+                    }
+                  else 
+                    { 
+                        return false;
+                    }
+                case enMode.Update:
+                    return _Update();
+                default:
+                    return false;
+            }
         }
         public static int GetPersonIDByNationalNumber(string NationalNumber)
         {
-            return clsDataAccess.GetPersonIDByNationalNumber(NationalNumber);
+            return clsPeopleDataAccess.GetPersonIDByNationalNumber(NationalNumber);
         }
 
         public static bool IsPersonIDExist(int PersonID)
         {
-            return clsDataAccess.isPersonIDExist(PersonID);
+            return clsPeopleDataAccess.isPersonIDExist(PersonID);
         }
         public static int GetPersonIDByDriverID(int DriverID)
         {

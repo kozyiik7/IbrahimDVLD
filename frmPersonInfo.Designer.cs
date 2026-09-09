@@ -77,25 +77,25 @@ namespace IbrahimDVLD
             // 
             // ucPersonInfo1
             // 
-            this.ucPersonInfo1.Address = "";
-            this.ucPersonInfo1.CountryID = 169;
-            this.ucPersonInfo1.DateOfBirth = new System.DateTime(2008, 2, 5, 0, 0, 0, 0);
-            this.ucPersonInfo1.Email = "";
-            this.ucPersonInfo1.Enabled = false;
-            this.ucPersonInfo1.FirstName = "";
-            this.ucPersonInfo1.Gendor = ((short)(0));
-            this.ucPersonInfo1.ImagePath = null;
-            this.ucPersonInfo1.LastName = "";
-            this.ucPersonInfo1.LinkedLabeleRemoveVisible = false;
-            this.ucPersonInfo1.LinkedlabelSetImageVisible = true;
-            this.ucPersonInfo1.Location = new System.Drawing.Point(6, 38);
-            this.ucPersonInfo1.Name = "ucPersonInfo1";
-            this.ucPersonInfo1.NationalNUmber = "";
-            this.ucPersonInfo1.Phone = "";
-            this.ucPersonInfo1.SecondName = "";
-            this.ucPersonInfo1.Size = new System.Drawing.Size(892, 318);
-            this.ucPersonInfo1.TabIndex = 0;
-            this.ucPersonInfo1.ThirdName = "";
+            //this.ucPersonInfo1.Address = "";
+            //this.ucPersonInfo1.CountryID = 169;
+            //this.ucPersonInfo1.DateOfBirth = new System.DateTime(2008, 2, 5, 0, 0, 0, 0);
+            //this.ucPersonInfo1.Email = "";
+            //this.ucPersonInfo1.Enabled = false;
+            //this.ucPersonInfo1.FirstName = "";
+            //this.ucPersonInfo1.Gendor = ((byte)(0));
+            //this.ucPersonInfo1.ImagePath = null;
+            //this.ucPersonInfo1.LastName = "";
+            //this.ucPersonInfo1.LinkedLabeleRemoveVisible = false;
+            //this.ucPersonInfo1.LinkedlabelSetImageVisible = true;
+            //this.ucPersonInfo1.Location = new System.Drawing.Point(6, 38);
+            //this.ucPersonInfo1.Name = "ucPersonInfo1";
+            //this.ucPersonInfo1.NationalNUmber = "";
+            //this.ucPersonInfo1.Phone = "";
+            //this.ucPersonInfo1.SecondName = "";
+            //this.ucPersonInfo1.Size = new System.Drawing.Size(892, 318);
+            //this.ucPersonInfo1.TabIndex = 0;
+            //this.ucPersonInfo1.ThirdName = "";
             // 
             // lblPersonIDValue
             // 

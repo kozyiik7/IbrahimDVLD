@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IbrahimDVLDCommonLayer;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace IbrahimDVLDBusinessLayer
 
         public static bool IsUserExist(string userName, string password)
         {
-            return IbrahimDVLDDataAccessLayer.clsUsers.IsUserExist(userName, password);
+            return IbrahimDVLDDataAccessLayer.clsUsers.IsUserExist(userName, clsCommonLayer.HashPassword(password));
         }
         public static bool IsUserNameExist(string userName)
         {
@@ -42,7 +43,7 @@ namespace IbrahimDVLDBusinessLayer
         }
         public static int AddNewUser(int PersonID, string UserName, string Password, bool isActive)
         {
-            return IbrahimDVLDDataAccessLayer.clsUsers.AddUser(PersonID, UserName, Password, isActive);
+            return IbrahimDVLDDataAccessLayer.clsUsers.AddUser(PersonID, UserName,  Password, isActive);
         }
         public static clsUsers GetUserInfoByPersonID(int PersonID)
         {
