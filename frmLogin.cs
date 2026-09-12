@@ -75,6 +75,7 @@ namespace IbrahimDVLD
              IbrahimDVLDCommonLayer.clsCommonLayer.SaveUserNameAndPasswoordInRegistry(UserName, Password);
             } catch (Exception ex) 
             {
+                IbrahimDVLDCommonLayer.clsCommonLayer.EventLogInformation("Error in _SaveUserNameIfChecked: " + ex.Message);
                 throw ex;
             }
             clsUsers User=clsUsers.GetUserInfoByPersonID(clsUsers.GetPersonIDByUserName(UserName));

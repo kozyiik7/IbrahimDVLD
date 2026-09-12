@@ -4,14 +4,17 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
+
 
 namespace IbrahimDVLDDataAccessLayer
 {
     internal class clsDataAccessSettings
     {
         //home Path : public static string ConnectionString = "server=DESKTOP-4VDAOFB\\MSSQLSERVER1;DataBase=DVLD;User id=sa;Password=123456;"
-        public static string ConnectionString = "server=DESKTOP-4VDAOFB\\MSSQLSERVER1;DataBase=DVLD;User id=sa;Password=123456;";
-       // public static string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\MyDVLD.mdf;Integrated Security=True;Connect Timeout=30;";
+        //public static string ConnectionString = "server=DESKTOP-4VDAOFB\\MSSQLSERVER1;DataBase=DVLD;User id=sa;Password=123456;";
+        public static string ConnectionString = ConfigurationManager.ConnectionStrings["DVLDConnectionString"].ConnectionString;
+        // public static string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\MyDVLD.mdf;Integrated Security=True;Connect Timeout=30;";
 
     }
 }

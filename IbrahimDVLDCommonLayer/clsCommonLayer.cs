@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Win32;
+using System.Diagnostics;
 
 
 namespace IbrahimDVLDCommonLayer
@@ -31,22 +32,37 @@ namespace IbrahimDVLDCommonLayer
             try
             {
                 // Hash the password before saving
-                string hashedPassword = clsCommonLayer.HashPassword(Password);
+               // string hashedPassword = clsCommonLayer.HashPassword(Password);
                 // Save the username and hashed password in the registry
                 string RegistryPath = @"HKEY_CURRENT_USER\SOFTWARE\IbrahimDVLD";
                 
                 string UserNameKey = "Username";
                 string PasswordKey = "Password";
                 Registry.SetValue(RegistryPath, UserNameKey, UserName,RegistryValueKind.String);
-                Registry.SetValue(RegistryPath, PasswordKey, hashedPassword, RegistryValueKind.String);
+                Registry.SetValue(RegistryPath, PasswordKey, Password, RegistryValueKind.String);
                 
+                return true;
+                
+            }
+            catch (Exception ex)
+            {
+                 IbrahimDVLDCommonLayer.clsCommonLayer.EventLogInformation("Error in SaveUserNameAndPasswoordInRegistry: " + ex.Message);
+                return false;
+            }
+        }
+        public static bool EventLogInformation(string message)
+        {
+            try
+            {
+                EventLog.WriteEntry("IbrahimDVLD", message, EventLogEntryType.Information);
                 return true;
             }
             catch (Exception ex)
             {
-                throw ex;
-                return false;
+               
+               throw ex;
             }
+           
         }
     }
 }
